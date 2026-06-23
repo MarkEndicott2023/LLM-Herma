@@ -1,0 +1,570 @@
+{
+  "name": "IAM & SSO Group Sync",
+  "goal": "Build conceptual foundation for the sso_group_sync project",
+  "created": "2026-04-10",
+  "concepts": [
+    {
+      "id": "identity_provider",
+      "name": "Identity Provider (IdP)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.55,
+      "reps": 1,
+      "interval_days": 1,
+      "next_review": "2026-04-23",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_statement",
+        "sources/sso_group_sync/README_v2.md",
+        "sources/sso_group_sync/investor_onepager.md"
+      ],
+      "history": [
+        {
+          "date": "2026-04-11",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "diagnostic: named Okta and Google Workspace correctly as IdPs, understood 'source of truth for identity'"
+        },
+        {
+          "date": "2026-04-22",
+          "score": 0.38,
+          "questions": 3,
+          "correct": 1.15,
+          "notes": "FAIL on first real review (diagnostic was shallow - just recognition). Q1 (0.5): delivered the 'outsource proof of identity' slogan despite explicit instruction to avoid it, gave MSU/Okta example but stopped at 'grants access' - missed the IdP's three mechanics (user directory, credential verification, SIGNED ASSERTION). Doesn't yet articulate the cryptographic trust layer (SP verifies IdP's signature on SAML assertion / OIDC id_token via IdP's public cert) - this is what makes SSO work vs. being just a redirect. Q2 (0.45) INTERLEAVED with authn_vs_authz: called nuszco 'an authZ layer' - the classic conflation taught against in 04-15 authn_vs_authz session where the 'SCIM as substrate, not authZ' framing was explicitly delivered. Mark's reflex when a new product fits the substrate role is to label it authZ. The correct 3-party split (IdP=authN, SP=authZ enforcement, nuszco=membership substrate) was re-taught. Also missed bi-directional sync despite it being in the investor_onepager.md Mark had open in the IDE. Q3 (0.2): 'not aware of GitHub's IdP capabilities' - honest non-confabulation but a real gap. GitHub is both SP (company GH org) AND IdP ('Sign in with GitHub' OAuth for Vercel/CircleCI/npm), and a GdP in nuszco's vocabulary. Q4 (stretch, not scored): only recognized Okta from Workday/Entra/Okta - Workday as HRIS system-of-record and Entra as Microsoft's identity directory were new. Re-teach delivered covering IdP mechanics, 3-party split, GitHub multi-role, multi-IdP topology. Next review 2026-04-23 focus: mechanics of signed assertions, and force the substrate-vs-authZ distinction on any nuszco-positioning question."
+        }
+      ]
+    },
+    {
+      "id": "service_provider",
+      "name": "Service Provider (SP)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.15,
+      "reps": 1,
+      "interval_days": 1,
+      "next_review": "2026-04-23",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_statement",
+        "sources/sso_group_sync/README_v2.md"
+      ],
+      "history": [
+        {
+          "date": "2026-04-11",
+          "score": 0.7,
+          "questions": 1,
+          "correct": 1,
+          "notes": "diagnostic: described SPs as 'SaaS apps downstream of IdP authentication' \u2014 directionally correct but informal, no concrete example given (should know GitHub/AWS/Jira)"
+        },
+        {
+          "date": "2026-04-11",
+          "score": 0.63,
+          "questions": 3,
+          "correct": 2,
+          "notes": "FAIL after reinforcement lesson. Q1: named 2/3 SP categories (SaaS, cloud infra) but missed on-prem/infra category AND gave zero product examples \u2014 still treating SP as abstract, not concrete. Q2: solid federation framing but couldn't recall the federation handshake contents (signing cert, metadata URL, ACS URL, entity ID \u2014 no user data exchanged at federation time). Q3: clean \u2014 correctly classified as authZ, correctly named SCIM as the responsible protocol (pulled from key_terms before being formally taught \u2014 good transfer from authn_vs_authz lesson). Re-quiz tomorrow with focus on concrete product examples and federation handshake mechanics. Note: mastery dropped 0.6\u21920.45, but this reflects the diagnostic value being inflated, not actual regression \u2014 Mark genuinely knows more now."
+        },
+        {
+          "date": "2026-04-15",
+          "score": 0.67,
+          "questions": 3,
+          "correct": 2,
+          "notes": "FAIL again. Q1: clean, all three categories with good examples (GitHub/AWS/VPN) - concrete examples gap from last session is closed. Q2: 3/4 handshake artifacts, missed ACS URL; signing cert role vague ('assert the IdP signage') - doesn't yet articulate signature verification / public-key crypto. Mark explicitly asked for a step-by-step walkthrough of the federation exchange, which was provided (setup 4 steps + runtime 6 steps). Q3: correctly said false but didn't name SCIM or JIT as the actual provisioning mechanisms - gap is connecting federation (trust setup) vs provisioning (user data channel) as separate concerns. Re-quiz tomorrow focusing on: ACS URL role, signature verification mechanics, SCIM-vs-JIT as the two ways users actually appear on SP."
+        },
+        {
+          "date": "2026-04-22",
+          "score": 0.7,
+          "questions": 2,
+          "correct": 1.4,
+          "notes": "FAIL (3rd consecutive) but closest score yet. Used forced-retrieval stage before re-teach per failed-review protocol. Stage 1 retrieval: categories SOLID (SaaS/cloud/on-prem retained from 04-15 - that win is durable). Federation artifacts 3/4 AGAIN - MISSED ACS URL for the third consecutive session. This gap is now a persistent pattern across 3 reviews and is not absorbing from list-form teaching. Mark was blank on signature verification mechanics and on SCIM vs JIT - both taught fresh this session. Q1 (0.4): right asymmetric-crypto shape (federation-time cert + runtime hash + public-key decrypt) BUT confused the objects: described a 'new signing cert POSTS to ACS URL' (wrong - it's the signed assertion that POSTs, cert was exchanged at setup) and a 'gold standard cert vs new cert' comparison (wrong - comparison is hash-vs-decrypted-hash, not cert-vs-cert). Runtime object confusion: doesn't yet distinguish 'what rides in federation setup' from 'what rides at runtime.' Also skipped the failure-mode half of Q1. Q2 (1.0): 3/3 clean SCIM/JIT discrimination on first exposure - new engineer pre-provisioning (SCIM), contractor licenses (JIT), fast termination (SCIM). Marked answers with '?' uncertainty but reasoning was correct - knowledge present, confidence not yet. Q3 (oauth2 interleave) skipped - Mark self-managed fatigue, explicitly called out uncertainty. Respected. Q3 preserved as oauth2 probe for next session ('in nuszco\u2019s Sign-in-with-Google PKCE flow, what role is Google playing - IdP/SP/both - and is the flow authN/authZ/both?'). Next review (2026-04-23) focus: (a) drill ACS URL directly not as part of a list, (b) object-level precision - what is a CERT, what is an ASSERTION, what is a SIGNATURE, what rides at setup vs runtime, (c) failure-mode reasoning (forged assertion = 'I am CEO' without sig check)."
+        }
+      ]
+    },
+    {
+      "id": "principal",
+      "name": "Principal",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-05",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/solving_identity_management_in_modern_applications.pdf",
+        "sources/sso_group_sync/educational_links.md"
+      ],
+      "history": [
+        {
+          "date": "2026-05-04",
+          "score": 0.4,
+          "questions": 1,
+          "correct": 0.4,
+          "notes": "FAIL on first formal assessment after the 2026-05-02 substrate-first pivot. Q1 (joint assessment): asked principal/action/resource for nuszco backend's API call to GitHub (after Priya clicked 'Sync to GitHub'), framed 'from GitHub's perspective.' Mark answered Principal=Priya, Action=Push, Resource=/orgs/acme/teams/platform/members. Resource correct, action informal but in shape, principal WRONG: this is the SAME human-as-instigator confusion fixed earlier in session on the 2am cron job (where there's no human present). The fix took for unattended scenarios but did NOT generalize to delegated/human-triggered scenarios where a human is visibly involved. Bonus question (h/m + the subtlety) was skipped entirely. Re-teach delivered: TWO-LAYER authZ pattern. Layer 1 (inside nuszco) Priya is the principal for nuszco's internal authZ check. Layer 2 (from GitHub's side) nuszco's GitHub App is the principal and Priya is invisible to GitHub. GitHub's audit log shows the app, not Priya - which is exactly why audit_trail is depth-2 in this domain (downstream audit logs need to be cross-referenced with nuszco's internal logs to recover the human actor). Strong substrate work in session: categories (human/machine/group/role) landed, opaque-IDs-vs-secondary-identifiers landed, one-human-N-principals landed cleanly. The pre-question categories miss (he listed IdP/SP/tenant as principal categories - architectural roles, not principal types) was teachable and the fix took on first re-application (the 2am job triple). Gap remaining: principal-as-asker-not-instigator framing in delegated-action scenarios. Next review focus: at least one delegated-action scenario where a human triggers a backend API call to a 3rd party (the Q1 shape). Don't accept 'the human user' as principal when the question is framed from the 3rd-party SP's perspective."
+        }
+      ]
+    },
+    {
+      "id": "authn_vs_authz",
+      "name": "Authentication vs Authorization",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 1,
+      "interval_days": 1,
+      "next_review": "2026-04-27",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": [
+        {
+          "date": "2026-04-11",
+          "score": 0.75,
+          "questions": 4,
+          "correct": 3,
+          "notes": "FAIL. Q1: defined authZ too narrowly as 'access within groups' \u2014 missed that authZ covers any permission decision (ABAC, policy-based, capability-based), not just RBAC. Q2: 4/4 clean classification. Q3: correctly ID'd authZ-broken/authN-intact but gave the 'inconvenient' failure (users blocked) instead of the DANGEROUS one (orphaned access \u2014 users keep permissions after they should have been removed; silent vs noisy failures). Q4: conceptually correct but didn't name OIDC (not yet taught, fair miss). Re-quiz tomorrow \u2014 watch for the authZ-breadth and silent-failure framings specifically."
+        },
+        {
+          "date": "2026-04-12",
+          "score": 0.94,
+          "questions": 4,
+          "correct": 3.75,
+          "notes": "PASS after reteach. Q1 (0.85): named RBAC/ABAC/ReBAC and correctly attached policies to role and attributes; admitted not knowing ReBAC \u2014 taught that ReBAC attaches policy to relationships between entities (Google Docs share model, Zanzibar). Q2 (1.0): 4/4 clean classification, including the orphaned-access SSH-key scenario as authZ. Q3 (1.0): nailed silent vs loud framing and lingering duration. Q4 (0.9): named disgruntled-insider theft; did not mention compromised accounts or accidental blast-radius (least-privilege argument) \u2014 reinforced in feedback. Biggest remaining gap: low-level familiarity with JWTs (Q2b) \u2014 queue up when OAuth/OIDC are taught."
+        },
+        {
+          "date": "2026-04-15",
+          "score": 0.57,
+          "questions": 3,
+          "correct": 1.7,
+          "notes": "FAIL. Q1 (0.2): misidentified URL-as-permission as ReBAC - actually capability-based authZ (4th model, not previously taught explicitly). Didn't know 'anti-pattern' as a term. Taught: capability = possession-is-permission, ReBAC = explicit relationship edges. Q2 (1.0): 4/4 clean classification including the tricky (b) leaked token. Q3 (0.5): 'authorizes SP permissions following authentication' - directionally right but missed the sharper framing: SCIM doesn't do authN at all, it populates the users/groups/memberships substrate that authZ decisions read from. Queue for next review: capability-based authZ as a distinct model alongside RBAC/ABAC/ReBAC, and SCIM-as-substrate framing."
+        },
+        {
+          "date": "2026-04-22",
+          "score": 0.45,
+          "questions": 1,
+          "correct": 0.45,
+          "notes": "INTERLEAVED MISS during identity_provider review on 2026-04-22. Mark was asked to locate nuszco in the authN/authZ split given the new investor_onepager.md framing ('neutral layer above any IdP'). He called nuszco 'an authZ layer' - the same conflation the 04-15 session explicitly taught against ('SCIM as substrate, not authZ'). The substrate framing did not transfer from SCIM to nuszco. Gap: when a new product fits the provisioning/substrate role, Mark defaults to labeling it authZ. No next_review change (already past-due at 2026-04-16, more urgent than today+1=2026-04-23). On next authn_vs_authz review: explicitly probe the 3-party split (IdP=authN, SP=authZ enforcement, tooling like SCIM/nuszco=membership substrate) with multiple product exemplars to break the reflex."
+        },
+        {
+          "date": "2026-04-26",
+          "score": 0.575,
+          "questions": 2,
+          "correct": 1.15,
+          "notes": "FAIL after 4-day gap. Pre-question + quick check were strong \u2014 substrate-vs-authZ framing held and nuszco correctly classified as substrate (the 04-22 reflex broke). But the application walk-through (Q1) revealed a separate broken model: (a) labeled 'admin adds Priya to engineering group in Okta' as authN (it is substrate \u2014 populates membership data); (b) framed SCIM as 'copying repo data following Priya's authentication' \u2014 wrong on two axes: SCIM syncs identity facts (users/groups/memberships/attributes), NOT repos or code; AND provisioning runs continuously in the background, decoupled from login events. Missed the per-action authZ moment entirely (git push -> GitHub authZ engine reads internal store, decides). Q2 (0.85): substrate-failure + silent-failure framing solid, but did not explicitly name 'GitHub authZ correctly applied wrong-because-stale rule' \u2014 the hallmark insight of substrate failures. Q3 stretch (excluded): (a) Okta refusing SAML assertion = authZ, correct; (b) directionally right on layered authZ but vague \u2014 taught the 'authN/authZ are roles in a moment, not labels on systems' framing and the gatekeeper-authZ-at-IdP + resource-authZ-at-SP layering. Reteach delivered: three independent timelines (substrate continuous/background/pre-login, authN discrete login event, authZ per-action). Queue for next review: probe whether Mark can sequence the timeline correctly (provisioning happens BEFORE login) and list what SCIM does/doesn't sync. Consider an interleaved question into service_provider (also struggling) on what specifically lives in the SP's internal store."
+        },
+        {
+          "date": "2026-05-04",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1.0,
+          "notes": "INTERLEAVED HIT during joint principal/source_of_truth/schema assessment - 8-day gap since last review (04-26 fail). Q4 of the joint assessment: 4-step labeling task (substrate/authN/authZ) for a Workday->Okta->GitHub flow + a git-push event. Mark labeled all 4 correctly: (1) 2am sync = substrate, (2) GitHub verifying SSH key = authN, (3) GitHub checking team membership for write access = authZ, (4) name field sync = substrate. Strong metacognitive note on (2): explicitly flagged ambiguity ('I took that as identity verification but I think it could also mean authorizing git push') and chose authN, correctly distinguishing the SSH-key-proves-identity moment (authN) from the separate is-mendicott-allowed-to-push moment (authZ - which is what Q4(3) asked about). This metacognition shows the 'authN/authZ are roles in a moment' framing from 04-26 is now load-bearing - he sees that the SAME act can have an authN component AND a separate authZ component. Per interleave rule: scored into the joint session, no formal mastery update applied (single-question interleave). But this is meaningful retention signal: the same concept that failed 04-26 review (after a 4-day gap) just held an 8-day gap with a clean win. The substrate-first re-scope (started 05-02 per feedback_iam_substrate_first.md) is paying compound interest - working substrate concepts in their own session reinforced the substrate-vs-authZ-vs-authN split. Recommend bumping next_review forward (currently 2026-04-27, deeply overdue) given clean retention; could schedule a proper authn_vs_authz review for 2026-05-08 to capitalize on momentum, but leaving for now per the rules (interleave doesn't trigger schedule changes on hits)."
+        }
+      ]
+    },
+    {
+      "id": "source_of_truth",
+      "name": "Source of Truth",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-05",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_context.md",
+        "sources/sso_group_sync/investor_onepager.md",
+        "sources/sso_group_sync/solving_identity_management_in_modern_applications.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-05-04",
+          "score": 0.725,
+          "questions": 1,
+          "correct": 0.725,
+          "notes": "FAIL just under 0.8 pass line on first formal assessment. Q2 (joint assessment): SoT for 4 fields on a Jira user profile - email, accountId, team (which Jira project board), role (Reporter/Developer/Admin per project). Got 1.0 on email->Workday, 1.0 on accountId->Atlassian, 0.8 on team->Jira (defensible; missed the contested case where Okta SCIM drives Jira project membership), 0.1 on role->Workday (WRONG - project roles are Jira-native; Workday doesn't know what 'Jira Developer' means). Reflexed to Workday on role because the answer felt 'tightly controlled' - misapplied because Jira *also* tightly controls these values, just as the tool, not as HR. Teaching beat introduced (in feedback): missing axis of HR-owned facts (employment, identity, org structure -> Workday) vs tool-native facts (tool-internal permissions, IDs, categories -> the tool itself). Strong session work: per-fact-not-per-system landed (he varied his answers across the 5 facts in the pre-question), owner-vs-user fix took (Workday-as-email-owner not Okta-as-email-user), three-different-teams decomposition (HR org-unit / IT access group / tool-native team) landed, derived/computed SoT layers were briefly introduced as edge case. The (b) Okta-group SoT explanation 'I can't elaborate' was honest non-confabulation - filled in cleanly with 'Okta groups are Okta-resident objects, the downstream effect is the consumer.' Next review focus: drill HR-owned vs tool-native distinction with mixed scenarios. Specifically test on facts that LOOK structured/validated but are tool-native (project roles, custom field values, GitHub team names)."
+        }
+      ]
+    },
+    {
+      "id": "schema",
+      "name": "Schema",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-05",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/solving_identity_management_in_modern_applications.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-05-04",
+          "score": 0.4,
+          "questions": 1,
+          "correct": 0.4,
+          "notes": "FAIL on first formal assessment. Q3 (joint assessment): Workday->Slack for Department field. Workday stores as structured ref (Name/Code/ParentDepartment), Slack as optional admin-configured custom field (off by default). Mark named structural mismatch correctly (ref vs freeform string) but missed the two dominant types: ABSENCE (Slack's field is OFF by default - until admin enables, the destination doesn't exist; this is the FIRST config step) and RICHNESS (3 facets in Workday collapse into 1 freeform string in Slack; admin must pick how to render - 'Platform Engineering' vs 'Platform Engineering (PE-100)' vs 'Engineering > Platform Engineering' - and the choice is irreversible since Slack search/profile/exports all show only that string). Earlier session work was strong: the 4-mismatch taxonomy was introduced via the title example (Workday/Okta/GitHub/Slack title fields), and the headline 'mismatches force business policy decisions, not just technical ones' (OnLeave -> ACTIVE-during-leave vs SUSPENDED-during-leave) landed. The Q3 specific weak point: didn't reread the prompt carefully - on the manager check earlier in session, Mark restated his title-example answer instead of applying taxonomy to manager. Same metacognitive failure resurfaced on Q3 (only named one mismatch type, didn't comprehensively walk all four). Mid-session miss on Q3 prerequisite: also called the Active/OnLeave/Terminated/Retired vs ACTIVE/SUSPENDED/DEPROVISIONED case 'structural mismatch' when it's actually richness (both are single-string controlled vocabs - the SHAPE is identical, the granularity differs). Confusion between 'shape of data' (structural) and 'granularity of values' (richness). Next review focus: (a) walk all 4 mismatch types systematically on each scenario (don't accept naming just one), (b) drill structural vs richness distinction explicitly, (c) absence-as-config-blocker scenarios - destination field that doesn't exist until admin enables it."
+        }
+      ]
+    },
+    {
+      "id": "entitlement",
+      "name": "Entitlement",
+      "depth": 1,
+      "prerequisites": [
+        "principal"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "provisioning_deprovisioning",
+      "name": "Provisioning & Deprovisioning",
+      "depth": 1,
+      "prerequisites": [
+        "identity_provider",
+        "service_provider",
+        "principal"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "rbac",
+      "name": "Role-Based Access Control (RBAC)",
+      "depth": 1,
+      "prerequisites": [
+        "principal",
+        "entitlement"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "principle_of_least_privilege",
+      "name": "Principle of Least Privilege",
+      "depth": 1,
+      "prerequisites": [
+        "entitlement"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "idempotency",
+      "name": "Idempotency",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "polling_vs_webhooks",
+      "name": "Polling vs Webhooks",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "attribute_mapping",
+      "name": "Attribute Mapping",
+      "depth": 1,
+      "prerequisites": [
+        "schema"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "eventual_consistency",
+      "name": "Eventual Consistency",
+      "depth": 1,
+      "prerequisites": [
+        "source_of_truth"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "saml",
+      "name": "SAML (Security Assertion Markup Language)",
+      "depth": 2,
+      "prerequisites": [
+        "authn_vs_authz",
+        "identity_provider",
+        "service_provider"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "oauth2",
+      "name": "OAuth 2.0",
+      "depth": 2,
+      "prerequisites": [
+        "authn_vs_authz"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-18",
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_context.md"
+      ],
+      "history": [
+        {
+          "date": "2026-04-12",
+          "score": 0.33,
+          "questions": 4,
+          "correct": 1.3,
+          "notes": "FAIL \u2014 skipped ahead past service_provider at user request. Q1 (1.0): clean distinction OAuth=authZ, OIDC=authN on top. Q2 (0.3): recalled rough shape (click \u2192 IdP \u2192 auth code \u2192 redirect back) but no detail on the two-step code\u2192token exchange, no mention of client_secret, no back-channel framing. Q3a (0): blank \u2014 didn't know why the code-then-token dance exists (front-channel leakage of tokens in URLs). Q3b (0): blank \u2014 didn't know access-token lifetime tradeoff or the refresh-token role. Q4 (0): blank \u2014 didn't know OAuth-as-authN antipattern, token-substitution / confused-deputy, or id_token aud/iss/signature verification as the correct primitive. Full reteach delivered covering: 6-step authz-code flow, where client_secret is/isn't used, front-channel leakage rationale, refresh-token tradeoff, id_token + aud/iss verification. Next review tomorrow \u2014 re-quiz on flow mechanics and Q4 misuse scenario specifically."
+        },
+        {
+          "date": "2026-04-17",
+          "score": 0.38,
+          "questions": 4,
+          "correct": 1.5,
+          "notes": "FAIL. Q1 (0.5): correctly said client_secret must stay off front channel, but unsure what 'registration' means (dev console one-time app setup). Q2 (0): said 'not taught yet' despite reteach in this session \u2014 front-channel leakage rationale not retained across sessions. Q3 (1.0): 4/4 clean SAML-vs-OAuth classification. Q4 (0): blank \u2014 OAuth-as-authN antipattern, confused deputy, id_token still not retained. Pattern: classification/discrimination is strong, but flow mechanics and security rationale are not sticking. Anchors given: 'codes are throwaway because URLs leak' and 'access token != identity'. Conflated SAML federation setup with OAuth registration \u2014 corrected. Re-quiz tomorrow."
+        },
+        {
+          "date": "2026-05-02",
+          "score": null,
+          "questions": 0,
+          "correct": 0,
+          "notes": "PARTIAL RE-TEACH SESSION, NO FORMAL ASSESSMENT. Started a 14-day-overdue review (most overdue concept in domain). Forced-retrieval pre-question (Sign-in-with-Google walkthrough): Mark conflated SAML and OAuth heavily ('SAML assertion' invoked for OAuth flow, 'Google sends an encrypted secret', 'access token = JWT maybe') but Q3-equivalent stuck cleanly ('access token in URL gets scraped' - the front-channel leakage anchor from 04-17 retained). Reteach delivered on protocol split (SAML vs OAuth vs OIDC), browser-as-channel for SAML, full 7-step OAuth authz-code flow with concrete artifacts (client_id, client_secret, code, access_token, id_token, refresh_token), front-vs-back-channel distinction, coffee-shop attack with state/PKCE defenses. Mark held the protocol classification check but missed the subsequent attack mechanics (Q on coffee-shop attack: ~0.5, named 'attacker doesn't have credentials' but didn't articulate single-use-codes / state / PKCE). At that point Mark explicitly called for a re-scope: 'I'm getting overwhelmed with the protocol level details. They seem so abstract, especially since I don't have a cybersecurity/hacking background to lean on.' This is the catalyst for the substrate-first re-scope (see feedback_iam_substrate_first.md memory). Session pivoted to depth-0 substrate concepts: principal, source_of_truth, schema. NO oauth2 score recorded - this was a re-teach that got cut short, not a clean assessment. When re-attempting oauth2 in future: do NOT teach protocol mechanics (PKCE, state, signature verification) until the substrate problems they solve are load-bearing in Mark's head. Specifically: token leakage (front/back channel), CSRF, identity fragmentation, drift. Lead with the problem, then introduce the protocol mechanic as the fix. Substrate prereqs that should be at mastery >= 0.7 before re-attempting oauth2: principal (especially the 'asker not instigator' framing), source_of_truth, schema. Currently all three are at 0.0 mastery (assessed 2026-05-04, all failed first-rep). Defer oauth2 review until those land. No mastery/interval/reps changes from this session - history note only."
+        }
+      ]
+    },
+    {
+      "id": "scim",
+      "name": "SCIM (System for Cross-domain Identity Management)",
+      "depth": 2,
+      "prerequisites": [
+        "provisioning_deprovisioning",
+        "schema",
+        "attribute_mapping"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_statement"
+      ],
+      "history": []
+    },
+    {
+      "id": "group_sprawl",
+      "name": "Group Sprawl",
+      "depth": 2,
+      "prerequisites": [
+        "rbac",
+        "provisioning_deprovisioning"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md",
+        "sources/sso_group_sync/project_statement"
+      ],
+      "history": []
+    },
+    {
+      "id": "identity_fragmentation",
+      "name": "Identity Fragmentation",
+      "depth": 2,
+      "prerequisites": [
+        "source_of_truth",
+        "identity_provider"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "drift",
+      "name": "Drift",
+      "depth": 2,
+      "prerequisites": [
+        "source_of_truth",
+        "eventual_consistency"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "orphaned_access",
+      "name": "Orphaned Access",
+      "depth": 2,
+      "prerequisites": [
+        "provisioning_deprovisioning",
+        "principle_of_least_privilege"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "api_rate_limiting",
+      "name": "API Rate Limiting",
+      "depth": 2,
+      "prerequisites": [
+        "polling_vs_webhooks"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "audit_trail",
+      "name": "Audit Trail",
+      "depth": 2,
+      "prerequisites": [
+        "entitlement",
+        "rbac"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "oidc",
+      "name": "OpenID Connect (OIDC)",
+      "depth": 3,
+      "prerequisites": [
+        "oauth2"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "reconciliation",
+      "name": "Reconciliation",
+      "depth": 3,
+      "prerequisites": [
+        "source_of_truth",
+        "idempotency",
+        "drift",
+        "scim"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "zero_trust",
+      "name": "Zero Trust",
+      "depth": 3,
+      "prerequisites": [
+        "principle_of_least_privilege",
+        "authn_vs_authz"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/sso_group_sync/key_terms.md"
+      ],
+      "history": []
+    }
+  ]
+}

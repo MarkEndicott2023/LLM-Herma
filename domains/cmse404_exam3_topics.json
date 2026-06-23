@@ -1,0 +1,116 @@
+{
+  "name": "CMSE 404 Exam 3 \u2014 Non-Transformer Topics",
+  "goal": "Master Decision Trees, Naive Bayes, Clustering, Pretrained LMs for CMSE 404 Exam 3 (2026-04-09)",
+  "created": "2026-04-09",
+  "concepts": [
+    {
+      "id": "decision_trees",
+      "name": "Decision Trees",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-10",
+      "sources": [
+        "sources/machine_learning/exam_3_qs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.25,
+          "questions": 2,
+          "correct": 0.5,
+          "notes": "Diagnostic \u2014 doesn't know splitting metrics (entropy, info gain, Gini). Understands that a good split separates classes but can't articulate how the algorithm selects features."
+        },
+        {
+          "date": "2026-04-09",
+          "score": 0.875,
+          "questions": 2,
+          "correct": 1.75,
+          "notes": "After teaching: correctly computes Gini impurity. Forgot to weight children by sample proportion \u2014 computed individual child Gini correctly but didn't combine with (n_child/n_parent) weighting."
+        }
+      ]
+    },
+    {
+      "id": "naive_bayes",
+      "name": "Naive Bayes",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-10",
+      "sources": [
+        "sources/machine_learning/exam_3_qs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.25,
+          "questions": 2,
+          "correct": 0.5,
+          "notes": "Diagnostic \u2014 knows Bayes theorem formula. Confused naive assumption with temporal independence instead of feature conditional independence. Doesn't know how NB decomposes joint probability for classification."
+        },
+        {
+          "date": "2026-04-09",
+          "score": 0.75,
+          "questions": 2,
+          "correct": 1.5,
+          "notes": "After teaching: correctly computes proportional class scores. Forgot to normalize to actual probabilities. Understands conditional independence assumption and why NB works despite violation \u2014 needs to remember to normalize on exam."
+        }
+      ]
+    },
+    {
+      "id": "kmeans_clustering",
+      "name": "K-Means Clustering",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-10",
+      "sources": [
+        "sources/machine_learning/exam_3_qs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.375,
+          "questions": 2,
+          "correct": 0.75,
+          "notes": "After teaching: correct assign-then-update procedure but made errors in distance calculation on toy example. Doesn't know K-means limitations (bad init, spherical assumption). Confused K-means with KNN initially."
+        },
+        {
+          "date": "2026-04-09",
+          "score": 0.67,
+          "questions": 2,
+          "correct": 1.33,
+          "notes": "Correctly executed 2D toy dataset assign+update. Only recalls initialization sensitivity as limitation \u2014 must memorize: choose K in advance, spherical cluster assumption."
+        }
+      ]
+    },
+    {
+      "id": "pretrained_language_models",
+      "name": "Pretrained Language Models",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-12",
+      "sources": [
+        "sources/machine_learning/exam_3_qs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.83,
+          "questions": 3,
+          "correct": 2.5,
+          "notes": "Good grasp of BERT vs GPT architectural difference and attention patterns. Slightly vague on why GPT suits generation (attention pattern matches autoregressive generation). Didn't articulate that pretrain-then-fine-tune solves the small labeled data problem."
+        }
+      ]
+    }
+  ]
+}

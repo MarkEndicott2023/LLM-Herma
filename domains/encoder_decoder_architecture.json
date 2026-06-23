@@ -1,0 +1,448 @@
+{
+  "name": "Encoder-Decoder Architecture (CMSE 404)",
+  "goal": "Master encoder-decoder and transformer fundamentals for CMSE 404 Exam 3",
+  "created": "2026-04-08",
+  "concepts": [
+    {
+      "id": "sequence_modeling_motivation",
+      "name": "Sequence Modeling & Motivation",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic \u2014 understands why sequential data needs specialized architectures"
+        }
+      ]
+    },
+    {
+      "id": "rnn_fundamentals",
+      "name": "RNN Fundamentals",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic \u2014 correctly described hidden state recurrence and vanishing gradient problem"
+        }
+      ]
+    },
+    {
+      "id": "vanishing_exploding_gradients",
+      "name": "Vanishing/Exploding Gradients in RNNs",
+      "depth": 1,
+      "prerequisites": [
+        "rnn_fundamentals"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic \u2014 identified vanishing gradients as core RNN limitation, understands information loss over long sequences"
+        }
+      ]
+    },
+    {
+      "id": "lstm_cells",
+      "name": "LSTM Cells",
+      "depth": 1,
+      "prerequisites": [
+        "vanishing_exploding_gradients"
+      ],
+      "mastery": 0.7,
+      "reps": 2,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.5,
+          "questions": 1,
+          "correct": 0.5,
+          "notes": "Diagnostic \u2014 knows forget gate selects what to discard but fuzzy on sigmoid gating mechanics and doesn't understand cell state as gradient highway"
+        },
+        {
+          "date": "2026-04-08",
+          "score": 0.83,
+          "questions": 3,
+          "correct": 2.5,
+          "notes": "Correctly describes gate roles and interprets gate output scenarios. Still shaky on WHY cell state equation avoids vanishing gradients (no activation wrapping C(t-1)). Explained gradient highway."
+        }
+      ]
+    },
+    {
+      "id": "autoencoders_basic",
+      "name": "Autoencoders (Basic)",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.1,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.25,
+          "questions": 1,
+          "correct": 0.25,
+          "notes": "Diagnostic \u2014 only knew it relates to dimensionality reduction, no knowledge of encoder-bottleneck-decoder structure or reconstruction objective"
+        }
+      ]
+    },
+    {
+      "id": "gru_cells",
+      "name": "GRU Cells",
+      "depth": 2,
+      "prerequisites": [
+        "lstm_cells"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "seq2seq_problem_framing",
+      "name": "Sequence-to-Sequence Problem Framing",
+      "depth": 2,
+      "prerequisites": [
+        "lstm_cells"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "denoising_sparse_autoencoders",
+      "name": "Denoising & Sparse Autoencoders",
+      "depth": 2,
+      "prerequisites": [
+        "autoencoders_basic"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "variational_autoencoders",
+      "name": "Variational Autoencoders (VAE)",
+      "depth": 2,
+      "prerequisites": [
+        "autoencoders_basic"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "encoder_component",
+      "name": "Encoder Component (Seq2Seq)",
+      "depth": 3,
+      "prerequisites": [
+        "seq2seq_problem_framing"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "decoder_component",
+      "name": "Decoder Component (Seq2Seq)",
+      "depth": 3,
+      "prerequisites": [
+        "encoder_component"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "context_vector_bottleneck",
+      "name": "Context Vector & Information Bottleneck",
+      "depth": 3,
+      "prerequisites": [
+        "encoder_component",
+        "decoder_component"
+      ],
+      "mastery": 0.7,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic \u2014 correctly identified fixed-length bottleneck as core limitation of vanilla seq2seq, understands information loss with long sequences"
+        }
+      ]
+    },
+    {
+      "id": "attention_mechanism",
+      "name": "Attention Mechanism (Bahdanau/Luong)",
+      "depth": 4,
+      "prerequisites": [
+        "context_vector_bottleneck"
+      ],
+      "mastery": 0.7,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic \u2014 good conceptual understanding that attention lets decoder look at all encoder hidden states via weighted sum rather than single vector"
+        }
+      ]
+    },
+    {
+      "id": "self_attention",
+      "name": "Self-Attention",
+      "depth": 4,
+      "prerequisites": [
+        "attention_mechanism"
+      ],
+      "mastery": 0.5,
+      "reps": 1,
+      "interval_days": 1,
+      "next_review": "2026-04-09",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.3,
+          "questions": 1,
+          "correct": 0.3,
+          "notes": "Diagnostic \u2014 confused self-attention with cross-attention, doesn't clearly distinguish the two; mentioned parallelization advantage but attributed it to multi-head rather than self-attention's non-sequential nature"
+        },
+        {
+          "date": "2026-04-08",
+          "score": 0.83,
+          "questions": 3,
+          "correct": 2.5,
+          "notes": "Now distinguishes self vs cross attention. Knows QKV mechanics and sqrt(d_k) scaling rationale. Slightly vague on Q/K/V source mapping in cross-attention (Q=decoder, K/V=encoder). Didn't articulate self-attention's purpose (resolving long-range dependencies)."
+        }
+      ]
+    },
+    {
+      "id": "multi_head_attention",
+      "name": "Multi-Head Attention",
+      "depth": 5,
+      "prerequisites": [
+        "self_attention"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-12",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.5,
+          "questions": 3,
+          "correct": 1.5,
+          "notes": "Confused per-head QKV dimensionality \u2014 tried to divide 64 by 3 instead of understanding each of Q,K,V is 64-dim. Conflated multi-head vs single-head comparison with RNN vs attention. Correctly described concat + W_O output step."
+        },
+        {
+          "date": "2026-04-09",
+          "score": 0.875,
+          "questions": 2,
+          "correct": 1.75,
+          "notes": "Now correctly computes per-head dimensions. Forgot to state concatenation restores d_model. Cleanly articulates multi-head advantage without RNN confusion."
+        }
+      ]
+    },
+    {
+      "id": "positional_encoding",
+      "name": "Positional Encoding",
+      "depth": 5,
+      "prerequisites": [
+        "self_attention"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 2,
+          "correct": 2,
+          "notes": "Strong understanding of why positional encoding is needed and why self-attention is order-invariant. Good concrete example."
+        }
+      ]
+    },
+    {
+      "id": "transformer_encoder_block",
+      "name": "Transformer Encoder Block",
+      "depth": 6,
+      "prerequisites": [
+        "multi_head_attention",
+        "positional_encoding"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-12",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.92,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Nailed the 6-operation sequence and residual connection rationale (linked back to LSTM gradient highway). Understands FFN is per-position but phrasing was slightly imprecise \u2014 knows the concept."
+        }
+      ]
+    },
+    {
+      "id": "transformer_decoder_block",
+      "name": "Transformer Decoder Block",
+      "depth": 6,
+      "prerequisites": [
+        "transformer_encoder_block"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-10",
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-09",
+          "score": 0.25,
+          "questions": 3,
+          "correct": 0.75,
+          "notes": "Knows three sub-layers in order and cross-attention Q/K/V sources. Does NOT understand masking \u2014 doesn't know why decoder needs it (prevent peeking at future tokens during training) or that it's a triangular mask. Also misattributed masked self-attention Q/K/V as external inputs rather than decoder's own sequence."
+        },
+        {
+          "date": "2026-04-09",
+          "score": 0.92,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Now understands masking purpose and mechanics. Cross-attention explanation was perfect. Missed that a token attends to itself (position t sees 1..t, not 1..t-1). Encoder no-mask rationale correct."
+        }
+      ]
+    },
+    {
+      "id": "full_transformer_architecture",
+      "name": "Full Transformer Architecture",
+      "depth": 7,
+      "prerequisites": [
+        "transformer_encoder_block",
+        "transformer_decoder_block"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "encoder_decoder_applications",
+      "name": "Encoder-Decoder Applications (Translation, Summarization)",
+      "depth": 7,
+      "prerequisites": [
+        "full_transformer_architecture"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/machine_learning/lfd_textbook.pdf"
+      ],
+      "history": []
+    }
+  ]
+}

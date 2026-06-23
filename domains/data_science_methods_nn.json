@@ -1,0 +1,304 @@
+{
+  "name": "Neural Networks (CMSE 381)",
+  "goal": "Master ISLP Chapter 10 for CMSE 381 Lectures 29-31",
+  "created": "2026-04-08",
+  "concepts": [
+    {
+      "id": "activation_functions",
+      "name": "Activation Functions (ReLU, Sigmoid)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Correctly defined ReLU and explained saturation advantage over sigmoid"
+        }
+      ]
+    },
+    {
+      "id": "nn_motivation_structure",
+      "name": "NN Motivation & Structure",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Understands why nonlinearity is essential \u2014 model collapses to linear without it"
+        }
+      ]
+    },
+    {
+      "id": "single_layer_nn",
+      "name": "Single Layer Neural Networks",
+      "depth": 1,
+      "prerequisites": [
+        "activation_functions",
+        "nn_motivation_structure"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Solid grasp of single hidden layer structure and role of activation"
+        }
+      ]
+    },
+    {
+      "id": "loss_functions_nn",
+      "name": "Loss Functions (Squared Error, Cross-Entropy)",
+      "depth": 1,
+      "prerequisites": [
+        "nn_motivation_structure"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Implicit understanding from Q2 \u2014 knows purpose of output layer"
+        }
+      ]
+    },
+    {
+      "id": "multilayer_nn",
+      "name": "Multilayer Neural Networks",
+      "depth": 2,
+      "prerequisites": [
+        "single_layer_nn",
+        "loss_functions_nn"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Understands depth adds representational power via chained nonlinear transforms"
+        }
+      ]
+    },
+    {
+      "id": "softmax_multiclass",
+      "name": "Softmax & Multiclass Output",
+      "depth": 2,
+      "prerequisites": [
+        "loss_functions_nn",
+        "single_layer_nn"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Inferred from familiarity with classification context; not explicitly tested in depth"
+        }
+      ]
+    },
+    {
+      "id": "fitting_gradient_descent",
+      "name": "Fitting NNs: Gradient Descent",
+      "depth": 3,
+      "prerequisites": [
+        "multilayer_nn"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.7"
+      ],
+      "history": []
+    },
+    {
+      "id": "backpropagation",
+      "name": "Backpropagation",
+      "depth": 3,
+      "prerequisites": [
+        "fitting_gradient_descent"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.7.1"
+      ],
+      "history": []
+    },
+    {
+      "id": "regularization_dropout",
+      "name": "Regularization & Dropout",
+      "depth": 3,
+      "prerequisites": [
+        "multilayer_nn"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.7.2-10.7.3"
+      ],
+      "history": []
+    },
+    {
+      "id": "sgd_minibatches",
+      "name": "SGD & Minibatches",
+      "depth": 3,
+      "prerequisites": [
+        "fitting_gradient_descent"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.7.2"
+      ],
+      "history": []
+    },
+    {
+      "id": "convolution_layers",
+      "name": "Convolution Layers",
+      "depth": 4,
+      "prerequisites": [
+        "multilayer_nn"
+      ],
+      "mastery": 0.4,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.3.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.5,
+          "questions": 1,
+          "correct": 0.5,
+          "notes": "Understands filters detect local patterns but confused convolution with pooling on dimension reduction. Needs to learn weight sharing concept."
+        }
+      ]
+    },
+    {
+      "id": "pooling_layers",
+      "name": "Pooling Layers",
+      "depth": 4,
+      "prerequisites": [
+        "convolution_layers"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.3.2"
+      ],
+      "history": []
+    },
+    {
+      "id": "cnn_architecture",
+      "name": "CNN Architecture",
+      "depth": 4,
+      "prerequisites": [
+        "convolution_layers",
+        "pooling_layers"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.3.3"
+      ],
+      "history": []
+    },
+    {
+      "id": "data_augmentation_transfer",
+      "name": "Data Augmentation & Transfer Learning",
+      "depth": 4,
+      "prerequisites": [
+        "cnn_architecture"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.3.4-10.3.5"
+      ],
+      "history": []
+    },
+    {
+      "id": "when_to_use_deep_learning",
+      "name": "When to Use Deep Learning",
+      "depth": 5,
+      "prerequisites": [
+        "cnn_architecture",
+        "regularization_dropout"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch10.6"
+      ],
+      "history": []
+    }
+  ]
+}

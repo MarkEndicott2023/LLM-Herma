@@ -1,0 +1,282 @@
+{
+  "name": "CMSE 381 Exam 3 \u2014 Non-Linearity, Trees, SVM, Clustering",
+  "goal": "Master ISLP Ch 7-9, 12 for CMSE 381 Midterm 3 (2026-04-20). NN/CNN topics covered separately in data_science_methods_nn domain.",
+  "created": "2026-04-10",
+  "concepts": [
+    {
+      "id": "polynomial_regression",
+      "name": "Polynomial Regression",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-17",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch7.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-13",
+          "score": 0.65,
+          "questions": 4,
+          "correct": 2.6,
+          "notes": "FAIL. Q1 (0.6): right intuition (coefficients linear, basis functions not) but imprecise wording \u2014 didn't cleanly state 'linear in the parameters \u03b2' or connect to OLS via design matrix. Q2 (0.5): named boundary/extrapolation blowup but missed OVERFITTING as the primary problem with degree-15 on 50 points; also didn't articulate why tails blow up (x^d dominates for large |x|, sparse leverage at edges). Q3 (0.5): correctly ID'd that x, x^2, x^3 move together so single-variable interpretation is ill-posed, but couldn't propose the alternative (partial derivative df/dx as a function of x, or f(x+1)-f(x) at a specific point). Q4 (1.0): after clarifying what 'nonlinear optimization' means, correctly said FALSE and cited closed-form solution. Re-quiz tomorrow \u2014 drill linearity-in-parameters framing, overfitting vs boundary as distinct concepts, and partial-derivative interpretation."
+        },
+        {
+          "date": "2026-04-17",
+          "score": 0.5,
+          "questions": 4,
+          "correct": 2,
+          "notes": "Q1: got param count but not full design matrix dims (n x d+1). Q2: said CI widens but missed point estimate explosion; confused extrapolation with outlier. Q3: overcomplicated linear-in-parameters \u2014 invented separation into linear/nonlinear components. Q4a correct. Q4b vague on why poly wins for smooth curves. Strong conceptual intuition, weak on precise mechanics/definitions."
+        }
+      ]
+    },
+    {
+      "id": "step_functions",
+      "name": "Step Functions",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-18",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch7.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-15",
+          "score": 0.5,
+          "questions": 4,
+          "correct": 2,
+          "notes": "Q1: dropped the top bin (x>=65) \u2014 miscounted K+1 bins. Q3: conflated piecewise linear with spline smoothness (claimed derivative continuity). Q4: only gave step-wins case, not polynomial-wins. Strong on bias/variance intuition."
+        },
+        {
+          "date": "2026-04-17",
+          "score": 0.5,
+          "questions": 3,
+          "correct": 1.5,
+          "notes": "Q1: still writing too many dummies (4 for 3 bins); also said betas are bin means instead of differences from baseline. Q2: right answer (85k) but wrong model form. Q3: CORRECT \u2014 smoothness ladder now solid (value continuity \u2192 piecewise linear, derivative continuity \u2192 cubic spline). Stretch Q4: decent both-sides argument. Core gap remains: K cutpoints \u2192 K+1 bins \u2192 K dummies."
+        }
+      ]
+    },
+    {
+      "id": "basis_functions",
+      "name": "Basis Functions (General Framework)",
+      "depth": 1,
+      "prerequisites": [
+        "polynomial_regression",
+        "step_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch7.3"
+      ],
+      "history": []
+    },
+    {
+      "id": "piecewise_polynomials",
+      "name": "Piecewise Polynomials & Knots",
+      "depth": 2,
+      "prerequisites": [
+        "basis_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch7.4.1"
+      ],
+      "history": []
+    },
+    {
+      "id": "regression_splines",
+      "name": "Regression Splines (Cubic & Natural)",
+      "depth": 2,
+      "prerequisites": [
+        "piecewise_polynomials"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch7.4"
+      ],
+      "history": []
+    },
+    {
+      "id": "decision_trees_381",
+      "name": "Decision Trees (Regression & Classification)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-18",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch8.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-17",
+          "score": 0.5,
+          "questions": 4,
+          "correct": 2,
+          "notes": "Q1: correct OOB prediction (12) but computed MSE wrong (7 instead of 1) \u2014 averaged per-tree squared errors instead of squaring the averaged prediction. Q2: right spirit on LOOCV analogy but imprecise on why individual-not-grouped. Q3: applied generic LOOCV properties instead of reasoning about fewer-trees \u2192 pessimistic. Q4 interleaved step_functions: CORRECT (5 params for 4 cutpoints). Core gap: OOB calculation mechanics (average predictions first, then error)."
+        }
+      ]
+    },
+    {
+      "id": "tree_pruning",
+      "name": "Tree Pruning & Cost-Complexity",
+      "depth": 1,
+      "prerequisites": [
+        "decision_trees_381"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch8.1"
+      ],
+      "history": []
+    },
+    {
+      "id": "bagging",
+      "name": "Bagging (Bootstrap Aggregation)",
+      "depth": 2,
+      "prerequisites": [
+        "decision_trees_381"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-04-18",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch8.2.1"
+      ],
+      "history": [
+        {
+          "date": "2026-04-17",
+          "score": 0.69,
+          "questions": 4,
+          "correct": 2.75,
+          "notes": "Q1 variance math: PERFECT (\u03c3\u00b2/B and \u03c1\u03c3\u00b2 floor). Q2: missed bias side of pruning-vs-bagging tradeoff \u2014 said pruning reduces variance less but didnt address that pruning INCREASES bias while bagging doesnt. Q3: described random forest mechanism but didnt name it, and said \"per tree\" instead of \"per split\". Q4: right intuition on high-variance poly regression but confused OOB with bagging (OOB is estimation technique, not variance reduction). Taught out-of-order (prereqs not at mastery) due to exam proximity."
+        }
+      ]
+    },
+    {
+      "id": "random_forests",
+      "name": "Random Forests",
+      "depth": 2,
+      "prerequisites": [
+        "bagging"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 3,
+      "next_review": "2026-04-20",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch8.2.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-17",
+          "score": 1.0,
+          "questions": 4,
+          "correct": 4,
+          "notes": "Perfect pass. Q1 all three parts correct (m=4, m=p\u2192bagging, m=1\u2192single random predictor). Q2 correctly separated OOB (estimation) from variance reduction (averaging + decorrelation) \u2014 directly fixed the bagging-session confusion. Q3 dominant predictor reasoning spot on. Q4 leaf mean calculation correct. Taught out-of-order (prereq decision_trees_381 still at mastery 0) but mastery transferred well."
+        }
+      ]
+    },
+    {
+      "id": "maximal_margin_classifier",
+      "name": "Maximal Margin Classifier",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch9.1"
+      ],
+      "history": []
+    },
+    {
+      "id": "support_vector_classifier",
+      "name": "Support Vector Classifier (Soft Margin)",
+      "depth": 1,
+      "prerequisites": [
+        "maximal_margin_classifier"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch9.2"
+      ],
+      "history": []
+    },
+    {
+      "id": "svm_kernels",
+      "name": "SVM with Kernels (Polynomial, Radial)",
+      "depth": 2,
+      "prerequisites": [
+        "support_vector_classifier"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch9.3-9.4"
+      ],
+      "history": []
+    },
+    {
+      "id": "kmeans_381",
+      "name": "K-Means Clustering",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch12.4.1"
+      ],
+      "history": []
+    },
+    {
+      "id": "hierarchical_clustering",
+      "name": "Hierarchical Clustering",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 3,
+      "next_review": "2026-04-20",
+      "sources": [
+        "sources/data_science_methods/islp_textbook.pdf:ch12.4.2"
+      ],
+      "history": [
+        {
+          "date": "2026-04-17",
+          "score": 0.94,
+          "questions": 4,
+          "correct": 3.75,
+          "notes": "Solid pass. Q1 dendrogram cut reading: perfect. Q2 single-linkage chaining: clean explanation. Q3 linkage distance calculations: both correct (sqrt(5) and sqrt(17)). Q4 interleaved decision tree cost function: said MSE, correct concept but imprecise \u2014 exam wants RSS terminology. Pre-question corrections needed: hierarchical is unsupervised (not classification), deterministic (no random init)."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "name": "Harness Engineering",
+  "goal": "Build harnesses and agents end-to-end — sufficient mastery to design, implement, and ship agent systems for Mark's own projects (e.g., sso_group_sync) and to make architecture decisions on agent stacks at work.",
+  "created": "2026-05-05",
+  "concepts": [
+    {
+      "id": "agent_loop",
+      "name": "The Agent Loop",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/harness_engineering/building-effective-agents.md", "sources/harness_engineering/claude-agent-sdk-overview.md"],
+      "mastery": 0.7,
+      "reps": 2,
+      "interval_days": 7,
+      "next_review": "2026-05-22",
+      "history": [
+        {"date": "2026-05-05", "score": 0.3, "questions": 1, "correct": 0, "notes": "diagnostic Q1: workflow description accurate, but mental model has the loop living *inside* the model ('iterating continuously until it believes it solved the problem') rather than in the harness around it"},
+        {"date": "2026-05-06", "score": 0.875, "questions": 4, "correct": 3.5, "notes": "post-teaching assessment — Q1: correct (3 calls, 2 tool-results) with momentary cumulative-vs-per-call counting confusion; Q2: clean articulation of harness+LLM=agent, agency in loop; Q3 (partial): got 'no context = no idea what to do' but didn't specifically enumerate that without tool definitions the model can't emit valid tool_use blocks at all; Q4: solid bridge from loop mechanics to context growth to degradation"},
+        {"date": "2026-05-15", "score": 0.8, "questions": 4, "correct": 3.2, "notes": "review session after 6-day delay (overdue from 2026-05-09). Q1 (recall the loop): solid 0.9 — inputs/outputs/exit-condition all named, minor wobble framing response as 'tool_request OR model_output' rather than acknowledging a single response can contain multiple content blocks (text + multiple tool_use). Q2 (interleaved from context_rot): 0.5 — got constants-vs-growing structure right but MISLABELED system_prompt as growing when it's constant; the messages array is what grows. Didn't name tool_use/tool_result as the block types that pile up (same gap as 2026-05-08 tool_definition Q3). Admitted full mechanism gap on n² attention. Named only /clear as a lever. Q3 (closing 2026-05-06 wobble): 0.95 — clean articulation that with empty tool_definitions the model has no schema to emit a valid tool_use block, loop terminates after one turn. Wobble closed. Q4 (elaboration on stateless): 0.85 — self-corrected his Q2 system_prompt error mid-stream ('message array grows linearly while system prompts have semi-consistent size'); named all 3 API inputs; missed the 'what gets dropped' framing (KV state / model activations) and the cost-of-statelessness bonus (re-tokenize + re-attend to entire context every turn). Net: structural model is sticking, slot-labeling is fixing in real-time."}
+      ]
+    },
+    {
+      "id": "context_window",
+      "name": "The Context Window as Substrate",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md", "sources/harness_engineering/claude-code-best-practices.md"],
+      "mastery": 0.6,
+      "reps": 1,
+      "interval_days": 3,
+      "next_review": "2026-05-22",
+      "history": [
+        {"date": "2026-05-05", "score": 0.4, "questions": 1, "correct": 0, "notes": "diagnostic Q2 inferred: understands context fills up, doesn't know mechanism (n^2 attention, attention budget framing)"},
+        {"date": "2026-05-15", "score": null, "questions": 0, "correct": 0, "notes": "pulled forward via interleaved miss during agent_loop review. Mark mislabeled system_prompt as 'growing linearly' (it's constant), then self-corrected on Q4 to 'message array grows linearly while system prompts have semi-consistent size'. He also missed naming tool_use/tool_result as the block types that constitute most of the growth — same gap as 2026-05-08 tool_definition Q3. When teaching: emphasize (1) what's constant vs growing in the API payload, (2) tool_use and tool_result blocks dominate growth in agent loops (a single Read tool_result of a 500-line file is huge), (3) the cost-of-statelessness framing — every turn re-tokenizes and re-attends to the full prior context."},
+        {"date": "2026-05-19", "score": 0.87, "questions": 3, "correct": 2.6, "notes": "first formal pass. Pre-question (composition of API payload): clean — named tool_defs/messages_array/system_prompts with constant-vs-growing split CORRECT, self-corrected the 2026-05-15 system_prompt mislabeling without prompting, decomposed messages_array into user_prompts (constant), model_outputs (linear), tool_results (linear). Did not explicitly name tool_use as a block type within assistant messages — I added that as a small refinement (text vs tool_use content blocks). Size-intuition probe (20 reads of 500-line files): clean 500x ratio via line-count proxy — got that tool_results dominate by orders of magnitude. Q1 (substrate vs chat history + engineering instinct): 0.6 — got composition advantage (substrate captures more than user/Claude turns) but missed the load-bearing active-vs-passive frame and didn't articulate the engineering instinct shift (every token = ongoing cost not one-time cost). Absorbed the correction immediately. Q2 (5000-token CLAUDE.md constant for 50 turns vs 5000-token tool_result on turn 49): 1.0 — clean 25x math, named statelessness as the cause unprompted ('CLAUDE.md is a substrate level of context that each stateless model starts from'). The Q1 active-cost framing landed in real-time. Q3 (interleaved with agent_loop — compose substrate growth + per-turn reprocessing): 1.0 — derived O(n²) cleanly, distinguished substrate growth (linear) from compute growth (quadratic), used correct complexity language. This is the bridge to context_rot's attention-budget framing. Net: substrate frame is now the load-bearing mental model. Remaining minor gap: doesn't naturally reach for the block-type taxonomy (tool_use blocks vs text blocks within assistant messages) — surfaces in tool_definition contexts too. Will probably embed organically when sub_agent_architecture or skills_format come up."}
+      ]
+    },
+    {
+      "id": "tool_definition",
+      "name": "Tool Definitions (name, description, schema)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/harness_engineering/building-effective-agents.md", "sources/harness_engineering/writing-tools-for-agents.md", "sources/harness_engineering/mcp-architecture.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-20",
+      "history": [
+        {"date": "2026-05-06", "score": 0.725, "questions": 4, "correct": 2.9, "notes": "post-teaching assessment failed (<0.8). Q1: confused 4th part with 'requirements' instead of implementation; doesn't yet have the contract-vs-implementation split solid. Q2: knew outer schema shape (type: object) but blanked on properties/required structure — JSON Schema skeleton not memorized. Q3: solid on description-as-disambiguator. Q4: clean callback to stateless-model insight from agent_loop. Conceptual frame is right; specifics need one more pass."},
+        {"date": "2026-05-08", "score": 0.4, "questions": 3, "correct": 1.2, "notes": "re-assessment after re-teaching with code example (read_file Python function as implementation) and skeleton drill (produced WriteFile correctly). Drill passed but formal assessment failed again. Q1: STILL can't recall 'implementation' as the 4th part — third encounter, still not sticking; conceptually understands the registry/dispatch (answered registry-deletion check correctly mid-session) but the LABEL won't bind. Q2: real semantic gap on JSON Schema — modified description to say 'can be empty' instead of removing param from `required` array; doesn't have 'optional = absent from required' mental model. Q3: directionally right (tool defs constant, history grows) but only named tool_result, missed that tool_use messages also grow. Asked a good meta question about scope of harness/context/prompt engineering. Tactic for next attempt: stop testing recall of 'implementation' as a label; let it embed via usage when tool_design_principles or agent_sdk_basics come up."},
+        {"date": "2026-05-19", "score": 0.667, "questions": 3, "correct": 2.0, "notes": "third failed attempt (overdue by 10 days). Opened with retrieval probe on JSON Schema optionality — Mark answered cleanly: 'required array changes, input_schema doesn't.' 2026-05-08 gap CLOSED. Q1 (write input_schema for list_files): 0.7 — semantic core right (both params in properties, only path in required), but two structural misses: included 'name' inside the schema (name is a sibling of input_schema, not inside it), and omitted 'type: object' at the root. Q2 (move recursive from optional to required while function code unchanged — what changes?): 0.3 — fundamental misread of optionality. Said the model is 'now capable of executing recursive search' as if optional meant unavailable. The actual concept (schema-as-contract on the model's tool_use emissions; required forces inclusion, doesn't enable capability) didn't land. Q3 (interleaved with context_window — tool def constant vs tool_result growing across 50-turn loop): 1.0 — clean answer, 'tool_results grow linearly stacked across conversation, tool_definitions is a static schema unchanged across executions.' Confirms the 2026-05-08 Q3 gap on tool_result-growth is closed (didn't probe tool_use growth — save for context_window session). NEW gap to target next time: the schema-as-contract framing. Ask a question that contrasts what the MODEL sees (schema) vs what the FUNCTION receives (validated payload) — e.g., 'if you mark a param optional in the schema but your function requires it, what fails and where?' The 'implementation' label drill remains parked per 2026-05-08 tactic."}
+      ]
+    },
+    {
+      "id": "workflow_vs_agent",
+      "name": "Workflow vs Agent (Anthropic's distinction)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/harness_engineering/building-effective-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "tool_descriptions_as_prompts",
+      "name": "Tool Descriptions as Prompt Engineering Surface",
+      "depth": 1,
+      "prerequisites": ["tool_definition"],
+      "sources": ["sources/harness_engineering/writing-tools-for-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "context_rot",
+      "name": "Context Rot and the Attention Budget",
+      "depth": 1,
+      "prerequisites": ["context_window"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md"],
+      "mastery": 0.4,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-16",
+      "history": [
+        {"date": "2026-05-05", "score": 0.4, "questions": 1, "correct": 0, "notes": "diagnostic Q2: knows symptom (more hallucinations), rough cause (context overwhelms model), one mitigation (/clear); doesn't have the n^2 attention mechanism or other levers (compaction, just-in-time, sub-agents)"},
+        {"date": "2026-05-15", "score": null, "questions": 0, "correct": 0, "notes": "pulled forward via interleaved miss during agent_loop review. Confirmed gaps: (1) cannot articulate n² self-attention as the mechanism — answered 'I can't explain mechanistically why this worsens the model's hallucinations'; (2) only knows /clear as a lever, missing compaction, just-in-time loading, external memory, sub-agents. When teaching: anchor on the attention-budget framing ('every token attends to every other token; the budget is finite') and use the 50-tool-call scenario to make the cost concrete. Mark already has the prerequisite context_window symptom knowledge — what's missing is mechanism + lever menu."}
+      ]
+    },
+    {
+      "id": "workflow_patterns",
+      "name": "The Five Workflow Patterns",
+      "depth": 1,
+      "prerequisites": ["workflow_vs_agent"],
+      "sources": ["sources/harness_engineering/building-effective-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "mcp_overview",
+      "name": "MCP Overview (host/client/server)",
+      "depth": 1,
+      "prerequisites": ["tool_definition"],
+      "sources": ["sources/harness_engineering/mcp-intro.md", "sources/harness_engineering/mcp-architecture.md"],
+      "mastery": 0.15,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-05", "score": 0.15, "questions": 1, "correct": 0, "notes": "diagnostic Q3: vague gut feel — 'wire organizer for GitHub API endpoints'; got the protocol+context framing but no architectural model"}
+      ]
+    },
+    {
+      "id": "system_prompt_altitude",
+      "name": "System Prompt Altitude (calibration)",
+      "depth": 1,
+      "prerequisites": ["agent_loop", "context_window"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "mcp_primitives",
+      "name": "MCP Primitives (tools, resources, prompts; sampling, elicitation, logging)",
+      "depth": 2,
+      "prerequisites": ["mcp_overview"],
+      "sources": ["sources/harness_engineering/mcp-architecture.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "mcp_protocol_mechanics",
+      "name": "MCP Protocol Mechanics (JSON-RPC, transport, lifecycle)",
+      "depth": 2,
+      "prerequisites": ["mcp_overview"],
+      "sources": ["sources/harness_engineering/mcp-architecture.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "just_in_time_context",
+      "name": "Just-in-Time Context Loading",
+      "depth": 2,
+      "prerequisites": ["context_rot"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "compaction",
+      "name": "Compaction (summarize and continue)",
+      "depth": 2,
+      "prerequisites": ["context_rot"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "external_memory",
+      "name": "External Memory (notes, files, memory tool)",
+      "depth": 2,
+      "prerequisites": ["context_window"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md", "sources/harness_engineering/effective-harnesses-for-long-running-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "sub_agent_architecture",
+      "name": "Sub-Agent Architecture (offloading exploration)",
+      "depth": 2,
+      "prerequisites": ["just_in_time_context"],
+      "sources": ["sources/harness_engineering/effective-context-engineering-for-ai-agents.md", "sources/harness_engineering/multi-agent-research-system.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "tool_design_principles",
+      "name": "Tool Design Principles (namespacing, consolidation, response formats, token efficiency)",
+      "depth": 2,
+      "prerequisites": ["tool_descriptions_as_prompts"],
+      "sources": ["sources/harness_engineering/writing-tools-for-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "skills_format",
+      "name": "Skills Format and Progressive Disclosure",
+      "depth": 2,
+      "prerequisites": ["tool_definition", "agent_loop"],
+      "sources": ["sources/harness_engineering/equipping-agents-with-agent-skills.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "agent_sdk_basics",
+      "name": "Claude Agent SDK Basics",
+      "depth": 2,
+      "prerequisites": ["agent_loop", "tool_definition"],
+      "sources": ["sources/harness_engineering/claude-agent-sdk-overview.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "evals_fundamentals",
+      "name": "Evals Fundamentals (task, trial, grader, transcript)",
+      "depth": 2,
+      "prerequisites": ["agent_loop"],
+      "sources": ["sources/harness_engineering/demystifying-evals-for-ai-agents.md"],
+      "mastery": 0.2,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-05", "score": 0.2, "questions": 1, "correct": 0, "notes": "diagnostic Q4: outcome-only model (more tests pass = more confidence); no mental model of task/trial/grader/transcript anatomy or eval-harness vs agent-harness distinction"}
+      ]
+    },
+    {
+      "id": "claude_code_practitioner_patterns",
+      "name": "Claude Code Practitioner Patterns",
+      "depth": 2,
+      "prerequisites": ["agent_loop", "context_rot"],
+      "sources": ["sources/harness_engineering/claude-code-best-practices.md"],
+      "mastery": 0.4,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-05", "score": 0.4, "questions": 0, "correct": 0, "notes": "inferred from being a heavy Claude Code user: knows /clear and CLAUDE.md exist; not yet tested on plan mode, verification-first, fan-out, subagent delegation"}
+      ]
+    },
+    {
+      "id": "evaluator_optimizer_pattern",
+      "name": "Evaluator-Optimizer Pattern (generator + evaluator loop)",
+      "depth": 3,
+      "prerequisites": ["workflow_patterns", "evals_fundamentals"],
+      "sources": ["sources/harness_engineering/building-effective-agents.md", "sources/harness_engineering/harness-design-long-running-apps.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "grader_types",
+      "name": "Grader Types (code-based, model-based, human)",
+      "depth": 3,
+      "prerequisites": ["evals_fundamentals"],
+      "sources": ["sources/harness_engineering/demystifying-evals-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "capability_vs_regression_evals",
+      "name": "Capability vs Regression Evals",
+      "depth": 3,
+      "prerequisites": ["evals_fundamentals"],
+      "sources": ["sources/harness_engineering/demystifying-evals-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "nondeterminism_metrics",
+      "name": "Non-Determinism Metrics (pass@k vs pass^k)",
+      "depth": 3,
+      "prerequisites": ["grader_types"],
+      "sources": ["sources/harness_engineering/demystifying-evals-for-ai-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "long_running_pattern",
+      "name": "Long-Running Pattern (initializer + coding agent)",
+      "depth": 3,
+      "prerequisites": ["agent_loop", "external_memory", "evals_fundamentals"],
+      "sources": ["sources/harness_engineering/effective-harnesses-for-long-running-agents.md", "sources/harness_engineering/harness-design-long-running-apps.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "hooks_subagents_sessions",
+      "name": "Hooks, Subagents, Sessions (Agent SDK lifecycle)",
+      "depth": 3,
+      "prerequisites": ["agent_sdk_basics"],
+      "sources": ["sources/harness_engineering/claude-agent-sdk-overview.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "multi_agent_orchestration",
+      "name": "Multi-Agent Orchestration (planner/generator/evaluator, agent teams)",
+      "depth": 3,
+      "prerequisites": ["sub_agent_architecture", "evaluator_optimizer_pattern"],
+      "sources": ["sources/harness_engineering/multi-agent-research-system.md", "sources/harness_engineering/harness-design-long-running-apps.md", "sources/harness_engineering/building-c-compiler.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "sandboxing",
+      "name": "Sandboxing (filesystem + network isolation)",
+      "depth": 3,
+      "prerequisites": ["agent_sdk_basics"],
+      "sources": ["sources/harness_engineering/claude-code-sandboxing.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "permission_systems",
+      "name": "Permission Systems (allowlists, auto-mode classifier, threat model)",
+      "depth": 3,
+      "prerequisites": ["sandboxing"],
+      "sources": ["sources/harness_engineering/claude-code-auto-mode.md", "sources/harness_engineering/claude-code-sandboxing.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "brain_hands_decoupling",
+      "name": "Brain/Hands/Session Decoupling (Managed Agents architecture)",
+      "depth": 3,
+      "prerequisites": ["long_running_pattern", "sub_agent_architecture"],
+      "sources": ["sources/harness_engineering/managed-agents.md"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    }
+  ]
+}

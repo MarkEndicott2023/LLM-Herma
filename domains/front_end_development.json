@@ -1,0 +1,531 @@
+{
+  "name": "Front-end Development",
+  "goal": "Deepen front-end engineering for the job (React + Vite + Tailwind CSS + TypeScript stack) and build broad mastery across the roadmap.sh Front-end path. Curriculum is grounded in local sources: the roadmap.sh diagram (skeleton), MDN 'Learn web development' (web fundamentals, HTML, CSS, JS, accessibility, performance, tooling, testing), the Tailwind v4 Core Concepts, the TypeScript Handbook, and the React docs (learn + reference).",
+  "created": "2026-06-17",
+  "concepts": [
+    {
+      "id": "web_fundamentals",
+      "name": "How the Web Works (Internet, HTTP, DNS, Hosting, Browsers)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/getting_started/web_standards",
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/howto/web_mechanics"
+      ],
+      "mastery": 0.4,
+      "reps": 2,
+      "interval_days": 6.25,
+      "next_review": "2026-06-28",
+      "history": [
+        {"date": "2026-06-19", "score": 1.0, "questions": 3, "correct": 3, "notes": "Aced assessment 3/3: request lifecycle ordering (DNS->IP->GET->response->parse-and-refetch), read a 404 sub-resource response, explained one-page-many-requests. In-session slips, now corrected: initially folded the path (/en-US) into the host (host stops at first /); undercounted page round-trips by omitting the initial HTML fetch (said 7, not 8). Strong on DNS name->IP, client/server request/response, status codes, Content-Type. mastery 0.2 < 0.7 so downstream (html_semantics, js_basics) stays locked until more reps."},
+        {"date": "2026-06-22", "score": 0.875, "questions": 4, "correct": 3.5, "notes": "PASS 0.875 (3.5/4) on review. Opened with a 301-redirect retrieval probe: INITIALLY MISSED the redirect mechanic -- said the browser builds DOM/renders immediately, folding the second request into rendering; after re-teach, nailed it (2 requests: GET->301 with Location header + empty body, then a fresh GET to the new URL->200 with real HTML; content-length 0 because a redirect carries no body). Strong metacognition: learner CHALLENGED the assessment as testing un-taught material -- valid: packets never taught, port (:NNNN) never surfaced, 403/503 not refreshed this session. Taught all three as micro-chunks, every micro-check passed. PACKETS: corrected the misconception that chunking lowers bandwidth/corruption-odds -> real benefit is cheap granular recovery (re-request only the lost packet #, not the whole file) + multipath routing; header carries packet number/total for reassembly. PORT: the 'gate' model -- one host runs many programs, each on a port; standard 80/443 are hidden, non-standard like 5173 (Vite) / 9000 are mandatory. STATUS: 4xx=client / 5xx=server heuristic; 403=understood-but-no-permission (client), 503=server temporarily unavailable (retry-after signals transient). Assessment: Q2 403-vs-503 client/server CORRECT; Q3 DNS hostname->IP CORRECT; Q4 out-of-order packets reassembled via header sequence number CORRECT. Q1 URL-labeling PARTIAL (0.5): WIN -- host boundary now CORRECT (full host = blog.dev.example.org, stops before :9000 and the path; this is the exact 'folded path into host' error from 2026-06-19, now fixed), plus protocol/port/query correct. MISS -- labeled the PATH (/posts/intro) as the 'subdomain' and never identified blog/dev as the real subdomains (a path<->subdomain swap); admitted not knowing what a 'fragment' is (located #summary by guess) and skipped the stretch (fragment is NEVER sent to the server). NEXT REP: (1) teach what a subdomain is -- blog/dev are subdomains of example.org, path is everything after host:port; (2) teach the fragment/anchor and that #... is never sent to the server. Honor this learner's scope-rigor: pre-teach breadth before assessing in review sessions. mastery 0.2->0.4, still <0.7 so html_semantics/js_basics stay locked."}
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "url",
+          "label": "Anatomy of a URL the browser requests",
+          "value": "https://developer.mozilla.org/en-US/docs/Learn_web_development?ref=nav#core-modules",
+          "parts": {"scheme": "https", "host": "developer.mozilla.org", "path": "/en-US/docs/Learn_web_development", "query": "ref=nav", "fragment": "core-modules"}
+        }
+      ]
+    },
+    {
+      "id": "dev_environment",
+      "name": "Development Environment Setup (Editor, CLI, Files)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/getting_started/environment_setup"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-06-24",
+      "history": [
+        {"date": "2026-06-19", "score": 0.667, "questions": 3, "correct": 2, "notes": "FAIL (2/3). Operationally strong: correctly predicted that `cd Documents` from inside my-site errors (relative lookup, no such dir), and wrote `mkdir src && cd src` + `cd ..` cleanly. MISS on conceptual articulation (Q3): inverted the leading-slash rule -- stated leading `/` means relative, and conflated `/` with `~`/home. Correct rule re-taught in-session: leading `/` = ABSOLUTE from root (filesystem root for paths, website root for URLs); no leading slash = relative to current location; `~` is separate = home dir. Pattern to watch: learner executes paths flawlessly but mis-states the abstract rule -- next rep, lead with a 'state the rule' probe before any operational task, and re-verify the `/` vs `~` distinction."},
+        {"date": "2026-06-21", "score": 1.0, "questions": 3, "correct": 3, "notes": "PASS 3/3 on re-teach of the path rule that failed last session. Forced-retrieval probe first: learner had clearly improved -- got `~`=home AND the leading-slash-is-the-decider STRUCTURE right (last time both were wrong), but still placed leading `/` at HOME instead of the filesystem ROOT, and described an absolute path as a 'search until found' rather than an exact named route. Re-taught: `/` = root (top of tree); home = `/Users/markendicott` which itself hangs off root; absolute = full address from one fixed origin, relative = directions from cwd, `~` = jump-to-home shortcut; a path is an exact route, one named step per slash, not a search. Assessment: Q1 (write absolute + `~` commands, say why bare `cd Documents` fails) fully correct; Q3 (state the rule + `cd ../../` lands at /Users/markendicott) fully correct -- the abstract-rule articulation that failed last time is now solid. Q2 (transfer to URLs) correctly applied absolute-vs-relative discrimination but two URL-specific slips that were NOT taught: called `/about` 'likely an error' (it's just example.com/about), and resolved relative href='about' by APPENDING to /blog/2026/post/ instead of REPLACING the last segment, giving /blog/2026/post/about -- correct is /blog/2026/about because .../post has no trailing slash, so post is a document not a dir. Gave full credit: taught material (filesystem abs/rel/root/home) was correct across Q1/Q3 plus the rule-half of Q2; URL relative-resolution (replace-last-segment, trailing-slash semantics) is a separate future micro-lesson, not a dev_environment gap. Next rep: quick root-vs-home recap probe to confirm retention, then it's fine to advance."}
+      ],
+      "practical_artifacts": []
+    },
+    {
+      "id": "version_control",
+      "name": "Version Control with Git",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/version_control"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "cli_command",
+          "label": "Initialize a repo and push the first commit",
+          "value": "git init\ngit add .\ngit commit -m \"Initial commit\"\ngit branch -M main\ngit remote add origin git@github.com:user/repo.git\ngit push -u origin main"
+        }
+      ]
+    },
+    {
+      "id": "html_semantics",
+      "name": "Structuring Content with Semantic HTML",
+      "depth": 1,
+      "prerequisites": ["web_fundamentals"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/structuring_content"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "css_basics",
+      "name": "CSS Styling Basics (Selectors, Cascade, Box Model)",
+      "depth": 1,
+      "prerequisites": ["html_semantics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/styling_basics"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "js_basics",
+      "name": "JavaScript Fundamentals (Types, Control Flow, Functions)",
+      "depth": 1,
+      "prerequisites": ["web_fundamentals"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/scripting"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "css_text",
+      "name": "Text Styling in CSS",
+      "depth": 2,
+      "prerequisites": ["css_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/text_styling"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "css_layout",
+      "name": "CSS Layout (Flexbox, Grid, Responsive Design)",
+      "depth": 2,
+      "prerequisites": ["css_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/css_layout"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "accessibility",
+      "name": "Web Accessibility (Semantics, ARIA, Keyboard, Contrast)",
+      "depth": 2,
+      "prerequisites": ["html_semantics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/accessibility"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "html_forms",
+      "name": "HTML Forms and Validation",
+      "depth": 2,
+      "prerequisites": ["html_semantics", "css_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/forms"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "js_dom",
+      "name": "DOM Manipulation and Events",
+      "depth": 2,
+      "prerequisites": ["js_basics", "html_semantics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/scripting"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "js_async",
+      "name": "Asynchronous JavaScript (Promises, async/await, fetch)",
+      "depth": 2,
+      "prerequisites": ["js_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/async_js"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "package_managers",
+      "name": "Package Managers (npm, pnpm, yarn)",
+      "depth": 2,
+      "prerequisites": ["dev_environment", "js_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/client-side_tools",
+        "sources/front_end_development/tailwind/00-installation-using-vite.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "cli_command",
+          "label": "Scaffold a Vite project and install dependencies",
+          "value": "npm create vite@latest my-app\ncd my-app\nnpm install\nnpm install tailwindcss @tailwindcss/vite"
+        }
+      ]
+    },
+    {
+      "id": "tailwind_utility_first",
+      "name": "Tailwind: Utility-First Styling",
+      "depth": 2,
+      "prerequisites": ["css_basics"],
+      "sources": [
+        "sources/front_end_development/tailwind/00-installation-using-vite.md",
+        "sources/front_end_development/tailwind/01-styling-with-utility-classes.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "Utility-class card (real Tailwind v4 example)",
+          "value": "<div class=\"mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5\">\n  <img class=\"size-12 shrink-0\" src=\"/img/logo.svg\" alt=\"ChitChat Logo\" />\n  <div>\n    <div class=\"text-xl font-medium text-black\">ChitChat</div>\n    <p class=\"text-gray-500\">You have a new message!</p>\n  </div>\n</div>"
+        }
+      ]
+    },
+    {
+      "id": "ts_basics",
+      "name": "TypeScript Basics and Everyday Types",
+      "depth": 2,
+      "prerequisites": ["js_basics"],
+      "sources": [
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/Basics.md",
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/Everyday Types.md",
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/get-started"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "Type annotation vs inference",
+          "value": "let username: string = \"mark\";\nlet count = 0; // inferred as number\n\nfunction greet(name: string): string {\n  return `Hello, ${name}`;\n}"
+        }
+      ]
+    },
+    {
+      "id": "js_advanced_objects",
+      "name": "Advanced JS Objects (Prototypes, Classes, this)",
+      "depth": 3,
+      "prerequisites": ["js_basics"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/advanced_javascript_objects"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "web_apis",
+      "name": "Client-side Web APIs (Fetch, Storage, and more)",
+      "depth": 3,
+      "prerequisites": ["js_async", "js_dom"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/client-side_apis"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "build_tools",
+      "name": "Build Tools and Bundlers (Vite, Transpiling)",
+      "depth": 3,
+      "prerequisites": ["package_managers"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/client-side_tools"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "testing",
+      "name": "Testing Front-end Code (Cross-browser, Automated)",
+      "depth": 3,
+      "prerequisites": ["js_dom"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/testing"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "web_performance",
+      "name": "Web Performance (Metrics, Rendering, Optimization)",
+      "depth": 3,
+      "prerequisites": ["css_layout", "js_dom"],
+      "sources": [
+        "sources/front_end_development/mdn-content/files/en-us/learn_web_development/extensions/performance"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "tailwind_variants",
+      "name": "Tailwind: Variants, States, and Responsive Design",
+      "depth": 3,
+      "prerequisites": ["tailwind_utility_first", "css_layout"],
+      "sources": [
+        "sources/front_end_development/tailwind/02-hover-focus-and-other-states.md",
+        "sources/front_end_development/tailwind/03-responsive-design.md",
+        "sources/front_end_development/tailwind/04-dark-mode.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "Hover variant and the CSS it generates",
+          "value": "<button class=\"bg-sky-500 hover:bg-sky-700\">Save changes</button>",
+          "generated_css": ".hover\\:bg-sky-700:hover { background-color: var(--color-sky-700); }"
+        },
+        {
+          "kind": "code_snippet",
+          "label": "Mobile-first responsive widths",
+          "value": "<img class=\"w-16 md:w-32 lg:w-48\" src=\"...\" />"
+        }
+      ]
+    },
+    {
+      "id": "tailwind_theming",
+      "name": "Tailwind: Theme Variables and Customization",
+      "depth": 3,
+      "prerequisites": ["tailwind_utility_first"],
+      "sources": [
+        "sources/front_end_development/tailwind/05-theme-variables.md",
+        "sources/front_end_development/tailwind/06-colors.md",
+        "sources/front_end_development/tailwind/07-adding-custom-styles.md",
+        "sources/front_end_development/tailwind/08-functions-and-directives.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Defining a design token with @theme",
+          "value": "@import \"tailwindcss\";\n\n@theme {\n  --color-mint-500: oklch(0.72 0.11 178);\n}",
+          "note": "Creates utilities bg-mint-500, text-mint-500, fill-mint-500, etc."
+        }
+      ]
+    },
+    {
+      "id": "ts_narrowing_functions",
+      "name": "TypeScript: Narrowing and Functions",
+      "depth": 3,
+      "prerequisites": ["ts_basics"],
+      "sources": [
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/Narrowing.md",
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/More on Functions.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "ts_object_types",
+      "name": "TypeScript: Object Types and Interfaces",
+      "depth": 3,
+      "prerequisites": ["ts_basics"],
+      "sources": [
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/Object Types.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "ts_config",
+      "name": "TypeScript: Project Configuration (tsconfig)",
+      "depth": 3,
+      "prerequisites": ["ts_basics", "build_tools"],
+      "sources": [
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/project-config"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "react_describing_ui",
+      "name": "React: Describing the UI (Components, JSX, Props)",
+      "depth": 3,
+      "prerequisites": ["js_dom", "ts_basics"],
+      "sources": [
+        "sources/front_end_development/react-dev/src/content/learn/describing-the-ui.md",
+        "sources/front_end_development/react-dev/src/content/learn/thinking-in-react.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "A function component with props and JSX",
+          "value": "function Profile({ name, role }) {\n  return (\n    <div className=\"card\">\n      <h2>{name}</h2>\n      <p>{role}</p>\n    </div>\n  );\n}"
+        }
+      ]
+    },
+    {
+      "id": "ts_generics",
+      "name": "TypeScript: Generics and Type Manipulation",
+      "depth": 4,
+      "prerequisites": ["ts_object_types"],
+      "sources": [
+        "sources/front_end_development/typescript-website/packages/documentation/copy/en/handbook-v2/Type Manipulation"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "react_state_events",
+      "name": "React: State and Responding to Events",
+      "depth": 4,
+      "prerequisites": ["react_describing_ui"],
+      "sources": [
+        "sources/front_end_development/react-dev/src/content/learn/adding-interactivity.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "react_managing_state",
+      "name": "React: Managing State (Lifting, Reducer, Context)",
+      "depth": 4,
+      "prerequisites": ["react_state_events"],
+      "sources": [
+        "sources/front_end_development/react-dev/src/content/learn/managing-state.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    },
+    {
+      "id": "react_escape_hatches",
+      "name": "React: Escape Hatches (Refs, Effects, Custom Hooks)",
+      "depth": 4,
+      "prerequisites": ["react_state_events"],
+      "sources": [
+        "sources/front_end_development/react-dev/src/content/learn/escape-hatches.md"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "practical_artifacts": []
+    }
+  ]
+}

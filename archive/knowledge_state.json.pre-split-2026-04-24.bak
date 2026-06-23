@@ -1,0 +1,2754 @@
+{
+  "learner": {
+    "name": "Mark",
+    "session_count": 1,
+    "last_session": "2026-04-08"
+  },
+  "domains": {
+    "data_science_methods_nn": {
+      "name": "Neural Networks (CMSE 381)",
+      "goal": "Master ISLP Chapter 10 for CMSE 381 Lectures 29-31",
+      "created": "2026-04-08",
+      "concepts": [
+        {
+          "id": "activation_functions",
+          "name": "Activation Functions (ReLU, Sigmoid)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Correctly defined ReLU and explained saturation advantage over sigmoid"
+            }
+          ]
+        },
+        {
+          "id": "nn_motivation_structure",
+          "name": "NN Motivation & Structure",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Understands why nonlinearity is essential \u2014 model collapses to linear without it"
+            }
+          ]
+        },
+        {
+          "id": "single_layer_nn",
+          "name": "Single Layer Neural Networks",
+          "depth": 1,
+          "prerequisites": [
+            "activation_functions",
+            "nn_motivation_structure"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Solid grasp of single hidden layer structure and role of activation"
+            }
+          ]
+        },
+        {
+          "id": "loss_functions_nn",
+          "name": "Loss Functions (Squared Error, Cross-Entropy)",
+          "depth": 1,
+          "prerequisites": [
+            "nn_motivation_structure"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Implicit understanding from Q2 \u2014 knows purpose of output layer"
+            }
+          ]
+        },
+        {
+          "id": "multilayer_nn",
+          "name": "Multilayer Neural Networks",
+          "depth": 2,
+          "prerequisites": [
+            "single_layer_nn",
+            "loss_functions_nn"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Understands depth adds representational power via chained nonlinear transforms"
+            }
+          ]
+        },
+        {
+          "id": "softmax_multiclass",
+          "name": "Softmax & Multiclass Output",
+          "depth": 2,
+          "prerequisites": [
+            "loss_functions_nn",
+            "single_layer_nn"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Inferred from familiarity with classification context; not explicitly tested in depth"
+            }
+          ]
+        },
+        {
+          "id": "fitting_gradient_descent",
+          "name": "Fitting NNs: Gradient Descent",
+          "depth": 3,
+          "prerequisites": [
+            "multilayer_nn"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.7"
+          ],
+          "history": []
+        },
+        {
+          "id": "backpropagation",
+          "name": "Backpropagation",
+          "depth": 3,
+          "prerequisites": [
+            "fitting_gradient_descent"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.7.1"
+          ],
+          "history": []
+        },
+        {
+          "id": "regularization_dropout",
+          "name": "Regularization & Dropout",
+          "depth": 3,
+          "prerequisites": [
+            "multilayer_nn"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.7.2-10.7.3"
+          ],
+          "history": []
+        },
+        {
+          "id": "sgd_minibatches",
+          "name": "SGD & Minibatches",
+          "depth": 3,
+          "prerequisites": [
+            "fitting_gradient_descent"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.7.2"
+          ],
+          "history": []
+        },
+        {
+          "id": "convolution_layers",
+          "name": "Convolution Layers",
+          "depth": 4,
+          "prerequisites": [
+            "multilayer_nn"
+          ],
+          "mastery": 0.4,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.3.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.5,
+              "questions": 1,
+              "correct": 0.5,
+              "notes": "Understands filters detect local patterns but confused convolution with pooling on dimension reduction. Needs to learn weight sharing concept."
+            }
+          ]
+        },
+        {
+          "id": "pooling_layers",
+          "name": "Pooling Layers",
+          "depth": 4,
+          "prerequisites": [
+            "convolution_layers"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.3.2"
+          ],
+          "history": []
+        },
+        {
+          "id": "cnn_architecture",
+          "name": "CNN Architecture",
+          "depth": 4,
+          "prerequisites": [
+            "convolution_layers",
+            "pooling_layers"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.3.3"
+          ],
+          "history": []
+        },
+        {
+          "id": "data_augmentation_transfer",
+          "name": "Data Augmentation & Transfer Learning",
+          "depth": 4,
+          "prerequisites": [
+            "cnn_architecture"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.3.4-10.3.5"
+          ],
+          "history": []
+        },
+        {
+          "id": "when_to_use_deep_learning",
+          "name": "When to Use Deep Learning",
+          "depth": 5,
+          "prerequisites": [
+            "cnn_architecture",
+            "regularization_dropout"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch10.6"
+          ],
+          "history": []
+        }
+      ]
+    },
+    "encoder_decoder_architecture": {
+      "name": "Encoder-Decoder Architecture (CMSE 404)",
+      "goal": "Master encoder-decoder and transformer fundamentals for CMSE 404 Exam 3",
+      "created": "2026-04-08",
+      "concepts": [
+        {
+          "id": "sequence_modeling_motivation",
+          "name": "Sequence Modeling & Motivation",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic \u2014 understands why sequential data needs specialized architectures"
+            }
+          ]
+        },
+        {
+          "id": "rnn_fundamentals",
+          "name": "RNN Fundamentals",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic \u2014 correctly described hidden state recurrence and vanishing gradient problem"
+            }
+          ]
+        },
+        {
+          "id": "vanishing_exploding_gradients",
+          "name": "Vanishing/Exploding Gradients in RNNs",
+          "depth": 1,
+          "prerequisites": [
+            "rnn_fundamentals"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic \u2014 identified vanishing gradients as core RNN limitation, understands information loss over long sequences"
+            }
+          ]
+        },
+        {
+          "id": "lstm_cells",
+          "name": "LSTM Cells",
+          "depth": 1,
+          "prerequisites": [
+            "vanishing_exploding_gradients"
+          ],
+          "mastery": 0.7,
+          "reps": 2,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.5,
+              "questions": 1,
+              "correct": 0.5,
+              "notes": "Diagnostic \u2014 knows forget gate selects what to discard but fuzzy on sigmoid gating mechanics and doesn't understand cell state as gradient highway"
+            },
+            {
+              "date": "2026-04-08",
+              "score": 0.83,
+              "questions": 3,
+              "correct": 2.5,
+              "notes": "Correctly describes gate roles and interprets gate output scenarios. Still shaky on WHY cell state equation avoids vanishing gradients (no activation wrapping C(t-1)). Explained gradient highway."
+            }
+          ]
+        },
+        {
+          "id": "autoencoders_basic",
+          "name": "Autoencoders (Basic)",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.1,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.25,
+              "questions": 1,
+              "correct": 0.25,
+              "notes": "Diagnostic \u2014 only knew it relates to dimensionality reduction, no knowledge of encoder-bottleneck-decoder structure or reconstruction objective"
+            }
+          ]
+        },
+        {
+          "id": "gru_cells",
+          "name": "GRU Cells",
+          "depth": 2,
+          "prerequisites": [
+            "lstm_cells"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "seq2seq_problem_framing",
+          "name": "Sequence-to-Sequence Problem Framing",
+          "depth": 2,
+          "prerequisites": [
+            "lstm_cells"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "denoising_sparse_autoencoders",
+          "name": "Denoising & Sparse Autoencoders",
+          "depth": 2,
+          "prerequisites": [
+            "autoencoders_basic"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "variational_autoencoders",
+          "name": "Variational Autoencoders (VAE)",
+          "depth": 2,
+          "prerequisites": [
+            "autoencoders_basic"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "encoder_component",
+          "name": "Encoder Component (Seq2Seq)",
+          "depth": 3,
+          "prerequisites": [
+            "seq2seq_problem_framing"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "decoder_component",
+          "name": "Decoder Component (Seq2Seq)",
+          "depth": 3,
+          "prerequisites": [
+            "encoder_component"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "context_vector_bottleneck",
+          "name": "Context Vector & Information Bottleneck",
+          "depth": 3,
+          "prerequisites": [
+            "encoder_component",
+            "decoder_component"
+          ],
+          "mastery": 0.7,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic \u2014 correctly identified fixed-length bottleneck as core limitation of vanilla seq2seq, understands information loss with long sequences"
+            }
+          ]
+        },
+        {
+          "id": "attention_mechanism",
+          "name": "Attention Mechanism (Bahdanau/Luong)",
+          "depth": 4,
+          "prerequisites": [
+            "context_vector_bottleneck"
+          ],
+          "mastery": 0.7,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic \u2014 good conceptual understanding that attention lets decoder look at all encoder hidden states via weighted sum rather than single vector"
+            }
+          ]
+        },
+        {
+          "id": "self_attention",
+          "name": "Self-Attention",
+          "depth": 4,
+          "prerequisites": [
+            "attention_mechanism"
+          ],
+          "mastery": 0.5,
+          "reps": 1,
+          "interval_days": 1,
+          "next_review": "2026-04-09",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.3,
+              "questions": 1,
+              "correct": 0.3,
+              "notes": "Diagnostic \u2014 confused self-attention with cross-attention, doesn't clearly distinguish the two; mentioned parallelization advantage but attributed it to multi-head rather than self-attention's non-sequential nature"
+            },
+            {
+              "date": "2026-04-08",
+              "score": 0.83,
+              "questions": 3,
+              "correct": 2.5,
+              "notes": "Now distinguishes self vs cross attention. Knows QKV mechanics and sqrt(d_k) scaling rationale. Slightly vague on Q/K/V source mapping in cross-attention (Q=decoder, K/V=encoder). Didn't articulate self-attention's purpose (resolving long-range dependencies)."
+            }
+          ]
+        },
+        {
+          "id": "multi_head_attention",
+          "name": "Multi-Head Attention",
+          "depth": 5,
+          "prerequisites": [
+            "self_attention"
+          ],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-12",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.5,
+              "questions": 3,
+              "correct": 1.5,
+              "notes": "Confused per-head QKV dimensionality \u2014 tried to divide 64 by 3 instead of understanding each of Q,K,V is 64-dim. Conflated multi-head vs single-head comparison with RNN vs attention. Correctly described concat + W_O output step."
+            },
+            {
+              "date": "2026-04-09",
+              "score": 0.875,
+              "questions": 2,
+              "correct": 1.75,
+              "notes": "Now correctly computes per-head dimensions. Forgot to state concatenation restores d_model. Cleanly articulates multi-head advantage without RNN confusion."
+            }
+          ]
+        },
+        {
+          "id": "positional_encoding",
+          "name": "Positional Encoding",
+          "depth": 5,
+          "prerequisites": [
+            "self_attention"
+          ],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 2,
+              "correct": 2,
+              "notes": "Strong understanding of why positional encoding is needed and why self-attention is order-invariant. Good concrete example."
+            }
+          ]
+        },
+        {
+          "id": "transformer_encoder_block",
+          "name": "Transformer Encoder Block",
+          "depth": 6,
+          "prerequisites": [
+            "multi_head_attention",
+            "positional_encoding"
+          ],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-12",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.92,
+              "questions": 3,
+              "correct": 2.75,
+              "notes": "Nailed the 6-operation sequence and residual connection rationale (linked back to LSTM gradient highway). Understands FFN is per-position but phrasing was slightly imprecise \u2014 knows the concept."
+            }
+          ]
+        },
+        {
+          "id": "transformer_decoder_block",
+          "name": "Transformer Decoder Block",
+          "depth": 6,
+          "prerequisites": [
+            "transformer_encoder_block"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-10",
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.25,
+              "questions": 3,
+              "correct": 0.75,
+              "notes": "Knows three sub-layers in order and cross-attention Q/K/V sources. Does NOT understand masking \u2014 doesn't know why decoder needs it (prevent peeking at future tokens during training) or that it's a triangular mask. Also misattributed masked self-attention Q/K/V as external inputs rather than decoder's own sequence."
+            },
+            {
+              "date": "2026-04-09",
+              "score": 0.92,
+              "questions": 3,
+              "correct": 2.75,
+              "notes": "Now understands masking purpose and mechanics. Cross-attention explanation was perfect. Missed that a token attends to itself (position t sees 1..t, not 1..t-1). Encoder no-mask rationale correct."
+            }
+          ]
+        },
+        {
+          "id": "full_transformer_architecture",
+          "name": "Full Transformer Architecture",
+          "depth": 7,
+          "prerequisites": [
+            "transformer_encoder_block",
+            "transformer_decoder_block"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "encoder_decoder_applications",
+          "name": "Encoder-Decoder Applications (Translation, Summarization)",
+          "depth": 7,
+          "prerequisites": [
+            "full_transformer_architecture"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/machine_learning/lfd_textbook.pdf"
+          ],
+          "history": []
+        }
+      ]
+    },
+    "cmse404_exam3_topics": {
+      "name": "CMSE 404 Exam 3 \u2014 Non-Transformer Topics",
+      "goal": "Master Decision Trees, Naive Bayes, Clustering, Pretrained LMs for CMSE 404 Exam 3 (2026-04-09)",
+      "created": "2026-04-09",
+      "concepts": [
+        {
+          "id": "decision_trees",
+          "name": "Decision Trees",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-10",
+          "sources": [
+            "sources/machine_learning/exam_3_qs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.25,
+              "questions": 2,
+              "correct": 0.5,
+              "notes": "Diagnostic \u2014 doesn't know splitting metrics (entropy, info gain, Gini). Understands that a good split separates classes but can't articulate how the algorithm selects features."
+            },
+            {
+              "date": "2026-04-09",
+              "score": 0.875,
+              "questions": 2,
+              "correct": 1.75,
+              "notes": "After teaching: correctly computes Gini impurity. Forgot to weight children by sample proportion \u2014 computed individual child Gini correctly but didn't combine with (n_child/n_parent) weighting."
+            }
+          ]
+        },
+        {
+          "id": "naive_bayes",
+          "name": "Naive Bayes",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-10",
+          "sources": [
+            "sources/machine_learning/exam_3_qs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.25,
+              "questions": 2,
+              "correct": 0.5,
+              "notes": "Diagnostic \u2014 knows Bayes theorem formula. Confused naive assumption with temporal independence instead of feature conditional independence. Doesn't know how NB decomposes joint probability for classification."
+            },
+            {
+              "date": "2026-04-09",
+              "score": 0.75,
+              "questions": 2,
+              "correct": 1.5,
+              "notes": "After teaching: correctly computes proportional class scores. Forgot to normalize to actual probabilities. Understands conditional independence assumption and why NB works despite violation \u2014 needs to remember to normalize on exam."
+            }
+          ]
+        },
+        {
+          "id": "kmeans_clustering",
+          "name": "K-Means Clustering",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-10",
+          "sources": [
+            "sources/machine_learning/exam_3_qs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.375,
+              "questions": 2,
+              "correct": 0.75,
+              "notes": "After teaching: correct assign-then-update procedure but made errors in distance calculation on toy example. Doesn't know K-means limitations (bad init, spherical assumption). Confused K-means with KNN initially."
+            },
+            {
+              "date": "2026-04-09",
+              "score": 0.67,
+              "questions": 2,
+              "correct": 1.33,
+              "notes": "Correctly executed 2D toy dataset assign+update. Only recalls initialization sensitivity as limitation \u2014 must memorize: choose K in advance, spherical cluster assumption."
+            }
+          ]
+        },
+        {
+          "id": "pretrained_language_models",
+          "name": "Pretrained Language Models",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-12",
+          "sources": [
+            "sources/machine_learning/exam_3_qs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-09",
+              "score": 0.83,
+              "questions": 3,
+              "correct": 2.5,
+              "notes": "Good grasp of BERT vs GPT architectural difference and attention patterns. Slightly vague on why GPT suits generation (attention pattern matches autoregressive generation). Didn't articulate that pretrain-then-fine-tune solves the small labeled data problem."
+            }
+          ]
+        }
+      ]
+    },
+    "intro_to_ai_cnns": {
+      "name": "CNNs (CSE 440)",
+      "goal": "Master CNNs for CSE 440 quiz (2026-04-09) and final exam (2026-05-01)",
+      "created": "2026-04-08",
+      "concepts": [
+        {
+          "id": "convolution_operation",
+          "name": "Convolution Operation (1D & 2D)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.7,
+          "reps": 1,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/15 CNNs.pdf",
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.5,
+              "questions": 1,
+              "correct": 0.5,
+              "notes": "Diagnostic \u2014 got correct output size (3x3) but wrong reasoning: said kernel 'focuses on prominent features' rather than understanding boundary constraint. Knows sliding mechanics but not the formula."
+            },
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 5,
+              "correct": 4,
+              "notes": "Learned (W-F+2P)/S+1 formula. Nails element-wise multiply-and-sum. Understands padding preserves size. Recurring issue: forgets +1 in formula \u2014 needs to write as two steps. Q3 and Q5 fully correct, Q4 right setup wrong arithmetic."
+            }
+          ]
+        },
+        {
+          "id": "filters_kernels",
+          "name": "Filters & Kernels (Box, Gaussian, Edge)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/15 CNNs.pdf",
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "correlation_vs_convolution",
+          "name": "Correlation vs. Convolution (Kernel Flip)",
+          "depth": 1,
+          "prerequisites": [
+            "convolution_operation",
+            "filters_kernels"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/15 CNNs.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "stride_padding",
+          "name": "Stride, Padding & Output Size Formula",
+          "depth": 1,
+          "prerequisites": [
+            "convolution_operation"
+          ],
+          "mastery": 0.7,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf",
+            "sources/intro_to_ai/15 CNNs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 2,
+              "correct": 1.5,
+              "notes": "Taught alongside convolution. Correctly applied (W-F+2P)/S+1 with padding=2. Still occasionally drops the +1 \u2014 needs practice as two-step calculation."
+            }
+          ]
+        },
+        {
+          "id": "multichannel_convolution",
+          "name": "Multi-Channel Convolution (RGB)",
+          "depth": 1,
+          "prerequisites": [
+            "convolution_operation"
+          ],
+          "mastery": 0.1,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.1,
+              "questions": 1,
+              "correct": 0,
+              "notes": "Diagnostic \u2014 guessed it involves filter entries but doesn't know filter depth must match input depth or how to count parameters (5x5x3+1=76)"
+            }
+          ]
+        },
+        {
+          "id": "relu_activation",
+          "name": "ReLU Activation in CNNs",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.8,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Inferred from CMSE 381 domain \u2014 already mastered ReLU/sigmoid activation functions there"
+            }
+          ]
+        },
+        {
+          "id": "pooling_layers_cse440",
+          "name": "Pooling Layers (Max & Average)",
+          "depth": 1,
+          "prerequisites": [
+            "convolution_operation"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-11",
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-08",
+              "score": 0.1,
+              "questions": 1,
+              "correct": 0,
+              "notes": "Diagnostic \u2014 vague idea of 'consolidation of input information' but can't define max/average pooling or execute the operation"
+            },
+            {
+              "date": "2026-04-08",
+              "score": 1.0,
+              "questions": 3,
+              "correct": 3,
+              "notes": "After teaching: correctly computed max and average pooling on 4x4 input, correct output volume size. Admitted copying the depth-unchanged rule \u2014 understands procedure but should reinforce why depth is preserved."
+            }
+          ]
+        },
+        {
+          "id": "cnn_layer_pipeline",
+          "name": "CNN Layer Pipeline (Conv\u2192ReLU\u2192Pool\u2192Norm\u2192FC)",
+          "depth": 2,
+          "prerequisites": [
+            "stride_padding",
+            "multichannel_convolution",
+            "relu_activation",
+            "pooling_layers_cse440"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "receptive_field",
+          "name": "Receptive Field",
+          "depth": 2,
+          "prerequisites": [
+            "stride_padding"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "weight_sharing",
+          "name": "Weight Sharing & Parameter Counting",
+          "depth": 2,
+          "prerequisites": [
+            "multichannel_convolution",
+            "stride_padding"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "feature_hierarchy",
+          "name": "Feature Hierarchy (Low\u2192Mid\u2192High Level)",
+          "depth": 2,
+          "prerequisites": [
+            "cnn_layer_pipeline"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "dropout_cse440",
+          "name": "Dropout Regularization",
+          "depth": 2,
+          "prerequisites": [
+            "cnn_layer_pipeline"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "lenet5",
+          "name": "LeNet-5 Architecture",
+          "depth": 3,
+          "prerequisites": [
+            "cnn_layer_pipeline",
+            "weight_sharing"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "alexnet",
+          "name": "AlexNet Architecture & Details",
+          "depth": 3,
+          "prerequisites": [
+            "cnn_layer_pipeline",
+            "weight_sharing",
+            "dropout_cse440"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "vggnet",
+          "name": "VGGNet (Small Filters, Deeper Networks)",
+          "depth": 3,
+          "prerequisites": [
+            "alexnet",
+            "receptive_field"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "transfer_learning_cse440",
+          "name": "Transfer Learning & Fine-Tuning CNNs",
+          "depth": 4,
+          "prerequisites": [
+            "vggnet"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf"
+          ],
+          "history": []
+        }
+      ]
+    },
+    "cmse381_exam3": {
+      "name": "CMSE 381 Exam 3 \u2014 Non-Linearity, Trees, SVM, Clustering",
+      "goal": "Master ISLP Ch 7-9, 12 for CMSE 381 Midterm 3 (2026-04-20). NN/CNN topics covered separately in data_science_methods_nn domain.",
+      "created": "2026-04-10",
+      "concepts": [
+        {
+          "id": "polynomial_regression",
+          "name": "Polynomial Regression",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-17",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch7.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-13",
+              "score": 0.65,
+              "questions": 4,
+              "correct": 2.6,
+              "notes": "FAIL. Q1 (0.6): right intuition (coefficients linear, basis functions not) but imprecise wording \u2014 didn't cleanly state 'linear in the parameters \u03b2' or connect to OLS via design matrix. Q2 (0.5): named boundary/extrapolation blowup but missed OVERFITTING as the primary problem with degree-15 on 50 points; also didn't articulate why tails blow up (x^d dominates for large |x|, sparse leverage at edges). Q3 (0.5): correctly ID'd that x, x^2, x^3 move together so single-variable interpretation is ill-posed, but couldn't propose the alternative (partial derivative df/dx as a function of x, or f(x+1)-f(x) at a specific point). Q4 (1.0): after clarifying what 'nonlinear optimization' means, correctly said FALSE and cited closed-form solution. Re-quiz tomorrow \u2014 drill linearity-in-parameters framing, overfitting vs boundary as distinct concepts, and partial-derivative interpretation."
+            },
+            {
+              "date": "2026-04-17",
+              "score": 0.5,
+              "questions": 4,
+              "correct": 2,
+              "notes": "Q1: got param count but not full design matrix dims (n x d+1). Q2: said CI widens but missed point estimate explosion; confused extrapolation with outlier. Q3: overcomplicated linear-in-parameters \u2014 invented separation into linear/nonlinear components. Q4a correct. Q4b vague on why poly wins for smooth curves. Strong conceptual intuition, weak on precise mechanics/definitions."
+            }
+          ]
+        },
+        {
+          "id": "step_functions",
+          "name": "Step Functions",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-18",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch7.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-15",
+              "score": 0.5,
+              "questions": 4,
+              "correct": 2,
+              "notes": "Q1: dropped the top bin (x>=65) \u2014 miscounted K+1 bins. Q3: conflated piecewise linear with spline smoothness (claimed derivative continuity). Q4: only gave step-wins case, not polynomial-wins. Strong on bias/variance intuition."
+            },
+            {
+              "date": "2026-04-17",
+              "score": 0.5,
+              "questions": 3,
+              "correct": 1.5,
+              "notes": "Q1: still writing too many dummies (4 for 3 bins); also said betas are bin means instead of differences from baseline. Q2: right answer (85k) but wrong model form. Q3: CORRECT \u2014 smoothness ladder now solid (value continuity \u2192 piecewise linear, derivative continuity \u2192 cubic spline). Stretch Q4: decent both-sides argument. Core gap remains: K cutpoints \u2192 K+1 bins \u2192 K dummies."
+            }
+          ]
+        },
+        {
+          "id": "basis_functions",
+          "name": "Basis Functions (General Framework)",
+          "depth": 1,
+          "prerequisites": [
+            "polynomial_regression",
+            "step_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch7.3"
+          ],
+          "history": []
+        },
+        {
+          "id": "piecewise_polynomials",
+          "name": "Piecewise Polynomials & Knots",
+          "depth": 2,
+          "prerequisites": [
+            "basis_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch7.4.1"
+          ],
+          "history": []
+        },
+        {
+          "id": "regression_splines",
+          "name": "Regression Splines (Cubic & Natural)",
+          "depth": 2,
+          "prerequisites": [
+            "piecewise_polynomials"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch7.4"
+          ],
+          "history": []
+        },
+        {
+          "id": "decision_trees_381",
+          "name": "Decision Trees (Regression & Classification)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-18",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch8.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-17",
+              "score": 0.5,
+              "questions": 4,
+              "correct": 2,
+              "notes": "Q1: correct OOB prediction (12) but computed MSE wrong (7 instead of 1) \u2014 averaged per-tree squared errors instead of squaring the averaged prediction. Q2: right spirit on LOOCV analogy but imprecise on why individual-not-grouped. Q3: applied generic LOOCV properties instead of reasoning about fewer-trees \u2192 pessimistic. Q4 interleaved step_functions: CORRECT (5 params for 4 cutpoints). Core gap: OOB calculation mechanics (average predictions first, then error)."
+            }
+          ]
+        },
+        {
+          "id": "tree_pruning",
+          "name": "Tree Pruning & Cost-Complexity",
+          "depth": 1,
+          "prerequisites": [
+            "decision_trees_381"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch8.1"
+          ],
+          "history": []
+        },
+        {
+          "id": "bagging",
+          "name": "Bagging (Bootstrap Aggregation)",
+          "depth": 2,
+          "prerequisites": [
+            "decision_trees_381"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-18",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch8.2.1"
+          ],
+          "history": [
+            {
+              "date": "2026-04-17",
+              "score": 0.69,
+              "questions": 4,
+              "correct": 2.75,
+              "notes": "Q1 variance math: PERFECT (\u03c3\u00b2/B and \u03c1\u03c3\u00b2 floor). Q2: missed bias side of pruning-vs-bagging tradeoff \u2014 said pruning reduces variance less but didnt address that pruning INCREASES bias while bagging doesnt. Q3: described random forest mechanism but didnt name it, and said \"per tree\" instead of \"per split\". Q4: right intuition on high-variance poly regression but confused OOB with bagging (OOB is estimation technique, not variance reduction). Taught out-of-order (prereqs not at mastery) due to exam proximity."
+            }
+          ]
+        },
+        {
+          "id": "random_forests",
+          "name": "Random Forests",
+          "depth": 2,
+          "prerequisites": [
+            "bagging"
+          ],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 3,
+          "next_review": "2026-04-20",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch8.2.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-17",
+              "score": 1.0,
+              "questions": 4,
+              "correct": 4,
+              "notes": "Perfect pass. Q1 all three parts correct (m=4, m=p\u2192bagging, m=1\u2192single random predictor). Q2 correctly separated OOB (estimation) from variance reduction (averaging + decorrelation) \u2014 directly fixed the bagging-session confusion. Q3 dominant predictor reasoning spot on. Q4 leaf mean calculation correct. Taught out-of-order (prereq decision_trees_381 still at mastery 0) but mastery transferred well."
+            }
+          ]
+        },
+        {
+          "id": "maximal_margin_classifier",
+          "name": "Maximal Margin Classifier",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch9.1"
+          ],
+          "history": []
+        },
+        {
+          "id": "support_vector_classifier",
+          "name": "Support Vector Classifier (Soft Margin)",
+          "depth": 1,
+          "prerequisites": [
+            "maximal_margin_classifier"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch9.2"
+          ],
+          "history": []
+        },
+        {
+          "id": "svm_kernels",
+          "name": "SVM with Kernels (Polynomial, Radial)",
+          "depth": 2,
+          "prerequisites": [
+            "support_vector_classifier"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch9.3-9.4"
+          ],
+          "history": []
+        },
+        {
+          "id": "kmeans_381",
+          "name": "K-Means Clustering",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch12.4.1"
+          ],
+          "history": []
+        },
+        {
+          "id": "hierarchical_clustering",
+          "name": "Hierarchical Clustering",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.2,
+          "reps": 1,
+          "interval_days": 3,
+          "next_review": "2026-04-20",
+          "sources": [
+            "sources/data_science_methods/islp_textbook.pdf:ch12.4.2"
+          ],
+          "history": [
+            {
+              "date": "2026-04-17",
+              "score": 0.94,
+              "questions": 4,
+              "correct": 3.75,
+              "notes": "Solid pass. Q1 dendrogram cut reading: perfect. Q2 single-linkage chaining: clean explanation. Q3 linkage distance calculations: both correct (sqrt(5) and sqrt(17)). Q4 interleaved decision tree cost function: said MSE, correct concept but imprecise \u2014 exam wants RSS terminology. Pre-question corrections needed: hierarchical is unsupervised (not classification), deterministic (no random init)."
+            }
+          ]
+        }
+      ]
+    },
+    "iam_sso_group_sync": {
+      "name": "IAM & SSO Group Sync",
+      "goal": "Build conceptual foundation for the sso_group_sync project",
+      "created": "2026-04-10",
+      "concepts": [
+        {
+          "id": "identity_provider",
+          "name": "Identity Provider (IdP)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.55,
+          "reps": 1,
+          "interval_days": 1,
+          "next_review": "2026-04-23",
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_statement",
+            "sources/sso_group_sync/README_v2.md",
+            "sources/sso_group_sync/investor_onepager.md"
+          ],
+          "history": [
+            {
+              "date": "2026-04-11",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "diagnostic: named Okta and Google Workspace correctly as IdPs, understood 'source of truth for identity'"
+            },
+            {
+              "date": "2026-04-22",
+              "score": 0.38,
+              "questions": 3,
+              "correct": 1.15,
+              "notes": "FAIL on first real review (diagnostic was shallow - just recognition). Q1 (0.5): delivered the 'outsource proof of identity' slogan despite explicit instruction to avoid it, gave MSU/Okta example but stopped at 'grants access' - missed the IdP's three mechanics (user directory, credential verification, SIGNED ASSERTION). Doesn't yet articulate the cryptographic trust layer (SP verifies IdP's signature on SAML assertion / OIDC id_token via IdP's public cert) - this is what makes SSO work vs. being just a redirect. Q2 (0.45) INTERLEAVED with authn_vs_authz: called nuszco 'an authZ layer' - the classic conflation taught against in 04-15 authn_vs_authz session where the 'SCIM as substrate, not authZ' framing was explicitly delivered. Mark's reflex when a new product fits the substrate role is to label it authZ. The correct 3-party split (IdP=authN, SP=authZ enforcement, nuszco=membership substrate) was re-taught. Also missed bi-directional sync despite it being in the investor_onepager.md Mark had open in the IDE. Q3 (0.2): 'not aware of GitHub's IdP capabilities' - honest non-confabulation but a real gap. GitHub is both SP (company GH org) AND IdP ('Sign in with GitHub' OAuth for Vercel/CircleCI/npm), and a GdP in nuszco's vocabulary. Q4 (stretch, not scored): only recognized Okta from Workday/Entra/Okta - Workday as HRIS system-of-record and Entra as Microsoft's identity directory were new. Re-teach delivered covering IdP mechanics, 3-party split, GitHub multi-role, multi-IdP topology. Next review 2026-04-23 focus: mechanics of signed assertions, and force the substrate-vs-authZ distinction on any nuszco-positioning question."
+            }
+          ]
+        },
+        {
+          "id": "service_provider",
+          "name": "Service Provider (SP)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.15,
+          "reps": 1,
+          "interval_days": 1,
+          "next_review": "2026-04-23",
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_statement",
+            "sources/sso_group_sync/README_v2.md"
+          ],
+          "history": [
+            {
+              "date": "2026-04-11",
+              "score": 0.7,
+              "questions": 1,
+              "correct": 1,
+              "notes": "diagnostic: described SPs as 'SaaS apps downstream of IdP authentication' \u2014 directionally correct but informal, no concrete example given (should know GitHub/AWS/Jira)"
+            },
+            {
+              "date": "2026-04-11",
+              "score": 0.63,
+              "questions": 3,
+              "correct": 2,
+              "notes": "FAIL after reinforcement lesson. Q1: named 2/3 SP categories (SaaS, cloud infra) but missed on-prem/infra category AND gave zero product examples \u2014 still treating SP as abstract, not concrete. Q2: solid federation framing but couldn't recall the federation handshake contents (signing cert, metadata URL, ACS URL, entity ID \u2014 no user data exchanged at federation time). Q3: clean \u2014 correctly classified as authZ, correctly named SCIM as the responsible protocol (pulled from key_terms before being formally taught \u2014 good transfer from authn_vs_authz lesson). Re-quiz tomorrow with focus on concrete product examples and federation handshake mechanics. Note: mastery dropped 0.6\u21920.45, but this reflects the diagnostic value being inflated, not actual regression \u2014 Mark genuinely knows more now."
+            },
+            {
+              "date": "2026-04-15",
+              "score": 0.67,
+              "questions": 3,
+              "correct": 2,
+              "notes": "FAIL again. Q1: clean, all three categories with good examples (GitHub/AWS/VPN) - concrete examples gap from last session is closed. Q2: 3/4 handshake artifacts, missed ACS URL; signing cert role vague ('assert the IdP signage') - doesn't yet articulate signature verification / public-key crypto. Mark explicitly asked for a step-by-step walkthrough of the federation exchange, which was provided (setup 4 steps + runtime 6 steps). Q3: correctly said false but didn't name SCIM or JIT as the actual provisioning mechanisms - gap is connecting federation (trust setup) vs provisioning (user data channel) as separate concerns. Re-quiz tomorrow focusing on: ACS URL role, signature verification mechanics, SCIM-vs-JIT as the two ways users actually appear on SP."
+            },
+            {
+              "date": "2026-04-22",
+              "score": 0.7,
+              "questions": 2,
+              "correct": 1.4,
+              "notes": "FAIL (3rd consecutive) but closest score yet. Used forced-retrieval stage before re-teach per failed-review protocol. Stage 1 retrieval: categories SOLID (SaaS/cloud/on-prem retained from 04-15 - that win is durable). Federation artifacts 3/4 AGAIN - MISSED ACS URL for the third consecutive session. This gap is now a persistent pattern across 3 reviews and is not absorbing from list-form teaching. Mark was blank on signature verification mechanics and on SCIM vs JIT - both taught fresh this session. Q1 (0.4): right asymmetric-crypto shape (federation-time cert + runtime hash + public-key decrypt) BUT confused the objects: described a 'new signing cert POSTS to ACS URL' (wrong - it's the signed assertion that POSTs, cert was exchanged at setup) and a 'gold standard cert vs new cert' comparison (wrong - comparison is hash-vs-decrypted-hash, not cert-vs-cert). Runtime object confusion: doesn't yet distinguish 'what rides in federation setup' from 'what rides at runtime.' Also skipped the failure-mode half of Q1. Q2 (1.0): 3/3 clean SCIM/JIT discrimination on first exposure - new engineer pre-provisioning (SCIM), contractor licenses (JIT), fast termination (SCIM). Marked answers with '?' uncertainty but reasoning was correct - knowledge present, confidence not yet. Q3 (oauth2 interleave) skipped - Mark self-managed fatigue, explicitly called out uncertainty. Respected. Q3 preserved as oauth2 probe for next session ('in nuszco’s Sign-in-with-Google PKCE flow, what role is Google playing - IdP/SP/both - and is the flow authN/authZ/both?'). Next review (2026-04-23) focus: (a) drill ACS URL directly not as part of a list, (b) object-level precision - what is a CERT, what is an ASSERTION, what is a SIGNATURE, what rides at setup vs runtime, (c) failure-mode reasoning (forged assertion = 'I am CEO' without sig check)."
+            }
+          ]
+        },
+        {
+          "id": "principal",
+          "name": "Principal",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "authn_vs_authz",
+          "name": "Authentication vs Authorization",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.05,
+          "reps": 1,
+          "interval_days": 1,
+          "next_review": "2026-04-16",
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": [
+            {
+              "date": "2026-04-11",
+              "score": 0.75,
+              "questions": 4,
+              "correct": 3,
+              "notes": "FAIL. Q1: defined authZ too narrowly as 'access within groups' \u2014 missed that authZ covers any permission decision (ABAC, policy-based, capability-based), not just RBAC. Q2: 4/4 clean classification. Q3: correctly ID'd authZ-broken/authN-intact but gave the 'inconvenient' failure (users blocked) instead of the DANGEROUS one (orphaned access \u2014 users keep permissions after they should have been removed; silent vs noisy failures). Q4: conceptually correct but didn't name OIDC (not yet taught, fair miss). Re-quiz tomorrow \u2014 watch for the authZ-breadth and silent-failure framings specifically."
+            },
+            {
+              "date": "2026-04-12",
+              "score": 0.94,
+              "questions": 4,
+              "correct": 3.75,
+              "notes": "PASS after reteach. Q1 (0.85): named RBAC/ABAC/ReBAC and correctly attached policies to role and attributes; admitted not knowing ReBAC \u2014 taught that ReBAC attaches policy to relationships between entities (Google Docs share model, Zanzibar). Q2 (1.0): 4/4 clean classification, including the orphaned-access SSH-key scenario as authZ. Q3 (1.0): nailed silent vs loud framing and lingering duration. Q4 (0.9): named disgruntled-insider theft; did not mention compromised accounts or accidental blast-radius (least-privilege argument) \u2014 reinforced in feedback. Biggest remaining gap: low-level familiarity with JWTs (Q2b) \u2014 queue up when OAuth/OIDC are taught."
+            },
+            {
+              "date": "2026-04-15",
+              "score": 0.57,
+              "questions": 3,
+              "correct": 1.7,
+              "notes": "FAIL. Q1 (0.2): misidentified URL-as-permission as ReBAC - actually capability-based authZ (4th model, not previously taught explicitly). Didn't know 'anti-pattern' as a term. Taught: capability = possession-is-permission, ReBAC = explicit relationship edges. Q2 (1.0): 4/4 clean classification including the tricky (b) leaked token. Q3 (0.5): 'authorizes SP permissions following authentication' - directionally right but missed the sharper framing: SCIM doesn't do authN at all, it populates the users/groups/memberships substrate that authZ decisions read from. Queue for next review: capability-based authZ as a distinct model alongside RBAC/ABAC/ReBAC, and SCIM-as-substrate framing."
+            },
+            {
+              "date": "2026-04-22",
+              "score": 0.45,
+              "questions": 1,
+              "correct": 0.45,
+              "notes": "INTERLEAVED MISS during identity_provider review on 2026-04-22. Mark was asked to locate nuszco in the authN/authZ split given the new investor_onepager.md framing ('neutral layer above any IdP'). He called nuszco 'an authZ layer' - the same conflation the 04-15 session explicitly taught against ('SCIM as substrate, not authZ'). The substrate framing did not transfer from SCIM to nuszco. Gap: when a new product fits the provisioning/substrate role, Mark defaults to labeling it authZ. No next_review change (already past-due at 2026-04-16, more urgent than today+1=2026-04-23). On next authn_vs_authz review: explicitly probe the 3-party split (IdP=authN, SP=authZ enforcement, tooling like SCIM/nuszco=membership substrate) with multiple product exemplars to break the reflex."
+            }
+          ]
+        },
+        {
+          "id": "source_of_truth",
+          "name": "Source of Truth",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_statement"
+          ],
+          "history": []
+        },
+        {
+          "id": "schema",
+          "name": "Schema",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "entitlement",
+          "name": "Entitlement",
+          "depth": 1,
+          "prerequisites": [
+            "principal"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "provisioning_deprovisioning",
+          "name": "Provisioning & Deprovisioning",
+          "depth": 1,
+          "prerequisites": [
+            "identity_provider",
+            "service_provider",
+            "principal"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "rbac",
+          "name": "Role-Based Access Control (RBAC)",
+          "depth": 1,
+          "prerequisites": [
+            "principal",
+            "entitlement"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "principle_of_least_privilege",
+          "name": "Principle of Least Privilege",
+          "depth": 1,
+          "prerequisites": [
+            "entitlement"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "idempotency",
+          "name": "Idempotency",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "polling_vs_webhooks",
+          "name": "Polling vs Webhooks",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "attribute_mapping",
+          "name": "Attribute Mapping",
+          "depth": 1,
+          "prerequisites": [
+            "schema"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "eventual_consistency",
+          "name": "Eventual Consistency",
+          "depth": 1,
+          "prerequisites": [
+            "source_of_truth"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "saml",
+          "name": "SAML (Security Assertion Markup Language)",
+          "depth": 2,
+          "prerequisites": [
+            "authn_vs_authz",
+            "identity_provider",
+            "service_provider"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "oauth2",
+          "name": "OAuth 2.0",
+          "depth": 2,
+          "prerequisites": [
+            "authn_vs_authz"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-18",
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_context.md"
+          ],
+          "history": [
+            {
+              "date": "2026-04-12",
+              "score": 0.33,
+              "questions": 4,
+              "correct": 1.3,
+              "notes": "FAIL \u2014 skipped ahead past service_provider at user request. Q1 (1.0): clean distinction OAuth=authZ, OIDC=authN on top. Q2 (0.3): recalled rough shape (click \u2192 IdP \u2192 auth code \u2192 redirect back) but no detail on the two-step code\u2192token exchange, no mention of client_secret, no back-channel framing. Q3a (0): blank \u2014 didn't know why the code-then-token dance exists (front-channel leakage of tokens in URLs). Q3b (0): blank \u2014 didn't know access-token lifetime tradeoff or the refresh-token role. Q4 (0): blank \u2014 didn't know OAuth-as-authN antipattern, token-substitution / confused-deputy, or id_token aud/iss/signature verification as the correct primitive. Full reteach delivered covering: 6-step authz-code flow, where client_secret is/isn't used, front-channel leakage rationale, refresh-token tradeoff, id_token + aud/iss verification. Next review tomorrow \u2014 re-quiz on flow mechanics and Q4 misuse scenario specifically."
+            },
+            {
+              "date": "2026-04-17",
+              "score": 0.38,
+              "questions": 4,
+              "correct": 1.5,
+              "notes": "FAIL. Q1 (0.5): correctly said client_secret must stay off front channel, but unsure what 'registration' means (dev console one-time app setup). Q2 (0): said 'not taught yet' despite reteach in this session \u2014 front-channel leakage rationale not retained across sessions. Q3 (1.0): 4/4 clean SAML-vs-OAuth classification. Q4 (0): blank \u2014 OAuth-as-authN antipattern, confused deputy, id_token still not retained. Pattern: classification/discrimination is strong, but flow mechanics and security rationale are not sticking. Anchors given: 'codes are throwaway because URLs leak' and 'access token != identity'. Conflated SAML federation setup with OAuth registration \u2014 corrected. Re-quiz tomorrow."
+            }
+          ]
+        },
+        {
+          "id": "scim",
+          "name": "SCIM (System for Cross-domain Identity Management)",
+          "depth": 2,
+          "prerequisites": [
+            "provisioning_deprovisioning",
+            "schema",
+            "attribute_mapping"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_statement"
+          ],
+          "history": []
+        },
+        {
+          "id": "group_sprawl",
+          "name": "Group Sprawl",
+          "depth": 2,
+          "prerequisites": [
+            "rbac",
+            "provisioning_deprovisioning"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md",
+            "sources/sso_group_sync/project_statement"
+          ],
+          "history": []
+        },
+        {
+          "id": "identity_fragmentation",
+          "name": "Identity Fragmentation",
+          "depth": 2,
+          "prerequisites": [
+            "source_of_truth",
+            "identity_provider"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "drift",
+          "name": "Drift",
+          "depth": 2,
+          "prerequisites": [
+            "source_of_truth",
+            "eventual_consistency"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "orphaned_access",
+          "name": "Orphaned Access",
+          "depth": 2,
+          "prerequisites": [
+            "provisioning_deprovisioning",
+            "principle_of_least_privilege"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "api_rate_limiting",
+          "name": "API Rate Limiting",
+          "depth": 2,
+          "prerequisites": [
+            "polling_vs_webhooks"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "audit_trail",
+          "name": "Audit Trail",
+          "depth": 2,
+          "prerequisites": [
+            "entitlement",
+            "rbac"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "oidc",
+          "name": "OpenID Connect (OIDC)",
+          "depth": 3,
+          "prerequisites": [
+            "oauth2"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "reconciliation",
+          "name": "Reconciliation",
+          "depth": 3,
+          "prerequisites": [
+            "source_of_truth",
+            "idempotency",
+            "drift",
+            "scim"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "zero_trust",
+          "name": "Zero Trust",
+          "depth": 3,
+          "prerequisites": [
+            "principle_of_least_privilege",
+            "authn_vs_authz"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/sso_group_sync/key_terms.md"
+          ],
+          "history": []
+        }
+      ]
+    },
+    "react_front_end": {
+      "name": "React Front-End Fundamentals",
+      "goal": "Build a CRUD admin dashboard front-end for the sso_group_sync project (assumed scope; confirm with project owner). Includes JS/HTML/tooling prerequisites \u2014 Mark is at JS-zero per 2026-04-11 calibration.",
+      "created": "2026-04-11",
+      "concepts": [
+        {
+          "id": "html_basics",
+          "name": "HTML Basics (tags, attributes, structure)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-12",
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": [
+            {
+              "date": "2026-04-11",
+              "score": 0.77,
+              "questions": 3,
+              "correct": 2,
+              "notes": "FAIL (borderline). Q1 (0.7): correctly identified no loops/conditionals/functions, but described HTML as 'manipulating elements within the tree' \u2014 load-bearing misconception. HTML IS the tree (declarative noun), JavaScript manipulates it (verb). Re-emphasize: HTML is data, JS is program, DOM is the live in-browser tree. Q2 (0.75): 3/4 correct (4 elements, parent=label, required=boolean) but DID NOT ANSWER (d) about which element is void \u2014 answer is <input>. Watch for incomplete answers on multi-part questions. Q3 (0.85): clean \u2014 correctly said it won't work, no variable assignment, will render literal string 'userName'. 'Kind of tool' answer was a python input() example which is wrong medium (CLI not web) but right intuition (need a real program with variables). Used as natural segue to JSX/React."
+            }
+          ]
+        },
+        {
+          "id": "dom_model",
+          "name": "The DOM (Document Object Model)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "css_basics",
+          "name": "CSS Basics (selectors, properties, classes)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_variables",
+          "name": "JS Variables (let, const, var, primitive types)",
+          "depth": 1,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_functions",
+          "name": "JS Functions (declarations, arrow functions, return values)",
+          "depth": 1,
+          "prerequisites": [
+            "js_variables"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_arrays_objects",
+          "name": "JS Arrays & Objects (literals, access, mutation)",
+          "depth": 1,
+          "prerequisites": [
+            "js_variables"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_destructuring",
+          "name": "JS Destructuring (object and array)",
+          "depth": 2,
+          "prerequisites": [
+            "js_arrays_objects"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_array_methods",
+          "name": "JS Array Methods (map, filter, reduce, forEach)",
+          "depth": 2,
+          "prerequisites": [
+            "js_arrays_objects",
+            "js_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_modules",
+          "name": "JS Modules (import / export)",
+          "depth": 2,
+          "prerequisites": [
+            "js_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "js_promises_async",
+          "name": "JS Promises & async/await (concurrency, fetch)",
+          "depth": 2,
+          "prerequisites": [
+            "js_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "html_forms",
+          "name": "HTML Forms (input, select, button, labels)",
+          "depth": 2,
+          "prerequisites": [
+            "html_basics"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "node_npm_basics",
+          "name": "Node & npm Basics (package.json, install, run)",
+          "depth": 2,
+          "prerequisites": [
+            "js_modules"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "jsx_syntax",
+          "name": "JSX Syntax (expressions, attributes, fragments)",
+          "depth": 3,
+          "prerequisites": [
+            "html_basics",
+            "js_functions",
+            "js_variables"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "react_components",
+          "name": "React Function Components",
+          "depth": 3,
+          "prerequisites": [
+            "jsx_syntax"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "event_handling",
+          "name": "Event Handling (onClick, onChange, handlers)",
+          "depth": 3,
+          "prerequisites": [
+            "react_components",
+            "js_functions"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "props",
+          "name": "Props (passing data to components)",
+          "depth": 4,
+          "prerequisites": [
+            "react_components",
+            "js_destructuring"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "conditional_rendering",
+          "name": "Conditional Rendering (&&, ternary, early return)",
+          "depth": 4,
+          "prerequisites": [
+            "react_components"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "rendering_lists",
+          "name": "Rendering Lists (.map and the key prop)",
+          "depth": 4,
+          "prerequisites": [
+            "props",
+            "js_array_methods"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "state_useState",
+          "name": "State with useState (immutability, re-renders)",
+          "depth": 4,
+          "prerequisites": [
+            "react_components",
+            "event_handling"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "forms_controlled_components",
+          "name": "Forms & Controlled Components (value + onChange)",
+          "depth": 5,
+          "prerequisites": [
+            "state_useState",
+            "html_forms"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "state_lifting",
+          "name": "Lifting State Up (parent-child data flow)",
+          "depth": 5,
+          "prerequisites": [
+            "state_useState",
+            "props"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "useEffect_basics",
+          "name": "useEffect Basics (dependencies, cleanup, when effects run)",
+          "depth": 5,
+          "prerequisites": [
+            "state_useState"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "data_fetching_useEffect",
+          "name": "Data Fetching in useEffect (loading, error, success)",
+          "depth": 5,
+          "prerequisites": [
+            "useEffect_basics",
+            "js_promises_async"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "component_structure",
+          "name": "Component Structure (file organization, when to extract)",
+          "depth": 6,
+          "prerequisites": [
+            "props",
+            "conditional_rendering"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "react_router_basics",
+          "name": "React Router Basics (routes, links, params)",
+          "depth": 6,
+          "prerequisites": [
+            "react_components",
+            "props"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "api_integration_pattern",
+          "name": "API Integration Pattern (REST CRUD from React)",
+          "depth": 6,
+          "prerequisites": [
+            "data_fetching_useEffect"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        },
+        {
+          "id": "auth_gated_routes",
+          "name": "Auth-Gated Routes (protected route pattern)",
+          "depth": 6,
+          "prerequisites": [
+            "react_router_basics",
+            "state_useState"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/react_front_end/educational_links.md"
+          ],
+          "history": []
+        }
+      ]
+    },
+    "intro_to_ai": {
+      "name": "Intro to AI",
+      "goal": "Final exam on 2026-05-01 \u2014 surface familiarity with all 13 topics in final_topics.md, confident on step-by-step computation",
+      "created": "2026-04-14",
+      "concepts": [
+        {
+          "id": "search_basics",
+          "name": "Uninformed Search (BFS/DFS/UCS)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/2 Uninformed and Heuristic Search.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "probability_basics",
+          "name": "Probability Basics (joint, conditional, marginal)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/10 Probability (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "linear_algebra_basics",
+          "name": "Linear Algebra for ML (dot products, matrix mul)",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [],
+          "history": []
+        },
+        {
+          "id": "a_star_search",
+          "name": "A* Search Traversal and Calculation",
+          "depth": 1,
+          "prerequisites": [
+            "search_basics"
+          ],
+          "mastery": 0.6,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-17",
+          "sources": [
+            "sources/intro_to_ai/2 Uninformed and Heuristic Search.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-14",
+              "score": 0.75,
+              "questions": 1,
+              "correct": 0.75,
+              "notes": "Diagnostic: knew g and h definitions; imprecise on admissibility (said h < actual cost, should be \u2264)"
+            }
+          ]
+        },
+        {
+          "id": "expectimax",
+          "name": "Expectimax",
+          "depth": 1,
+          "prerequisites": [
+            "search_basics"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-17",
+          "sources": [
+            "sources/intro_to_ai/3 Adversarial Search.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-14",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic: clearly explained minimax vs expectimax distinction (chance nodes, expected value)"
+            }
+          ]
+        },
+        {
+          "id": "mdps",
+          "name": "MDPs (states, actions, rewards, discount)",
+          "depth": 1,
+          "prerequisites": [
+            "probability_basics"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/5 Markov decision process I .pdf",
+            "sources/intro_to_ai/6 Markov decision process II.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "mdp_values",
+          "name": "Compute MDP Values (value iteration)",
+          "depth": 2,
+          "prerequisites": [
+            "mdps"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/5 Markov decision process I .pdf",
+            "sources/intro_to_ai/6 Markov decision process II.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "markov_stationary",
+          "name": "Markov Stationary Distribution",
+          "depth": 2,
+          "prerequisites": [
+            "probability_basics"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/5 Markov decision process I .pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "joint_from_prior",
+          "name": "Calculating Joint Values from Prior",
+          "depth": 1,
+          "prerequisites": [
+            "probability_basics"
+          ],
+          "mastery": 0.2,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-14",
+          "sources": [
+            "sources/intro_to_ai/10 Probability (1).pdf",
+            "sources/intro_to_ai/11 Bayesian Networks Representation (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-14",
+              "score": 0.0,
+              "questions": 1,
+              "correct": 0,
+              "notes": "Diagnostic: applied P(A,B)=P(A)P(B) (independence) incorrectly; confused P(B|\u00acA) with P(A|B); does not know law of total probability by name"
+            }
+          ]
+        },
+        {
+          "id": "supervised_vs_unsupervised",
+          "name": "Supervised vs Unsupervised Learning",
+          "depth": 0,
+          "prerequisites": [],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/12 Machine Learning Perceptrons and Logistic Regression (1).pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "data_augmentation",
+          "name": "Data Augmentation",
+          "depth": 1,
+          "prerequisites": [
+            "supervised_vs_unsupervised"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/13 Machine Learning Neural Networks.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "minibatch_epoch",
+          "name": "Mini-batch and Epoch",
+          "depth": 1,
+          "prerequisites": [
+            "supervised_vs_unsupervised"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/13 Machine Learning Neural Networks.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "filter_output",
+          "name": "Calculating CNN Filter Output Size",
+          "depth": 1,
+          "prerequisites": [
+            "linear_algebra_basics"
+          ],
+          "mastery": 0.8,
+          "reps": 1,
+          "interval_days": 2.5,
+          "next_review": "2026-04-17",
+          "sources": [
+            "sources/intro_to_ai/14 CNN (1).pdf",
+            "sources/intro_to_ai/15 CNNs.pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-14",
+              "score": 1.0,
+              "questions": 1,
+              "correct": 1,
+              "notes": "Diagnostic: correctly computed 3x3 output for 5x5 input, 3x3 filter, stride 1. Did not attempt stride-2 bonus"
+            }
+          ]
+        },
+        {
+          "id": "mlp_lr_computation",
+          "name": "MLP and Logistic Regression Full Computation",
+          "depth": 2,
+          "prerequisites": [
+            "linear_algebra_basics",
+            "supervised_vs_unsupervised"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/12 Machine Learning Perceptrons and Logistic Regression (1).pdf",
+            "sources/intro_to_ai/13 Machine Learning Neural Networks.pdf"
+          ],
+          "history": []
+        },
+        {
+          "id": "ce_loss",
+          "name": "Computing Cross-Entropy Loss",
+          "depth": 2,
+          "prerequisites": [
+            "probability_basics"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": "2026-04-14",
+          "sources": [
+            "sources/intro_to_ai/12 Machine Learning Perceptrons and Logistic Regression (1).pdf"
+          ],
+          "history": [
+            {
+              "date": "2026-04-14",
+              "score": 0.0,
+              "questions": 1,
+              "correct": 0,
+              "notes": "Diagnostic: did not know CE formula \u2014 needs L = -log(p_true) taught from scratch"
+            }
+          ]
+        },
+        {
+          "id": "gan_objective",
+          "name": "GAN Objective Function Conversion",
+          "depth": 3,
+          "prerequisites": [
+            "ce_loss",
+            "mlp_lr_computation"
+          ],
+          "mastery": 0.0,
+          "reps": 0,
+          "interval_days": 1,
+          "next_review": null,
+          "sources": [
+            "sources/intro_to_ai/18 GAN.pdf"
+          ],
+          "history": []
+        }
+      ]
+    }
+  }
+}

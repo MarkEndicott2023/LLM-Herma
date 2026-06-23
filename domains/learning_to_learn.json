@@ -1,0 +1,503 @@
+{
+  "name": "Learning to Learn",
+  "goal": "Internalize the fundamentals of how to learn across five pillars: cognitive mechanics (Oakley), study workflow (Newport), knowledge-system design (Ahrens), motivation (Young/Jílek), and self-regulation (Young/Jílek). Memory and working-memory science (Young/Jílek) deepen the cognitive-mechanics pillar as supplementary sources. Outcomes: (a) articulate the principles, (b) change daily study habits, (c) build a permanent note-taking system, (d) understand and regulate the want-to side of work. Mastered concepts may suggest CLAUDE.md harness changes — case by case, not universal.",
+  "created": "2026-04-28",
+  "harness_changes": [
+    {
+      "date": "2026-04-28",
+      "concept_id": "illusion_of_competence",
+      "approved": true,
+      "change_summary": "Strengthened the 'don't let the learner self-assess' rule in CLAUDE.md to cover mid-explanation granularity. Added: never accept 'got it' / 'makes sense' / 'keep going' as license to advance; insert a one-line retrieval probe before moving to the next sub-idea. Recognition is not retrieval.",
+      "trigger": "diagnostic Q5 revealed learner opens study sessions with 5-10 min passive reading + internal confidence gauge; matched same trap at micro-chunk granularity in past sessions."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "pseudo_work_vs_real_work",
+      "name": "Pseudo-Work vs. Real Work (Intensity)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:intro,part1", "sources/learning_to_learn/The_Complete_Guide_to_Working_Memory.pdf:cognitive_load", "sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:motivation_avoiding_willpower"],
+      "harness_implication": "When learner reports time spent, audit whether the work was high-intensity active retrieval or has drifted into pseudo-work (rereading, passive review). Quote 'work accomplished = time spent x intensity' when learner is overworking with low retention.",
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 3,
+      "next_review": "2026-05-11",
+      "history": [
+        {"date": "2026-04-29", "score": 0.67, "questions": 3, "correct": 2, "notes": "First teaching. Has conceptual core: intensity = attention fraction, distinct from method-type, equation is multiplicative. Q1 0.9 (precise definition; minor: wrote 'mastery' instead of 'work accomplished' on LHS of formula). Q2 0.6 (correct conclusion that in-room phone lowers intensity, but skipped the multiplicative-mechanism walk-through — didn't show how a sustained intensity drop ripples through the entire block, not just check-moments). Q3 0.5 (guessed pre-study recall + deliberate practice, which are step-2 method-level interventions, but didn't articulate the leverage hierarchy: intensity-first, then method, then more time, then accept the day's ceiling). Q4 stretch missed entirely — answered a different question; the warm-up cost / attention residue concept didn't transfer from Deep Work. Strong unprompted cross-concept transfer to active_recall and deliberate_practice during sub-idea 3 application probe. Re-review targets: Q2 mechanism, Q3 hierarchy."},
+        {"date": "2026-05-08", "score": 0.80, "questions": 3, "correct": 2.4, "notes": "Re-review after 8-day overdue + prior fail. MAJOR closure on previous central gap: attention-residue/warm-up mechanism now explicit, named correctly, applied across distraction taxonomy (phone, person, lyrical music) — last session missed this concept entirely. LHS correction 'work accomplished' (not 'mastery') stuck. Pre-question retrieval pass before re-teaching landed cleanly. Q1 0.9 (sharp interruption-frequency diagnostic). Q2 0.8 (order correct, intensity-first and time-last bookends explicitly justified, but method's middle-tier reasoning asserted not argued — gap: didn't articulate that method also multiplies output, just with smaller/topic-specific leverage). Q3 0.7 (right answer with interaction substance present — 'regardless of session size' + 'beyond 6 hours' + 'high confidence' — but didn't name the directional relationship: illusion is UPSTREAM of pseudo-work, masks the no-progress signal that would otherwise self-correct the bad pattern). Q4 stretch: redirected from cognitive-output context to social/shallow-work boundary (chores) — legitimate boundary-of-model awareness but missed in-domain stretch (cumulative exposure dominates intensity for skills like language acquisition; intensity has diminishing returns when bottleneck is total time-on-material, not focus quality). Re-review priorities: (a) method-tier justification — why method is a multiplier and what limits its leverage relative to intensity; (b) explicit upstream/mask framing of illusion → pseudo-work."}
+      ]
+    },
+    {
+      "id": "focused_diffuse_modes",
+      "name": "Focused vs. Diffuse Modes",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch2"],
+      "harness_implication": "When learner is stuck mid-session, suggest a diffuse-mode break (walk, shower, sleep) instead of pushing harder. When teaching new chunks, ensure focused-mode conditions (single-target attention, no context-switching).",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": "2026-05-01",
+      "history": [
+        {"date": "2026-04-30", "score": 0.70, "questions": 3, "correct": 2, "notes": "First teaching. Has core conceptual grasp (definitions from diagnostic, two-step protocol, release-vs-redirect distinction in his words: 'undirected vs directed focus, low vs high cognitive load' — that nailed the novel-reading discriminator). Q1 0.7 (protocol correct; release-vs-redirect framing drifted to 'multiple vs single stimuli' which is wrong axis — bandwidth-demand is the real axis. Earlier version yesterday was correct, this was a regression in precision). Q2 0.5 (identified redirect-failure mode well, MISSED priming-failure mode entirely — didn't recognize that insufficient focused-mode loading is the more common cause of failed breaks). Q3 0.9 (strong applied answer to Bayes/30-min/dinner scenario; spontaneously added meta-priming step 'work out clearly what I don't understand' before walk, which is research-supported but unprompted; integrated fatigue from yesterday's lesson). Q4 stretch on Pomodoro vs longer blocks — got it right from first principles. Re-review targets: tighten release-vs-redirect to bandwidth-demand framing, surface priming-failure as a distinct failure mode."}
+      ]
+    },
+    {
+      "id": "working_vs_long_term_memory",
+      "name": "Working Memory vs. Long-Term Memory",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch3", "sources/learning_to_learn/The_Complete_Guide_to_Working_Memory.pdf:what_is_working_memory,four_components", "sources/learning_to_learn/The_Complete_Guide_to_Memory.pdf:three_parts_underlying_memories"],
+      "harness_implication": "already encoded - the entire spaced-repetition engine assumes this two-store model.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "illusion_of_competence",
+      "name": "Illusion of Competence (Familiarity vs. Skill)",
+      "depth": 1,
+      "prerequisites": ["working_vs_long_term_memory"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch4", "sources/learning_to_learn/how_to_take_smart_notes.pdf:ch9", "sources/learning_to_learn/The_Complete_Guide_to_Memory.pdf:depth_of_processing"],
+      "harness_implication": "Strengthen the existing 'don't let learner self-assess' rule: never accept 'I get it' or 'I remember' as a substitute for retrieval. Force a concrete recall attempt before moving on, even informally mid-session.",
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 7,
+      "next_review": "2026-05-05",
+      "history": [
+        {"date": "2026-04-28", "score": 1.0, "questions": 1, "correct": 1, "notes": "diagnostic Q3: nailed recognition-vs-retrieval distinction, used term correctly"}
+      ]
+    },
+    {
+      "id": "chunking",
+      "name": "Chunking",
+      "depth": 1,
+      "prerequisites": ["working_vs_long_term_memory", "focused_diffuse_modes"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch3,ch4", "sources/learning_to_learn/The_Complete_Guide_to_Working_Memory.pdf:chunking"],
+      "harness_implication": "When teaching, explicitly name the chunk being formed and ask the learner to summarize it as a compressed mental object before moving on. Add 'name the chunk' check to the micro-chunk teaching pattern.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "active_recall",
+      "name": "Active Recall",
+      "depth": 1,
+      "prerequisites": ["illusion_of_competence"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch4", "sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part2_step4", "sources/learning_to_learn/The_Complete_Guide_to_Memory.pdf:practice_tests", "sources/learning_to_learn/Ten_Mental_Models_for_Learning_Anything.pdf:model2_memory_strengthens_by_retrieval"],
+      "harness_implication": "already encoded - the generation-before-instruction principle is the active-recall countermeasure.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "procrastination_zombie_loop",
+      "name": "Procrastination as Habit Loop",
+      "depth": 1,
+      "prerequisites": ["pseudo_work_vs_real_work"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch5,ch6", "sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part1_step2", "sources/learning_to_learn/The_Complete_Guide_to_Motivation.pdf:procrastination"],
+      "harness_implication": "When learner avoids a topic across multiple sessions (skipped, deflected, 'come back to it later'), name it explicitly and propose a process-not-product reframe: sit with the material for 25 min without committing to mastering it.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "pomodoro_technique",
+      "name": "Pomodoro Technique",
+      "depth": 1,
+      "prerequisites": ["focused_diffuse_modes", "procrastination_zombie_loop"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch5"],
+      "harness_implication": "Offer to time-bound sessions when starting (e.g., '25 min focused, then we break'). Don't let sessions sprawl past 50 min without an explicit pause.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "spaced_repetition",
+      "name": "Spaced Repetition",
+      "depth": 2,
+      "prerequisites": ["active_recall", "working_vs_long_term_memory"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch4"],
+      "harness_implication": "already encoded - this IS the engine.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "interleaving",
+      "name": "Interleaving",
+      "depth": 2,
+      "prerequisites": ["chunking", "active_recall"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch12"],
+      "harness_implication": "already encoded - interleaving across concepts is in the Learning Science Principles section of CLAUDE.md.",
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 7,
+      "next_review": "2026-05-05",
+      "history": [
+        {"date": "2026-04-28", "score": 0.85, "questions": 1, "correct": 1, "notes": "diagnostic Q4: identified discrimination as mechanism, plus quick-comparison framing. Did not surface the deeper desirable-difficulty layer (blocked practice creates illusion of mastery) but that sits at depth 3, not here."}
+      ]
+    },
+    {
+      "id": "feynman_technique",
+      "name": "Feynman Technique",
+      "depth": 2,
+      "prerequisites": ["active_recall", "illusion_of_competence"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch1"],
+      "harness_implication": "Add an explicit 'teach this back to me as if I'm a 10-year-old' question type to the assessment rotation. Distinct from 'explain in your own words' because audience-modeling exposes assumed knowledge.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "deliberate_practice",
+      "name": "Deliberate Practice",
+      "depth": 2,
+      "prerequisites": ["chunking"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch7"],
+      "harness_implication": "When teaching, target the *specific edge of ability* — the part the learner can almost-but-not-quite do. End each teaching block with 'what part of this is still hard?' to keep practice at the productive-struggle frontier.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "time_blocking",
+      "name": "Time Blocking",
+      "depth": 2,
+      "prerequisites": ["pseudo_work_vs_real_work"],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part1_step1"],
+      "harness_implication": "At session start, ask the learner what time block they have, and shape session length accordingly.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "environment_and_focus",
+      "name": "Environment and Focus",
+      "depth": 2,
+      "prerequisites": ["pseudo_work_vs_real_work", "procrastination_zombie_loop"],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part1_step3", "sources/learning_to_learn/how_to_take_smart_notes.pdf:ch9"],
+      "harness_implication": "At session start, ask if they're in a focused environment; if not, suggest deferring deep retrieval work to a better window.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "quiz_and_recall_method",
+      "name": "Quiz-and-Recall Method",
+      "depth": 3,
+      "prerequisites": ["active_recall", "time_blocking"],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part2_step4"],
+      "harness_implication": "When the learner has source material linked to a concept, instruct them to attempt full recall of the concept's key points BEFORE opening the source. The harness should refuse to surface the source until a recall attempt is made.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "mega_problem_set",
+      "name": "Mega Problem Set",
+      "depth": 3,
+      "prerequisites": ["active_recall", "interleaving", "spaced_repetition"],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part2"],
+      "harness_implication": "For STEM domains approaching exams, generate cumulative practice sets that interleave all concepts at depth <= N. Add a 'mega set' session type triggered by exam-prep checkpoints.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "question_evidence_conclusion",
+      "name": "Question-Evidence-Conclusion Notes",
+      "depth": 3,
+      "prerequisites": ["active_recall"],
+      "sources": ["sources/learning_to_learn/how_to_become_a_straight_a_student.pdf:part2_step1"],
+      "harness_implication": "For source-heavy concepts, suggest the learner read with a Q-E-C structure: each section gets a question, supporting evidence, and a one-sentence conclusion. Generate quiz items in the same format.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "desirable_difficulty",
+      "name": "Desirable Difficulty",
+      "depth": 3,
+      "prerequisites": ["chunking", "deliberate_practice", "spaced_repetition"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch4,ch10"],
+      "harness_implication": "already encoded - desirable difficulty is in the Learning Science Principles section of CLAUDE.md.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "sleep_for_consolidation",
+      "name": "Sleep and Memory Consolidation",
+      "depth": 3,
+      "prerequisites": ["working_vs_long_term_memory", "focused_diffuse_modes"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch4,ch10"],
+      "harness_implication": "When the learner is genuinely struggling with a concept across a long session, suggest stopping and sleeping on it. Don't push to mastery in one sitting if mastery isn't coming.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "three_note_types",
+      "name": "Three Note Types (Fleeting, Literature, Permanent)",
+      "depth": 4,
+      "prerequisites": ["active_recall", "illusion_of_competence"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch2,ch3"],
+      "harness_implication": "Maintain three note buckets in the project: a fleeting-notes capture file (notes/fleeting.md), source-linked literature notes per source, and atomic permanent notes per concept (notes/permanent/<concept_id>.md). When learner says something insightful mid-session, offer to capture it as fleeting.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "atomic_permanent_notes",
+      "name": "Atomic Permanent Notes",
+      "depth": 4,
+      "prerequisites": ["three_note_types"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch2,ch6"],
+      "harness_implication": "When the learner masters a concept (mastery >= 0.7 first time), generate a candidate permanent note: one idea, standalone, in their voice, <= 200 words. Save to notes/permanent/<concept_id>.md. Learner approves or edits.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "linking_and_compounding",
+      "name": "Linking and Compounding",
+      "depth": 4,
+      "prerequisites": ["atomic_permanent_notes"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch6,ch7"],
+      "harness_implication": "When generating a permanent note, surface 2-3 cross-domain links to existing permanent notes (e.g., 'this connects to gradient descent in intro_to_ai'). Maintain bidirectional links.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "writing_as_thinking",
+      "name": "Writing as Thinking",
+      "depth": 4,
+      "prerequisites": ["atomic_permanent_notes", "feynman_technique"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch5,ch8"],
+      "harness_implication": "Increase the proportion of 'write your answer down before I respond' prompts. For elaboration questions, the learner should commit a written answer before I evaluate.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "growth_mindset",
+      "name": "Growth Mindset",
+      "depth": 5,
+      "prerequisites": ["deliberate_practice"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch8"],
+      "harness_implication": "When the learner fails a review (score < 0.8), frame the result as data, not deficit. Use language like 'this concept hasn't stabilized yet' rather than 'you got X wrong.'",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "zeigarnik_effect",
+      "name": "Zeigarnik Effect",
+      "depth": 5,
+      "prerequisites": ["working_vs_long_term_memory"],
+      "sources": ["sources/learning_to_learn/how_to_take_smart_notes.pdf:ch9"],
+      "harness_implication": "When a session ends with unresolved concepts, write them down explicitly in a session-end summary so they don't haunt working memory. If the learner is stuck mid-session, suggest writing the unresolved question down and walking away.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "einstellung_effect",
+      "name": "Einstellung Effect",
+      "depth": 5,
+      "prerequisites": ["chunking", "focused_diffuse_modes"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch11"],
+      "harness_implication": "When the learner gets stuck on one approach, prompt them to consider the first-idea trap: 'before I give a hint, can you describe a *different* way to attack this — even if you don't think it'll work?'",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "test_taking_strategy",
+      "name": "Test-Taking Strategy (Hard-Start Jump-to-Easy)",
+      "depth": 5,
+      "prerequisites": ["chunking", "focused_diffuse_modes"],
+      "sources": ["sources/learning_to_learn/a_mind_for_numbers.pdf:ch17"],
+      "harness_implication": "For exam-prep sessions, add a hard-problems-first practice mode: present the hardest problem first, let learner attempt 1-2 min, then move to easier problems if stuck (loading the diffuse mode for the hard one).",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "self_determination_theory",
+      "name": "Self-Determination Theory (Autonomy / Competence / Relatedness)",
+      "depth": 0,
+      "prerequisites": [],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Motivation.pdf:self_determination_theory"],
+      "harness_implication": "Candidate: at session start, surface which of the three needs the current concept maps to (autonomy = learner's choice, competence = stretch-to-edge, relatedness = ties to other concepts/domains). Use to diagnose flat-motivation sessions — identify which need is starved.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-02", "score": 0.4, "questions": 1, "correct": 0.4, "notes": "diagnostic Q1: hit competence twice (concrete progression + desirable difficulty — substance, no label). Partial on relatedness — named 'social appreciation/respect', which in SDT is closer to controlled motivation than to relatedness; same surface (other humans), opposite mechanism. Missed autonomy entirely, which is the load-bearing distinguishing need. Self-report 'perceived lack of energy / high barrier to starting' suggests have-to encoding. Re-teaching priority: lead with autonomy + the autonomous-vs-controlled distinction; the controlled-motivation reframe of 'social appreciation' will be the load-bearing correction."}
+      ]
+    },
+    {
+      "id": "want_to_vs_have_to",
+      "name": "Want-To vs. Have-To Motivation",
+      "depth": 1,
+      "prerequisites": ["self_determination_theory"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:motivation_avoiding_willpower", "sources/learning_to_learn/The_Complete_Guide_to_Motivation.pdf:intrinsic_vs_extrinsic"],
+      "harness_implication": "Candidate: when learner reports avoidance, distinguish whether the concept feels have-to (externally imposed) or want-to (autonomously valued). For have-to concepts, propose explicit reframe: surface the underlying value/curiosity hook before teaching.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-02", "score": 0.45, "questions": 1, "correct": 0.45, "notes": "diagnostic Q2: identified attention-fragmentation as the difference (correct observation, wrong layer — that's the symptom). Missed the mechanism: impulse conflict / suppression cost. On a have-to task, the reward system isn't endorsing the action so other impulses pull, and the suppression is what fragments attention. Missed interruption-recovery as the cleanest empirical signature. Bridged to Newport's intensity — good linking instinct but conflated levels: intensity is output side, want-to/have-to is the motivational substrate upstream. Re-teaching: lead with impulse alignment vs conflict; treat attention quality as derived signature; surface interruption-recovery."}
+      ]
+    },
+    {
+      "id": "temporal_motivations_theory",
+      "name": "Temporal Motivations Theory (Procrastination Formula)",
+      "depth": 1,
+      "prerequisites": ["self_determination_theory", "pseudo_work_vs_real_work"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Motivation.pdf:procrastination"],
+      "harness_implication": "Candidate: when learner is procrastinating on a concept, walk through the formula — Motivation = (Expectancy x Value) / (Impulsiveness x Delay) — and identify which term is the dominant problem. Targeted intervention beats generic 'just start.'",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-02", "score": 0.25, "questions": 1, "correct": 0.25, "notes": "diagnostic Q3: imported SDT's three needs as the variables (autonomy/competence/relatedness) and ruled out variables-in-opposition — which is the central engine of the formula. Got Expectancy under the name self-efficacy (1 of 4). Missed Value as a distinct variable, missed Impulsiveness (trait) and Delay (temporal) entirely. Crucially missed the temporal dimension that makes it a *Temporal* motivations theory — why the same task feels different at different times. Pattern flag: lateral-mapping from prior concept hid that TMT does dynamic/temporal work SDT doesn't. Re-teaching: lead with the four-variable formula structure, then the diagnostic application — which term dominates determines the intervention. The formula isn't the point; the term-targeting is."}
+      ]
+    },
+    {
+      "id": "information_gap_curiosity",
+      "name": "Information-Gap Curiosity",
+      "depth": 1,
+      "prerequisites": ["self_determination_theory"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Motivation.pdf:curiosity_and_boredom"],
+      "harness_implication": "Candidate: open concepts with a deliberate information gap — a question the learner can't yet answer but feels close to. Pre-questions should be calibrated to the curiosity sweet spot (not zero gap = bored, not huge gap = overwhelmed).",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "ego_depletion",
+      "name": "Ego Depletion (and its Replication Crisis)",
+      "depth": 1,
+      "prerequisites": [],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:is_self_control_limited"],
+      "harness_implication": "Candidate: don't treat willpower as a fixed daily budget that runs out. Long sessions don't necessarily fail because the learner is 'depleted' — diagnose the actual cause (boredom, low value, environment) before blaming fatigue.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-02", "score": 0.7, "questions": 1, "correct": 0.7, "notes": "diagnostic Q4: STRONG. Disconfirmed linear depletion from own experience; built a non-linear momentum model from first principles ('warming up'); essentially derived the learned-industriousness / behavioral-activation finding without lit exposure. Missed the literature dimension (Dweck/Job belief-mediated effect, Inzlicht's motivational-shift reframe, the replication failures starting ~2016) — but lit was explicitly excluded from the question. Notable mid-diagnostic shift: he updated his own self-narrative live, away from depletion-flavored 'lack of energy' toward state-dependent momentum. That's the pillar's actual goal happening in real time. Re-teaching priority: LOW. Just needs the lit layer + connection to the motivational-shift reframe; the underlying intuition is already correct."}
+      ]
+    },
+    {
+      "id": "willpower_strategies_fail",
+      "name": "Why Willpower-Based Strategies Fail",
+      "depth": 2,
+      "prerequisites": ["ego_depletion"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:which_strategies_dont_work"],
+      "harness_implication": "Candidate: when learner says 'I'll just focus harder' or 'I'll just resist the phone,' flag this as a failing strategy class (thought suppression, just-say-no). Redirect to structural interventions (environment, bundling, reframing) rather than effortful resistance.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "temptation_bundling",
+      "name": "Temptation Bundling",
+      "depth": 2,
+      "prerequisites": ["want_to_vs_have_to", "willpower_strategies_fail"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:temptation_bundling"],
+      "harness_implication": "Candidate: for chronically avoided concepts, propose pairing the have-to (e.g., reviewing weak concept) with a want-to (e.g., favorite drink, specific location, music if non-disruptive). Make the bundle explicit and named.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [
+        {"date": "2026-05-02", "score": 0.65, "questions": 1, "correct": 0.65, "notes": "diagnostic Q5: predicted concept correctly from term; canonical example (audiobook + laundry). Two gaps: (1) missed exclusivity requirement — the bundle only generates an activation force if the indulgence is gated on doing the chore; without exclusivity it defaults to consuming temptation alone. (2) second example (interleaving an interesting topic with focused study) is actually a different mechanism — alternation/interleaving, not simultaneous bundling. Didn't articulate why-it-works (reward-landscape adjustment, not willpower suppression). Re-teaching: short — clarify exclusivity + mechanism, distinguish from interleaving (already in graph at depth 2), then practice generating real bundles for his avoided tasks."}
+      ]
+    },
+    {
+      "id": "construal_reappraisal",
+      "name": "Construal and Reappraisal for Self-Control",
+      "depth": 2,
+      "prerequisites": ["want_to_vs_have_to"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:construal_and_reappraisal"],
+      "harness_implication": "Candidate: when learner is stuck in a concrete near-term frame ('I just don't want to study right now'), prompt an abstract reframe ('what does this concept connect to in your bigger goal?'). And vice versa: when overwhelmed by abstraction, drop to a concrete 25-minute next-action.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    },
+    {
+      "id": "identity_based_self_control",
+      "name": "Identity-Based Self-Control",
+      "depth": 3,
+      "prerequisites": ["construal_reappraisal", "want_to_vs_have_to"],
+      "sources": ["sources/learning_to_learn/The_Complete_Guide_to_Self-Control.pdf:identifying_conflicts"],
+      "harness_implication": "Candidate: frame consistent study behavior as identity-level ('you're someone who reviews daily') rather than action-level ('you should review today'). Especially during streaks or after lapses — protect the identity, not the streak.",
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": []
+    }
+  ]
+}

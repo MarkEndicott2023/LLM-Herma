@@ -1,0 +1,473 @@
+{
+  "name": "React Front-End Fundamentals",
+  "goal": "Build a CRUD admin dashboard front-end for the sso_group_sync project (assumed scope; confirm with project owner). Includes JS/HTML/tooling prerequisites \u2014 Mark is at JS-zero per 2026-04-11 calibration.",
+  "created": "2026-04-11",
+  "concepts": [
+    {
+      "id": "html_basics",
+      "name": "HTML Basics (tags, attributes, structure)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 3,
+      "next_review": "2026-05-07",
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": [
+        {
+          "date": "2026-04-11",
+          "score": 0.77,
+          "questions": 3,
+          "correct": 2,
+          "notes": "FAIL (borderline). Q1 (0.7): correctly identified no loops/conditionals/functions, but described HTML as 'manipulating elements within the tree' \u2014 load-bearing misconception. HTML IS the tree (declarative noun), JavaScript manipulates it (verb). Re-emphasize: HTML is data, JS is program, DOM is the live in-browser tree. Q2 (0.75): 3/4 correct (4 elements, parent=label, required=boolean) but DID NOT ANSWER (d) about which element is void \u2014 answer is <input>. Watch for incomplete answers on multi-part questions. Q3 (0.85): clean \u2014 correctly said it won't work, no variable assignment, will render literal string 'userName'. 'Kind of tool' answer was a python input() example which is wrong medium (CLI not web) but right intuition (need a real program with variables). Used as natural segue to JSX/React."
+        },
+        {
+          "date": "2026-04-26",
+          "score": 0.645,
+          "questions": 4,
+          "correct": 2.58,
+          "notes": "FAIL. Pre-retrieval revealed misconception MUTATED: now thinks 'JS translates HTML into DOM.' Re-taught: browser PARSER builds DOM from HTML at load time, JS arrives later and modifies the existing DOM. Mark confirmed (recipe/cake/person model: parser bakes the cake, JS is the person who modifies the cake). Conceptual frame now solid. Q2 (1.0): clean elaboration on live-clock impossibility using cake model. New misses are MECHANICAL/VOCABULARY: Q1 (0.5): undercounted elements (said 2, actual 5 \u2014 does not realize each nested tag pair counts as its own element); confused 'parent' with 'previous sibling' (named first <a> as parent of second <a>; correct = the <li> directly containing it). Q3 (0.83): marked <meta> as PAIRED \u2014 it's VOID. Q4 (0.25): wrote <image> instead of <img> (invented tag); wrapped in <h1> despite 'single element' instruction; put class on wrapper not on image; admitted not knowing alt syntax (alt= was not in prior teaching, fair). Re-teach focus next session: (1) tree vocab \u2014 parent/child/sibling drilled with diagrams; (2) element counting \u2014 every opening+closing pair = one element; (3) <img> tag specifically + alt attribute mandatory."
+        },
+        {
+          "date": "2026-05-04",
+          "score": 1.0,
+          "questions": 5,
+          "correct": 5,
+          "notes": "PASS (drill mode). 5/5 construction prompts clean, escalating from flat list to 4-level nesting (div > ul > li > img). Both yesterday's residual error modes vanished: nested link inside <li> closed cleanly with text + </a>; <div> containers closed properly throughout, including the deepest prompt with img inside li inside ul inside div. Alt text present and meaningful on both images in #5 (no 'image' as filler). Took 4 sessions to clear html_basics — the breakthrough was switching from re-teach to drill format. Mastery 0.0 → 0.2, reps 0 → 1, next review 2026-05-07. NEXT: another short drill at next review to confirm retention; if it passes again, html_basics mastery climbs toward the 0.7 gate that unlocks downstream concepts (html_forms, jsx_syntax). Worth applying drill-mode lesson to other concepts in this domain when they reach the production-fluency stage."
+        },
+        {
+          "date": "2026-05-03",
+          "score": 0.70,
+          "questions": 3,
+          "correct": 2.1,
+          "notes": "FAIL (borderline, 3rd in a row). Pre-retrieval: cake/recipe/person model returned cleanly with two minor slips ('HTML is tree-like' \u2014 HTML is text, DOM is tree; 'JS allows us to run the DOM' \u2014 inverted, browser runs JS). Targeted re-teach went well: tree vocab check 3/3, element counting 1/1, void+img check 2/2. ALL micro-checks passed. Failure mode emerged in the FULL ASSESSMENT (construction tasks under recall). Q1 (0.5): forgot the <ul> wrapper despite prompt saying 'unordered list' \u2014 wrote loose <li>s; element count of 4 was internally consistent with what he wrote but missed the 5-element correct structure; also used 'href = ' with spaces (non-standard but not wrong). Q2 (0.6): gave fallback-on-image-failure reason but framed as DEVELOPER insight; completely missed ACCESSIBILITY/screen reader as the primary reason despite it being explicit in teaching. Q3 (1.0): clean \u2014 spotted </img> and </br> as invalid void closures. Q4 stretch (not scored): got 'alt is not a child' but didn't articulate that void elements have NO children at all and that 'A cat' is the attribute VALUE not a text node. PATTERN ACROSS 3 SESSIONS: micro-checks always pass, full-construction questions reveal that mechanical/structural pieces aren't load-bearing yet (forgets wrappers, forgets which audience an attribute serves, invents tags). Recommendation: stop re-teaching, switch to drill mode \u2014 short construction prompts back-to-back ('write the HTML for X, write it for Y, write it for Z') to build muscle memory. The conceptual scaffolding is fine; what's missing is fluent production. POST-ASSESSMENT MINI-DRILL (6 prompts, same session): scored ~0.85 \u2014 significant jump from the 0.70 formal assessment. <ul> wrapper appeared automatically on prompts 2 and 4 (the exact gap from Q1). New residual error mode: forgets closing tags on the MOST NESTED structures specifically \u2014 missed </a> inside <li> and missed </div> wrapping h1+p+a. Drill mode validated as the right intervention. NEXT SESSION (2026-05-04): another short drill, weight toward nested-structure prompts (multi-level containers, links inside list items, divs containing multiple children) to nail the close-tag discipline. If drill scores >= 0.8, treat as pass even if formal assessment style isn't run \u2014 production fluency is the actual goal here."
+        }
+      ]
+    },
+    {
+      "id": "dom_model",
+      "name": "The DOM (Document Object Model)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "css_basics",
+      "name": "CSS Basics (selectors, properties, classes)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_variables",
+      "name": "JS Variables (let, const, var, primitive types)",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_functions",
+      "name": "JS Functions (declarations, arrow functions, return values)",
+      "depth": 1,
+      "prerequisites": [
+        "js_variables"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_arrays_objects",
+      "name": "JS Arrays & Objects (literals, access, mutation)",
+      "depth": 1,
+      "prerequisites": [
+        "js_variables"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_destructuring",
+      "name": "JS Destructuring (object and array)",
+      "depth": 2,
+      "prerequisites": [
+        "js_arrays_objects"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_array_methods",
+      "name": "JS Array Methods (map, filter, reduce, forEach)",
+      "depth": 2,
+      "prerequisites": [
+        "js_arrays_objects",
+        "js_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_modules",
+      "name": "JS Modules (import / export)",
+      "depth": 2,
+      "prerequisites": [
+        "js_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "js_promises_async",
+      "name": "JS Promises & async/await (concurrency, fetch)",
+      "depth": 2,
+      "prerequisites": [
+        "js_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "html_forms",
+      "name": "HTML Forms (input, select, button, labels)",
+      "depth": 2,
+      "prerequisites": [
+        "html_basics"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "node_npm_basics",
+      "name": "Node & npm Basics (package.json, install, run)",
+      "depth": 2,
+      "prerequisites": [
+        "js_modules"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "jsx_syntax",
+      "name": "JSX Syntax (expressions, attributes, fragments)",
+      "depth": 3,
+      "prerequisites": [
+        "html_basics",
+        "js_functions",
+        "js_variables"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "react_components",
+      "name": "React Function Components",
+      "depth": 3,
+      "prerequisites": [
+        "jsx_syntax"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "event_handling",
+      "name": "Event Handling (onClick, onChange, handlers)",
+      "depth": 3,
+      "prerequisites": [
+        "react_components",
+        "js_functions"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "props",
+      "name": "Props (passing data to components)",
+      "depth": 4,
+      "prerequisites": [
+        "react_components",
+        "js_destructuring"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "conditional_rendering",
+      "name": "Conditional Rendering (&&, ternary, early return)",
+      "depth": 4,
+      "prerequisites": [
+        "react_components"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "rendering_lists",
+      "name": "Rendering Lists (.map and the key prop)",
+      "depth": 4,
+      "prerequisites": [
+        "props",
+        "js_array_methods"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "state_useState",
+      "name": "State with useState (immutability, re-renders)",
+      "depth": 4,
+      "prerequisites": [
+        "react_components",
+        "event_handling"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "forms_controlled_components",
+      "name": "Forms & Controlled Components (value + onChange)",
+      "depth": 5,
+      "prerequisites": [
+        "state_useState",
+        "html_forms"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "state_lifting",
+      "name": "Lifting State Up (parent-child data flow)",
+      "depth": 5,
+      "prerequisites": [
+        "state_useState",
+        "props"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "useEffect_basics",
+      "name": "useEffect Basics (dependencies, cleanup, when effects run)",
+      "depth": 5,
+      "prerequisites": [
+        "state_useState"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "data_fetching_useEffect",
+      "name": "Data Fetching in useEffect (loading, error, success)",
+      "depth": 5,
+      "prerequisites": [
+        "useEffect_basics",
+        "js_promises_async"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "component_structure",
+      "name": "Component Structure (file organization, when to extract)",
+      "depth": 6,
+      "prerequisites": [
+        "props",
+        "conditional_rendering"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "react_router_basics",
+      "name": "React Router Basics (routes, links, params)",
+      "depth": 6,
+      "prerequisites": [
+        "react_components",
+        "props"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "api_integration_pattern",
+      "name": "API Integration Pattern (REST CRUD from React)",
+      "depth": 6,
+      "prerequisites": [
+        "data_fetching_useEffect"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    },
+    {
+      "id": "auth_gated_routes",
+      "name": "Auth-Gated Routes (protected route pattern)",
+      "depth": 6,
+      "prerequisites": [
+        "react_router_basics",
+        "state_useState"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/react_front_end/educational_links.md"
+      ],
+      "history": []
+    }
+  ]
+}

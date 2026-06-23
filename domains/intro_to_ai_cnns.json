@@ -1,0 +1,323 @@
+{
+  "name": "CNNs (CSE 440)",
+  "goal": "Master CNNs for CSE 440 quiz (2026-04-09) and final exam (2026-05-01)",
+  "created": "2026-04-08",
+  "concepts": [
+    {
+      "id": "convolution_operation",
+      "name": "Convolution Operation (1D & 2D)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.7,
+      "reps": 1,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/15 CNNs.pdf",
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.5,
+          "questions": 1,
+          "correct": 0.5,
+          "notes": "Diagnostic \u2014 got correct output size (3x3) but wrong reasoning: said kernel 'focuses on prominent features' rather than understanding boundary constraint. Knows sliding mechanics but not the formula."
+        },
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 5,
+          "correct": 4,
+          "notes": "Learned (W-F+2P)/S+1 formula. Nails element-wise multiply-and-sum. Understands padding preserves size. Recurring issue: forgets +1 in formula \u2014 needs to write as two steps. Q3 and Q5 fully correct, Q4 right setup wrong arithmetic."
+        }
+      ]
+    },
+    {
+      "id": "filters_kernels",
+      "name": "Filters & Kernels (Box, Gaussian, Edge)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/15 CNNs.pdf",
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "correlation_vs_convolution",
+      "name": "Correlation vs. Convolution (Kernel Flip)",
+      "depth": 1,
+      "prerequisites": [
+        "convolution_operation",
+        "filters_kernels"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/15 CNNs.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "stride_padding",
+      "name": "Stride, Padding & Output Size Formula",
+      "depth": 1,
+      "prerequisites": [
+        "convolution_operation"
+      ],
+      "mastery": 0.7,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf",
+        "sources/intro_to_ai/15 CNNs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 2,
+          "correct": 1.5,
+          "notes": "Taught alongside convolution. Correctly applied (W-F+2P)/S+1 with padding=2. Still occasionally drops the +1 \u2014 needs practice as two-step calculation."
+        }
+      ]
+    },
+    {
+      "id": "multichannel_convolution",
+      "name": "Multi-Channel Convolution (RGB)",
+      "depth": 1,
+      "prerequisites": [
+        "convolution_operation"
+      ],
+      "mastery": 0.1,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.1,
+          "questions": 1,
+          "correct": 0,
+          "notes": "Diagnostic \u2014 guessed it involves filter entries but doesn't know filter depth must match input depth or how to count parameters (5x5x3+1=76)"
+        }
+      ]
+    },
+    {
+      "id": "relu_activation",
+      "name": "ReLU Activation in CNNs",
+      "depth": 1,
+      "prerequisites": [],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.8,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Inferred from CMSE 381 domain \u2014 already mastered ReLU/sigmoid activation functions there"
+        }
+      ]
+    },
+    {
+      "id": "pooling_layers_cse440",
+      "name": "Pooling Layers (Max & Average)",
+      "depth": 1,
+      "prerequisites": [
+        "convolution_operation"
+      ],
+      "mastery": 0.8,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-11",
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-08",
+          "score": 0.1,
+          "questions": 1,
+          "correct": 0,
+          "notes": "Diagnostic \u2014 vague idea of 'consolidation of input information' but can't define max/average pooling or execute the operation"
+        },
+        {
+          "date": "2026-04-08",
+          "score": 1.0,
+          "questions": 3,
+          "correct": 3,
+          "notes": "After teaching: correctly computed max and average pooling on 4x4 input, correct output volume size. Admitted copying the depth-unchanged rule \u2014 understands procedure but should reinforce why depth is preserved."
+        }
+      ]
+    },
+    {
+      "id": "cnn_layer_pipeline",
+      "name": "CNN Layer Pipeline (Conv\u2192ReLU\u2192Pool\u2192Norm\u2192FC)",
+      "depth": 2,
+      "prerequisites": [
+        "stride_padding",
+        "multichannel_convolution",
+        "relu_activation",
+        "pooling_layers_cse440"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "receptive_field",
+      "name": "Receptive Field",
+      "depth": 2,
+      "prerequisites": [
+        "stride_padding"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "weight_sharing",
+      "name": "Weight Sharing & Parameter Counting",
+      "depth": 2,
+      "prerequisites": [
+        "multichannel_convolution",
+        "stride_padding"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "feature_hierarchy",
+      "name": "Feature Hierarchy (Low\u2192Mid\u2192High Level)",
+      "depth": 2,
+      "prerequisites": [
+        "cnn_layer_pipeline"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "dropout_cse440",
+      "name": "Dropout Regularization",
+      "depth": 2,
+      "prerequisites": [
+        "cnn_layer_pipeline"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "lenet5",
+      "name": "LeNet-5 Architecture",
+      "depth": 3,
+      "prerequisites": [
+        "cnn_layer_pipeline",
+        "weight_sharing"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "alexnet",
+      "name": "AlexNet Architecture & Details",
+      "depth": 3,
+      "prerequisites": [
+        "cnn_layer_pipeline",
+        "weight_sharing",
+        "dropout_cse440"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "vggnet",
+      "name": "VGGNet (Small Filters, Deeper Networks)",
+      "depth": 3,
+      "prerequisites": [
+        "alexnet",
+        "receptive_field"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "transfer_learning_cse440",
+      "name": "Transfer Learning & Fine-Tuning CNNs",
+      "depth": 4,
+      "prerequisites": [
+        "vggnet"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf"
+      ],
+      "history": []
+    }
+  ]
+}

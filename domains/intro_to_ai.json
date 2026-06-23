@@ -1,0 +1,520 @@
+{
+  "name": "Intro to AI",
+  "goal": "Final exam on 2026-05-01 \u2014 surface familiarity with all 13 topics in final_topics.md, confident on step-by-step computation",
+  "created": "2026-04-14",
+  "concepts": [
+    {
+      "id": "search_basics",
+      "name": "Uninformed Search (BFS/DFS/UCS)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [
+        "sources/intro_to_ai/2 Uninformed and Heuristic Search.pdf"
+      ],
+      "history": []
+    },
+    {
+      "id": "probability_basics",
+      "name": "Probability Basics (joint, conditional, marginal)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-30",
+      "sources": [
+        "sources/intro_to_ai/10 Probability (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-27",
+          "score": 0.92,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Strong on slice-and-renormalize for conditionals, product rule, directionality (P(A|B) vs P(B|A)), and law of total probability multi-path form (Q4 stretch nailed). Initial pre-question: applied multiplication instead of division for conditional, but corrected after one teach-cycle. Q3 elaboration example (grass/soil) was conceptually right but lacked dramatic asymmetry \u2014 coached toward bird/wings-style examples. Stretch Q4 was interleaved with joint_from_prior; correct."
+        }
+      ]
+    },
+    {
+      "id": "linear_algebra_basics",
+      "name": "Linear Algebra for ML (dot products, matrix mul)",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "sources": [],
+      "history": []
+    },
+    {
+      "id": "a_star_search",
+      "name": "A* Search Traversal and Calculation",
+      "depth": 1,
+      "prerequisites": [
+        "search_basics"
+      ],
+      "mastery": 0.5,
+      "reps": 2,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/2 Uninformed and Heuristic Search.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-14",
+          "score": 0.75,
+          "questions": 1,
+          "correct": 0.75,
+          "notes": "Diagnostic: knew g and h definitions; imprecise on admissibility (said h < actual cost, should be \u2264)"
+        },
+        {
+          "date": "2026-04-29",
+          "score": 0.0,
+          "questions": 1,
+          "correct": 0,
+          "notes": "FAIL \u2014 same diagnostic bug 15 days later: still says h must be 'less than' true cost, missed h(S)=5 as admissible. Strict-vs-non-strict inequality has not healed. Re-coached with mnemonic 'admissible = never overestimates' and the perfect-heuristic edge case (h=h* is the BEST kind of heuristic, would be banned under strict-<). Retest tomorrow with the same question."
+        },
+        {
+          "date": "2026-04-30",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Retest passed. h*(S)=7 problem: correctly identified h(S)=5 \u2264 7 and h(S)=7 \u2264 7 as both admissible (equality case is what he missed yesterday). h(S)=8 implied not admissible by exclusion. Coaching from yesterday stuck."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice exam Q1: admissibility correct, but flipped which heuristic is \"better\" (said lower wins; correct: HIGHER admissible h is more informed). D1 traversal: optimal path correct (S-A-C-G cost 6), but g(n) computed as last-edge-cost instead of cumulative-from-start. Drill the cumulative-g concept on exam."
+        }
+      ]
+    },
+    {
+      "id": "expectimax",
+      "name": "Expectimax",
+      "depth": 1,
+      "prerequisites": [
+        "search_basics"
+      ],
+      "mastery": 1.0,
+      "reps": 2,
+      "interval_days": 6.25,
+      "next_review": "2026-05-05",
+      "sources": [
+        "sources/intro_to_ai/3 Adversarial Search.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-14",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic: clearly explained minimax vs expectimax distinction (chance nodes, expected value)"
+        },
+        {
+          "date": "2026-04-29",
+          "score": 1.0,
+          "questions": 2,
+          "correct": 2,
+          "notes": "Re-touch after fuzzy interleave on 2026-04-28 mdps session. Computed deck's expectimax example tree cleanly (C1=8, C2=4, C3=7, ROOT=8). Vocabulary recovery: yesterday said T was 'above chance nodes', today correctly placed T as 'leaf weighting' (edges from chance node down). Mapping is locked. Slight notational sloppiness \u2014 dropped the 0 leaf from C3 sum, but harmless. Mastered."
+        }
+      ]
+    },
+    {
+      "id": "mdps",
+      "name": "MDPs (states, actions, rewards, discount)",
+      "depth": 1,
+      "prerequisites": [
+        "probability_basics"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-30",
+      "sources": [
+        "sources/intro_to_ai/5 Markov decision process I .pdf",
+        "sources/intro_to_ai/6 Markov decision process II.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-28",
+          "score": 0.87,
+          "questions": 3,
+          "correct": 2.6,
+          "notes": "Pre-question: spontaneously reached for conditional probability to describe transitions \u2014 good evidence prior session stuck. Strong on 5-tuple definition once introduced; correctly identified T values, summed to 1 (interleaved-style sanity check from probability_basics, passed). Q1 discounted utility (4-step reward seq with negatives): clean. Q3 interleaved expectimax: partial \u2014 got the structure (max/chance/T mapping) but vocabulary was imprecise ('max probability of higher reward' instead of 'max expected utility'; said T sits 'above' chance nodes when it labels edges below). Q4 stretch (deriving T from empirical counts) was missed \u2014 couldn't recover the form N(s,a,s')/N(s,a) \u2014 but called the gap out himself. Policy-vs-plan distinction explained well in own words ('waterfall plan vs state-reactive')."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice exam Q3: computational parts (T, R, sum-to-1) all correct. Skipped (d): MDP-vs-Markov-chain distinction. Lock answer: MDPs have actions (agent choices); Markov chains do not."
+        }
+      ]
+    },
+    {
+      "id": "mdp_values",
+      "name": "Compute MDP Values (value iteration)",
+      "depth": 2,
+      "prerequisites": [
+        "mdps"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-01",
+      "sources": [
+        "sources/intro_to_ai/5 Markov decision process I .pdf",
+        "sources/intro_to_ai/6 Markov decision process II.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-28",
+          "score": 0.33,
+          "questions": 3,
+          "correct": 1.0,
+          "notes": "FAIL by rubric, but signal is mixed. During teaching: clean execution of V_1(Warm) and V_2(Warm) \u2014 formula structure is internalized. Assessment under time pressure: V_2(Cool) wrong (Q1 and Q2 share same bug). Specific error: when Fast action from Cool branches stochastically to Cool (50%) AND Warm (50%), used V_1(Warm)=1 in BOTH terms instead of V_1(Cool)=2 in the Cool-branch and V_1(Warm)=1 in the Warm-branch. Discount placement (\u03b3 next to V_k(s')) was correct in Q2. Ran out of time on Q3 (convergence) and Q4 (policy extraction). NEXT SESSION: 5-min retest with a Q1-style problem to verify the tracking bug is fixed; then move on. Don't re-teach the structure \u2014 it's there."
+        },
+        {
+          "date": "2026-04-29",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1.0,
+          "notes": "Retest after yesterday's fail. Computed V_3(Cool) = 5.0 with V_2 = [3.5, 2.5, 0]. Q_3(Cool, Fast) correctly applied V_2(Cool)=3.5 to the Cool-stay branch and V_2(Warm)=2.5 to the Warm-jump branch \u2014 yesterday's tracking bug fixed. Self-annotated 'Two possible outcome states -> Cool, Warm' showing deliberate attention to the bug-prone step."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice exam: BUG REGRESSED on Q10. V_2(S1) used V_1(S1)=3 when destination was S2 (needed V_1(S2)=5.5). Same 4/28 tracking bug. RE-DRILLED on D2 (states A/B): V_2(A) computed correctly using V_1(A)=1.4 and V_1(B)=5 in the right branches. Drill worked, but bug is fragile under non-trivial setups. EXAM-DAY VIGILANCE: when stochastic action branches to multiple destinations, label each V explicitly with its destination state."
+        }
+      ]
+    },
+    {
+      "id": "markov_stationary",
+      "name": "Markov Stationary Distribution",
+      "depth": 2,
+      "prerequisites": [
+        "probability_basics"
+      ],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/11 Bayesian Networks Representation (1).pdf",
+        "sources/intro_to_ai/5 Markov decision process I .pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-30",
+          "score": 0.87,
+          "questions": 3,
+          "correct": 2.6,
+          "notes": "Taught from scratch. Pre-question revealed shaky LoTP application (couldn't independently set up P(X_2) from P(X_1) and transition); unblocked by reframing as 'same shape as factory-machines LoTP from 4/27'. Algebraic shortcut for stationary distribution clicked: Q1 (fresh chain A/B with self-loops 0.6/0.8) computed pi_A=1/3, pi_B=2/3 cleanly. Q2 verification of friend's (0.5, 0.5) claim: applied transition correctly to get (0.4, 0.6) \u2014 concluded not-stationary correctly, but compared to wrong reference number (true stationary value 0.67 instead of candidate 0.5). Q3 elaboration: correctly named LoTP \u2014 important recovery from this morning's joint_from_prior fail where joint/marginal labels got scrambled. Q4 stretch on 3-state generalization: didn't grasp 'linear independence' of balance equations \u2014 coached on n-1 + normalization. Source attribution corrected: stationary distribution material is in lecture 11 (Bayes Net), not lecture 5 (MDP I)."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q9: pi_X=1/3, pi_Y=2/3 cleanly with balance + normalization."
+        }
+      ]
+    },
+    {
+      "id": "joint_from_prior",
+      "name": "Calculating Joint Values from Prior",
+      "depth": 1,
+      "prerequisites": [
+        "probability_basics"
+      ],
+      "mastery": 0.45,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/10 Probability (1).pdf",
+        "sources/intro_to_ai/11 Bayesian Networks Representation (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-14",
+          "score": 0.0,
+          "questions": 1,
+          "correct": 0,
+          "notes": "Diagnostic: applied P(A,B)=P(A)P(B) (independence) incorrectly; confused P(B|\u00acA) with P(A|B); does not know law of total probability by name"
+        },
+        {
+          "date": "2026-04-29",
+          "score": 0.5,
+          "questions": 1,
+          "correct": 0.5,
+          "notes": "Partial: applied LoTP machinery correctly (got 0.38) but labeled the result as joint P(rain, traffic) when it's actually marginal P(traffic). Joint vs marginal vocabulary still slippery. Joint is single product-rule term P(t|r)*P(r) = 0.24; marginal is sum across both branches via LoTP = 0.38. Note: yesterday's mdps Q4 had him correctly distinguishing T(s,a,s') as conditional from joint counts \u2014 so the conceptual machinery is there, but joint-vs-marginal labels get scrambled under exam-style framing. Retest tomorrow."
+        },
+        {
+          "date": "2026-04-30",
+          "score": 1.0,
+          "questions": 2,
+          "correct": 2,
+          "notes": "Retest passed cleanly. Computed joint P(rain, traffic) = P(t|r)*P(r) = 0.36 (one product-rule term) and marginal P(traffic) = 0.54 (LoTP across both rain branches). Labels stayed straight \u2014 yesterday's joint/marginal confusion is resolved."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q7: joint=0.18, marginal=0.215 (rounded 0.22), Bayes \u22480.82 \u2014 clean."
+        }
+      ]
+    },
+    {
+      "id": "supervised_vs_unsupervised",
+      "name": "Supervised vs Unsupervised Learning",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/13 Machine Learning Neural Networks.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-30",
+          "score": 1.0,
+          "questions": 3,
+          "correct": 3,
+          "notes": "Quick definitional pass. Correctly classified clustering, regression-from-labeled-history, and anomaly detection without labels. Source attribution corrected to lecture 13 (where the supervised vs unsupervised slide actually lives)."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q4: 4/4 correct."
+        }
+      ]
+    },
+    {
+      "id": "data_augmentation",
+      "name": "Data Augmentation",
+      "depth": 1,
+      "prerequisites": [
+        "supervised_vs_unsupervised"
+      ],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/16 NeuralNetworks.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-30",
+          "score": 0.85,
+          "questions": 1,
+          "correct": 0.85,
+          "notes": "Captured the 'more data, more perspectives \u2192 less variance on new observations' angle (correct outcome). Cleaner mechanism worth holding: augmentation prevents the model from memorizing specific pixel patterns, forcing it to learn invariant concepts \u2192 reduces overfitting. Source attribution corrected from lecture 13 to lecture 16 (where the actual augmentation slides live)."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q5: cleanly stated \"learn underlying concept instead of memorizing pixel formations\"."
+        }
+      ]
+    },
+    {
+      "id": "minibatch_epoch",
+      "name": "Mini-batch and Epoch",
+      "depth": 1,
+      "prerequisites": [
+        "supervised_vs_unsupervised"
+      ],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/16 NeuralNetworks.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-30",
+          "score": 0.0,
+          "questions": 1,
+          "correct": 0,
+          "notes": "FAIL on a careless-reading mistake, not a conceptual gap. Treated training_set_size and mini_batch_size as the same number (50), missing that the question gave training_set=5000, batch=50. Should have computed 100 updates/epoch, 2000 over 20 epochs. Conceptual understanding of 'epoch = full pass' was correct. Coaching: read questions twice on the actual exam. Source corrected to lecture 16."
+        },
+        {
+          "date": "2026-04-30",
+          "score": 1.0,
+          "questions": 2,
+          "correct": 2,
+          "notes": "Retest with fresh numbers (8000 set, batch 80, 15 epochs). Computed 100 updates/epoch and 1500 total cleanly. Read the numbers carefully this time. Coaching stuck."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q6: 80 updates/epoch, 640 total, noise ranking SGD>mini>full all correct."
+        }
+      ]
+    },
+    {
+      "id": "filter_output",
+      "name": "Calculating CNN Filter Output Size",
+      "depth": 1,
+      "prerequisites": [
+        "linear_algebra_basics"
+      ],
+      "mastery": 1.0,
+      "reps": 2,
+      "interval_days": 6.25,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/14 CNN (1).pdf",
+        "sources/intro_to_ai/15 CNNs.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-14",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Diagnostic: correctly computed 3x3 output for 5x5 input, 3x3 filter, stride 1. Did not attempt stride-2 bonus"
+        },
+        {
+          "date": "2026-04-29",
+          "score": 0.0,
+          "questions": 1,
+          "correct": 0,
+          "notes": "FAIL \u2014 dropped the +1 in formula on stride-2 case. Wrote (7-3)/2 = 2 \u2192 2x2 output. Correct: floor((input-filter)/stride) + 1 = 3 \u2192 3x3 output. The +1 WAS present in his stride-1 diagnostic, so he knows it; just failed to apply. Re-anchored with fence-post intuition (number of fits = number of gaps + 1)."
+        },
+        {
+          "date": "2026-04-30",
+          "score": 1.0,
+          "questions": 1,
+          "correct": 1,
+          "notes": "Retest passed. 9x9 input, 3x3 filter, stride 2 \u2192 (9-3)/2 + 1 = 4 \u2192 4x4. Asked a thoughtful clarifying question about why floor() encapsulates the numerator (correct answer: needed when stride doesn't divide the gap evenly, e.g., 8x8 input case)."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q8: 24x24, 15x15, 3x3 \u2014 all three with floor handled. Mastered."
+        }
+      ]
+    },
+    {
+      "id": "mlp_lr_computation",
+      "name": "MLP and Logistic Regression Full Computation",
+      "depth": 2,
+      "prerequisites": [
+        "linear_algebra_basics",
+        "supervised_vs_unsupervised"
+      ],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-03",
+      "sources": [
+        "sources/intro_to_ai/12 Machine Learning Perceptrons and Logistic Regression (1).pdf",
+        "sources/intro_to_ai/13 Machine Learning Neural Networks.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-30",
+          "score": 0.87,
+          "questions": 3,
+          "correct": 2.6,
+          "notes": "Taught LR forward pass, multi-class softmax (interleave with ce_loss \u2014 clean), MLP with hidden layer + ReLU. Q1 LR: dot product + bias + sigmoid saturation reasoning correct (z=-2, output near 0). Q2 multi-class softmax: clean computation with (0.67, 0.24, 0.09), sanity-checked sum to 1. Q3 MLP: mechanics (dot product, ReLU, bias, sigmoid) all correct, but flipped the W matrix interpretation \u2014 used 'columns=output' convention (standard X@W) instead of the deck's 'row i = weights into hidden node i' convention. Got h_1=0 instead of 2.5, h_2=1.5 instead of 0. Also slipped notation conflating z (pre-activation) with h (post-ReLU). Coached: follow the professor's notation exactly on exam. Q4 stretch: nailed the universal-approximation insight \u2014 composition of linear functions is linear, depth needs nonlinearity. Asked good clarifying questions during teaching: 'isn't activation supposed to be sigmoid(z)?' and 'why is weight_bias = -1?' \u2014 showing he was actively reconciling terminology."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q11: LR z=0.5 correct, MLP h=0 (ReLU saturated), z_out=0.5 correct."
+        }
+      ]
+    },
+    {
+      "id": "ce_loss",
+      "name": "Computing Cross-Entropy Loss",
+      "depth": 2,
+      "prerequisites": [
+        "probability_basics"
+      ],
+      "mastery": 0.4,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-04-30",
+      "sources": [
+        "sources/intro_to_ai/12 Machine Learning Perceptrons and Logistic Regression (1).pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-04-14",
+          "score": 0.0,
+          "questions": 1,
+          "correct": 0,
+          "notes": "Diagnostic: did not know CE formula \u2014 needs L = -log(p_true) taught from scratch"
+        },
+        {
+          "date": "2026-04-28",
+          "score": 0.92,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Taught from scratch with motivation (catastrophic-confidence intuition before formula). Correctly computed both multi-class CE (Q1: -log_2(0.15)) and binary CE (Q2: t=0 branch). Q3 elaboration was solid on softmax + CE direction but conflated softmax normalization with conditional-probability normalization from prior session, and stopped short of differentiability/gradient as the why-training-works mechanism. Q4 stretch (training-loop generalization): structure correct, notation sloppy with class-index/one-hot conflation. Pre-question revealed he didn't initially know what 'catastrophically wrong' meant; clarifying that example was the unlock."
+        },
+        {
+          "date": "2026-04-30",
+          "score": "practice_exam",
+          "questions": 1,
+          "correct": 1,
+          "notes": "Practice Q12: both losses (0.322 and 1) correct, comparison and intuition right."
+        }
+      ]
+    },
+    {
+      "id": "gan_objective",
+      "name": "GAN Objective Function Conversion",
+      "depth": 3,
+      "prerequisites": [
+        "ce_loss",
+        "mlp_lr_computation"
+      ],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-05-04",
+      "sources": [
+        "sources/intro_to_ai/18 GAN.pdf"
+      ],
+      "history": [
+        {
+          "date": "2026-05-01",
+          "score": 0.92,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Pre-exam morning crash session. Taught GAN minimax objective, the non-saturating G-loss conversion (min log(1-D(G(z))) -> max log(D(G(z)))), and the CE-loss equivalence for D. Q1 Ds targets: clean. Q2 saturation reasoning: captured the right idea informally. Q3 named the equivalence (cross-entropy) cleanly. Surface familiarity achieved - 13 of 13 exam topics now covered."
+        }
+      ]
+    }
+  ]
+}
