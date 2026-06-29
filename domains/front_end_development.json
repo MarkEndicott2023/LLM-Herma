@@ -37,13 +37,14 @@
       "sources": [
         "sources/front_end_development/mdn-content/files/en-us/learn_web_development/getting_started/environment_setup"
       ],
-      "mastery": 0.2,
-      "reps": 1,
-      "interval_days": 2.5,
-      "next_review": "2026-06-24",
+      "mastery": 0.4,
+      "reps": 2,
+      "interval_days": 6.25,
+      "next_review": "2026-07-01",
       "history": [
         {"date": "2026-06-19", "score": 0.667, "questions": 3, "correct": 2, "notes": "FAIL (2/3). Operationally strong: correctly predicted that `cd Documents` from inside my-site errors (relative lookup, no such dir), and wrote `mkdir src && cd src` + `cd ..` cleanly. MISS on conceptual articulation (Q3): inverted the leading-slash rule -- stated leading `/` means relative, and conflated `/` with `~`/home. Correct rule re-taught in-session: leading `/` = ABSOLUTE from root (filesystem root for paths, website root for URLs); no leading slash = relative to current location; `~` is separate = home dir. Pattern to watch: learner executes paths flawlessly but mis-states the abstract rule -- next rep, lead with a 'state the rule' probe before any operational task, and re-verify the `/` vs `~` distinction."},
-        {"date": "2026-06-21", "score": 1.0, "questions": 3, "correct": 3, "notes": "PASS 3/3 on re-teach of the path rule that failed last session. Forced-retrieval probe first: learner had clearly improved -- got `~`=home AND the leading-slash-is-the-decider STRUCTURE right (last time both were wrong), but still placed leading `/` at HOME instead of the filesystem ROOT, and described an absolute path as a 'search until found' rather than an exact named route. Re-taught: `/` = root (top of tree); home = `/Users/markendicott` which itself hangs off root; absolute = full address from one fixed origin, relative = directions from cwd, `~` = jump-to-home shortcut; a path is an exact route, one named step per slash, not a search. Assessment: Q1 (write absolute + `~` commands, say why bare `cd Documents` fails) fully correct; Q3 (state the rule + `cd ../../` lands at /Users/markendicott) fully correct -- the abstract-rule articulation that failed last time is now solid. Q2 (transfer to URLs) correctly applied absolute-vs-relative discrimination but two URL-specific slips that were NOT taught: called `/about` 'likely an error' (it's just example.com/about), and resolved relative href='about' by APPENDING to /blog/2026/post/ instead of REPLACING the last segment, giving /blog/2026/post/about -- correct is /blog/2026/about because .../post has no trailing slash, so post is a document not a dir. Gave full credit: taught material (filesystem abs/rel/root/home) was correct across Q1/Q3 plus the rule-half of Q2; URL relative-resolution (replace-last-segment, trailing-slash semantics) is a separate future micro-lesson, not a dev_environment gap. Next rep: quick root-vs-home recap probe to confirm retention, then it's fine to advance."}
+        {"date": "2026-06-21", "score": 1.0, "questions": 3, "correct": 3, "notes": "PASS 3/3 on re-teach of the path rule that failed last session. Forced-retrieval probe first: learner had clearly improved -- got `~`=home AND the leading-slash-is-the-decider STRUCTURE right (last time both were wrong), but still placed leading `/` at HOME instead of the filesystem ROOT, and described an absolute path as a 'search until found' rather than an exact named route. Re-taught: `/` = root (top of tree); home = `/Users/markendicott` which itself hangs off root; absolute = full address from one fixed origin, relative = directions from cwd, `~` = jump-to-home shortcut; a path is an exact route, one named step per slash, not a search. Assessment: Q1 (write absolute + `~` commands, say why bare `cd Documents` fails) fully correct; Q3 (state the rule + `cd ../../` lands at /Users/markendicott) fully correct -- the abstract-rule articulation that failed last time is now solid. Q2 (transfer to URLs) correctly applied absolute-vs-relative discrimination but two URL-specific slips that were NOT taught: called `/about` 'likely an error' (it's just example.com/about), and resolved relative href='about' by APPENDING to /blog/2026/post/ instead of REPLACING the last segment, giving /blog/2026/post/about -- correct is /blog/2026/about because .../post has no trailing slash, so post is a document not a dir. Gave full credit: taught material (filesystem abs/rel/root/home) was correct across Q1/Q3 plus the rule-half of Q2; URL relative-resolution (replace-last-segment, trailing-slash semantics) is a separate future micro-lesson, not a dev_environment gap. Next rep: quick root-vs-home recap probe to confirm retention, then it's fine to advance."},
+        {"date": "2026-06-25", "score": 1.0, "questions": 3, "correct": 3, "notes": "PASS 3/3 review. Opened with the planned root-vs-home retrieval probe (terminal session w/ cd / vs cd ~): ALL THREE clean -- `cd ~`->/Users/markendicott=home, identified absolute by leading `/`, and stated `~`=home / leading `/`=root correctly. This is the SAME distinction inverted on 2026-06-19 (placed `/` at home) and shaky on 2026-06-21; now durable, retention confirmed. Advanced straight to assessment on a dir-tree artifact. Q1 (write relative + absolute cd to reach domains/) CORRECT both. Q2 (predict outcomes from LLM-Herma): (a) `cd ../old-site`->Projects/old-site CORRECT; (b) `cd /old-site` errors -- learner reasoned old-site isn't directly under root CORRECT (crisped: leading `/` looks for old-site under root, which holds only Users/); (c) `cd ../../../../` counted 4 hops to /Users CORRECT. Q3 (explain `..` + the no-op edge case in own words) CORRECT -- nailed that `..` at root does nothing since root is its own parent, gave own `cd / && cd ..` example. No remaining filesystem-path gaps; learner strong on both operation AND articulation now. SEPARATE open item (NOT a dev_environment gap, do not block on it): URL relative-resolution -- replace-last-segment + trailing-slash semantics from 2026-06-21 Q2 still untaught; surface as a future web_fundamentals/URL micro-lesson. mastery 0.2->0.4, reps 1->2, interval 2.5->6.25, next_review 2026-07-01."}
       ],
       "practical_artifacts": []
     },
@@ -55,16 +56,24 @@
       "sources": [
         "sources/front_end_development/mdn-content/files/en-us/learn_web_development/core/version_control"
       ],
-      "mastery": 0.0,
-      "reps": 0,
-      "interval_days": 1,
-      "next_review": null,
-      "history": [],
+      "mastery": 0.2,
+      "reps": 1,
+      "interval_days": 2.5,
+      "next_review": "2026-06-30",
+      "history": [
+        {"date": "2026-06-27", "score": 0.83, "questions": 3, "correct": 2.5, "notes": "PASS 2.5/3 (0.83) first rep, NEW concept. Learner is well above cold-start on Git -- pre-question (narrate the init/add/commit/branch/remote/push artifact) all 3 correct: git init creates repo, add=stage vs commit=snapshot, origin=remote pointer / push=sync. Micro-checks all clean: staged JUST one file via `git add domains/front_end_development.json` and knew commit captures only staged snapshot (other 2 files stay unstaged); read the real repo `git status` incl. 'up to date with origin/main'; predicted 'ahead by 2 commits' after 2 unpushed local commits and that plain `git push` syncs them. SHARPENED one slip: learner's pre-question Q2 said staging lets you 'push targeted changes' -> corrected to staging controls what goes in the next COMMIT, push always ships whole commits all-or-nothing. ASSESSMENT: Q1 (diagnose diverged branch) CORRECT -- pull/reconcile/push; noted nuance that divergence only needs hand-merge when SAME lines change, else auto-merges. Q2 (teammate committed but coworker can't see it) CORRECT -- forgot push; great 'screenshot vs send to group chat' analogy for local-snapshot-vs-remote. Q4 stretch (secret committed, why delete+recommit insufficient) CORRECT, not scored -- secret permanent in history snapshots, retrievable; tied to key-rotation. GAP = Q3 .gitignore, scored 0.5: (a) gave WRONG RATIONALE for .env -- said 'bloat' for BOTH files; correct is node_modules=pointless bulk+regenerable via npm install, .env=SECURITY (holds secret API key, committing leaks it -- exactly the Q4 disaster); (b) WRONG PATTERN `.env/*` (treats .env as a directory) -- correct line is just `.env` since it's a file; also `node_modules/` cleaner than `node_modules/*`. NEXT REP: re-probe .gitignore -- (1) glob syntax for a file vs a directory, (2) WHY a secrets file is ignored (leak/rotate), not bloat. Also: this becomes the 3rd active concept (mastery>0) alongside web_fundamentals(0.4) and dev_environment(0.4) -- START INTERLEAVING from next session (pull a path/URL or web-mechanics retrieval item into git reviews). mastery 0->0.2, reps 0->1, interval 1->2.5, next_review 2026-06-30."}
+      ],
       "practical_artifacts": [
         {
           "kind": "cli_command",
           "label": "Initialize a repo and push the first commit",
           "value": "git init\ngit add .\ngit commit -m \"Initial commit\"\ngit branch -M main\ngit remote add origin git@github.com:user/repo.git\ngit push -u origin main"
+        },
+        {
+          "kind": "config",
+          "label": "Minimal .gitignore for a JS project",
+          "value": "node_modules/\n.env\ndist/",
+          "note": "node_modules/ and dist/ = regenerable bulk (npm install / build); .env = secrets, must NOT be committed (leak -> rotate key). Pattern is a bare filename for a file (.env), trailing slash for a directory (node_modules/)."
         }
       ]
     },
