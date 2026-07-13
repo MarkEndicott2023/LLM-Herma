@@ -2,6 +2,147 @@
   "name": "Auth0 Development",
   "goal": "Pass the Auth0 Certified Developer exam (Okta certification). The exam has two parts: Part I is DOMC (Discrete Option Multiple Choice) covering planning, authentication, user management, customization, security, monitoring, and the Management API. Part II is hands-on practical tasks (~50% of score) performed in a live Auth0 tenant \u2014 SSO setup, passwordless, custom DB connections, social connections, bulk migration, Organizations + RBAC, token enrichment via Actions, Universal Login branding, custom Actions, and MFA.",
   "created": "2026-05-23",
+  "strategy": {
+    "mode": "breadth-first",
+    "updated": "2026-07-01",
+    "prereq_threshold": 0.4,
+    "note": "Foundations (depth-0: iam/oauth/jwt/tenant) are covered. Shift from depth-drilling to breadth: sweep the untaught practical layer (flows, connections, sessions/logout, Actions, Organizations, MFA, migration, branding, Management API) to widen exam coverage. Unlock a concept's dependents once its prerequisites reach mastery >= prereq_threshold (0.4, ~two passes) instead of the default 0.7 (~four passes). This overrides the default 0.7 prerequisite gate in CLAUDE.md for THIS domain. Prefer introducing a NEW unlocked concept over re-drilling an already-passing one, unless it is overdue or struggling (mastery < 0.4 with reps > 0).",
+    "hands_on": "Mark has a live free tenant: dev-mark-end (created 2026-07-10). Whenever a concept has a Dashboard/tenant surface (connections, Actions, MFA, branding, Organizations, logs, Management API, etc.), embed real Dashboard activity: 'go click this in dev-mark-end, tell me what you see' tasks for teaching, and at least one live-tenant task in assessment where practical. Prefer live artifacts (real minted tokens, real screens, Test tab, real logs) over described ones. Rationale: Part II of the exam (~50%) is hands-on; verbal-only path drilling repeatedly failed."
+  },
+  "practice_exams": [
+    {
+      "date": "2026-07-01",
+      "source": "sources/auth0_development/practice_exam_attempt_070126.pdf",
+      "provider": "Auth0 / Caveon SEI practice exam",
+      "reported_score": 53.85,
+      "questions": 20,
+      "correct_by_mark": 12,
+      "wrong_by_mark": 8,
+      "note": "External breadth diagnostic across the full blueprint, NOT a taught-then-assessed session -- per-concept spaced-repetition mastery intentionally NOT modified (most untaught-topic correct answers are likely educated guesses / general dev knowledge, not proven retention). Every one of the 8 misses maps to an untaught concept (mastery 0.0); zero misses on the four studied foundations. Recorded as a signal to prioritize breadth over depth, not to advance SR state.",
+      "items": [
+        {
+          "q": 1,
+          "concept": "session_layers_logout",
+          "result": "correct",
+          "topic": "federated logout endpoint /oidc/logout?federated"
+        },
+        {
+          "q": 2,
+          "concept": "management_api_basics",
+          "result": "correct",
+          "topic": "Management API to edit LDAP/AD advanced connection settings"
+        },
+        {
+          "q": 3,
+          "concept": "oauth2_vs_oidc",
+          "result": "correct",
+          "topic": "ID token carries basic profile identity (name/email/user_id)"
+        },
+        {
+          "q": 4,
+          "concept": "user_profile_metadata",
+          "result": "correct",
+          "topic": "progressive profiling sources: IdP + Application"
+        },
+        {
+          "q": 5,
+          "concept": "user_profile_metadata",
+          "result": "wrong",
+          "topic": "normalized-profile attribute mapped only when available (answered user_id)"
+        },
+        {
+          "q": 6,
+          "concept": "auth0_tenant_basics",
+          "result": "correct",
+          "topic": "purpose/functionality of Auth0 extensions"
+        },
+        {
+          "q": 7,
+          "concept": "universal_vs_embedded_login",
+          "result": "wrong",
+          "topic": "Cross-Origin Auth scenario for Embedded Login (answered native app)"
+        },
+        {
+          "q": 8,
+          "concept": "application_types",
+          "result": "correct",
+          "topic": "confidential clients that hold a secret: M2M + Regular Web App"
+        },
+        {
+          "q": 9,
+          "concept": "session_layers_logout",
+          "result": "wrong",
+          "topic": "Universal Login SSO session store = HTTP cookie (answered OIDC tokens)"
+        },
+        {
+          "q": 10,
+          "concept": "actions_anatomy",
+          "result": "wrong",
+          "topic": "Pre-User-Registration Action use case = deny by location (answered add roles to tokens)"
+        },
+        {
+          "q": 11,
+          "concept": "database_and_social_connections",
+          "result": "correct",
+          "topic": "custom DB script without final callback -> stalls, error on Webtask container recycle"
+        },
+        {
+          "q": 12,
+          "concept": "management_api_basics",
+          "result": "wrong",
+          "topic": "HTTP 429 = rate limit exceeded (answered invalid request URI) -- knows 429 conceptually from JWKS-DoS work, failed to transfer to Mgmt API context"
+        },
+        {
+          "q": 13,
+          "concept": "user_migration",
+          "result": "correct",
+          "topic": "bulk import primary format = JSON"
+        },
+        {
+          "q": 14,
+          "concept": "attack_protection",
+          "result": "correct",
+          "topic": "prevent stolen-credential signups = Breached Password Detection"
+        },
+        {
+          "q": 15,
+          "concept": "custom_claims_via_actions",
+          "result": "correct",
+          "topic": "block-by-country Action uses event.request.geoip"
+        },
+        {
+          "q": 16,
+          "concept": "organizations_b2b",
+          "result": "correct",
+          "topic": "organization_name placeholder redirect URL structure"
+        },
+        {
+          "q": 17,
+          "concept": "identifier_first_hrd",
+          "result": "wrong",
+          "topic": "Universal Login Auth Profile options = Identifier First / Identifier First + Biometrics (answered Social + Passwordless)"
+        },
+        {
+          "q": 18,
+          "concept": "organizations_b2b",
+          "result": "wrong",
+          "topic": "two valid ways to become an Organization member"
+        },
+        {
+          "q": 19,
+          "concept": "branding_universal_login",
+          "result": "wrong",
+          "topic": "Classic Login pages customizable via Dashboard (answered MFA + Mgmt API page template)"
+        },
+        {
+          "q": 20,
+          "concept": "enterprise_connections_sso",
+          "result": "correct",
+          "topic": "OIDC IdP data-transformation + protocol security = PKCE + attribute/claim mapping"
+        }
+      ]
+    }
+  ],
   "concepts": [
     {
       "id": "iam_fundamentals",
@@ -11,11 +152,25 @@
       "sources": [
         "sources/auth0_development/01_iam_fundamentals.md"
       ],
-      "mastery": 0.6,
+      "mastery": 0.3,
       "reps": 3,
-      "interval_days": 20,
-      "next_review": "2026-06-26",
+      "interval_days": 1,
+      "next_review": "2026-07-13",
       "history": [
+        {
+          "date": "2026-07-12",
+          "score": 0.767,
+          "questions": 3,
+          "correct": 2.3,
+          "notes": "Overdue review (due 07-07, 5 days over; m=0.45, prior FAIL). Retrieval-first warm-ups on all 07-06 flagged items -- ALL REVERSED/HELD. (1) aud=resource vs scope=operation (the 07-06 fail driver): given invoices API with checkJwt-only DELETE route + read:invoices token, named the missing delete:invoices scope gate unprompted, wrote the fix (nit: wrote 'delete:orders' -- scope must match THIS API's vocabulary), correct 401-vs-403 rationale; taught requiredScopes() middleware as the idiomatic fix. (2) Layering probe CLEAN: wrong-aud token carrying delete:invoices -> 401, scope never evaluated (validation fails first); even flagged deliberate audience-confusion. (3) Opaque-to-client identity sources: named BOTH id_token claims AND /userinfo unprompted -- the 07-10 soft /userinfo recall now retrieved cold. ASSESSMENT 2.2/3=0.733 FAIL. Q1 (ownership gap: Alice with read:invoices GETs Bob's invoice through passing aud+scope checks -- what's still wrong): 0.2 MISS. Claimed the validation checklist was absent (FALSE: checkJwt is in the middleware chain) and that requiredScopes lacks an explicit 403 (FALSE: it 403s automatically); never reached the record-level/ownership gap. Taught THREE-LAYER model: aud = may-I-talk-to-this-API (401); scope = may-I-do-this-OPERATION-CLASS (403); ownership = may-I-touch-THIS-record -- compare resource owner to token sub (invoice.owner_sub !== req.auth.payload.sub -> 403), or scope design read:own_invoices + query filtered by sub. SECOND consecutive miss on record-level authZ (07-06: right instinct, wrong mechanism via URL paths; today: misread the artifact and diagnosed present code as missing). Pattern: both misses invented absent code instead of finding what was truly missing -- coach 'read the artifact literally before theorizing'. Q2 (audience-binding one-liner, verify-at-interval item): 1.0 -- 'require aud == the API's own identifier, 401 otherwise' -- the crisp single sentence finally delivered (0.85 twice before). Solid, retire to long spacing. Q3 INTERLEAVED application_types (confidential vs public clients): 1.0 -- RWA+M2M confidential (server-held secret), SPA/Native public (code runs in user's hands, cannot keep a secret -> PKCE). Interleave PASSED -> application_types next_review UNCHANGED (2026-07-09, still overdue -- natural next session). mastery 0.45->0.30, interval 1, next_review 2026-07-13, reps stays 3. NEXT REVIEW focus: (1) record-level/ownership authZ -- drill FIRST, fresh surface, retrieval-first on the three-layer model, make him FIND the ownership gap in a clean artifact; (2) artifact-reading discipline -- verify the claimed-missing code is actually missing; (3) audience-binding one-liner + opaque-to-client + /userinfo all landed -- do NOT re-drill, verify at interval. REGRADE: Mark disputed Q1 ('never touched checkJwt middleware'). Partially upheld: requiredScopes auto-403 behavior WAS untaught (introduced minutes before assessment, failure behavior never stated) -- that half of his answer regraded out, Q1 0.2->0.3, session 0.733->0.767, still FAIL (scheduling unchanged). Rejected: checkJwt-as-validation-gate was used correctly by Mark himself on 07-06 and in today's warm-up; and the graded gap (ownership) required no JS knowledge -- the stem stated Alice received Bob's invoice with a 200. Lesson re-affirmed: never grade on library internals not explicitly taught (see 05-29 regrade incident)."
+        },
+        {
+          "date": "2026-07-06",
+          "score": 0.48,
+          "questions": 3,
+          "correct": 1.45,
+          "notes": "Overdue review (due 06-26, 10 days over; m=0.6). Retrieval-first on the two 06-06 flagged items (NAME the attack class; WALK the low-priv token-replay). WARM-UP STRONG: given a Payroll API express-oauth2-jwt-bearer config whose audience array wrongly included BOTH the payroll identifier AND the analytics identifier, plus a decoded low-priv analytics access token (aud=[analytics], scope=read:dashboards): (1) pinned the exact bad line; (2) NAMED 'audience confusion' unprompted (added aliases token-substitution + confused-deputy); (3) walked the replay correctly EXCEPT the payoff clause -- said it 'grants read:dashboards permissions', corrected to: the /payroll/salaries route gates ONLY on checkJwt (token validity), NO scope check, so once aud wrongly passes the foreign token is 'valid' and getAllSalaries() runs; scope is irrelevant. Quick-check CLEAN: one-line fix (audience:'https://payroll.acme.com') + replayed token now fails aud -> 401 (checklist failure). ASSESSMENT 1.45/3=0.48 FAIL. Q1 (aud now CORRECT but self-service user reads ALL salaries -- what control is missing): 0.4 MISS. Right instinct (self-service shouldn't see all salaries = over-broad access) but proposed the wrong mechanism -- per-record URL path (/payroll/salaries/1234) -- and NEVER named scopes/permissions. Taught: aud authorizes the RESOURCE (which API you may talk to), NOT the OPERATION; passing checkJwt only proves 'allowed to talk to Payroll API', not 'may read all salaries'. Missing control = operation-level authZ via scopes/permissions (RBAC): self-service token carries narrow scope (read:own_salary), the all-salaries route must require read:all_salaries and 403 if absent (the lone 403 case). Path structure != enforcement (attacker just requests /1234 -> /9999 without an ownership check). Layered: aud = may-I-talk-to-this-API (necessary not sufficient); scope/permission = may-I-do-THIS. Q2 (single principle behind audience-confusion AND ID-token-sent-to-API, teach-back): 0.85 -- correctly stated the API must require aud == its OWN identifier as sole recipient, and connected it to blocking BOTH cases. Principle landed (audience binding: only accept a token addressed to you); push for crisper one-liner next time. Q3 INTERLEAVED oauth2_vs_oidc (SPA does jwt.decode(accessToken).name for the navbar -- 2 wrongs + what to use): 0.2 MISS + FACTUAL ERROR about jwt.decode. Claimed 'a decoded JWT is a 3-dot-segment string with no .name method' -- WRONG: the ENCODED token is 3 base64url segments; jwt.decode PARSES it and returns the payload as an OBJECT (no sig check), so .name is a valid property access that works if the claim exists. Missed BOTH intended points: (1) HEADLINE -- the access token is addressed to the API (aud=payroll), the client must treat it as OPAQUE and never decode/depend on its claims (Auth0 guidance; contents are an Auth0<->API contract, may change/be opaque-format); this is the exact 06-22 opaque-to-client gap, REGRESSED; (2) 'name' isn't an access-token claim anyway -- it's a profile claim on the ID TOKEN (profile scope); get identity from the id_token's claims or /userinfo, not the access token. Interleave MISSED -> oauth2_vs_oidc next_review pulled to 2026-07-07 (soft decay signal; already overdue). mastery 0.6->0.45, interval 20->1, next_review 2026-07-07, reps stays 3. NEXT REVIEW focus: (1) aud authorizes RESOURCE not OPERATION; missing operation-level gate = scopes/permissions (RBAC), 403 on insufficient scope -- drill FIRST; (2) access token is OPAQUE TO THE CLIENT (never decode in SPA), and jwt.decode returns a PARSED OBJECT not a string -- correct the mechanics; (3) identity for the client = id_token claims / /userinfo, name is NOT an access-token claim; (4) Q2 audience-binding principle solid -- verify at interval, push one-liner."
+        },
         {
           "date": "2026-06-06",
           "score": 0.9,
@@ -56,11 +211,18 @@
         "sources/auth0_development/03_jwt_and_signing.md",
         "sources/auth0_development/09_tokens.md"
       ],
-      "mastery": 0.75,
-      "reps": 6,
-      "interval_days": 6.25,
-      "next_review": "2026-06-28",
+      "mastery": 0.95,
+      "reps": 7,
+      "interval_days": 15.625,
+      "next_review": "2026-07-26",
       "history": [
+        {
+          "date": "2026-07-10",
+          "score": 0.867,
+          "questions": 3,
+          "correct": 2.6,
+          "notes": "Overdue review (due 07-07, 3 days over; m=0.75), 15-minute LEAN session same day as the tenant_basics hands-on walkthrough. WARM-UP: the 2x-cold-missed opaque-to-client headline (0.2 on 07-06 iam review, 0.5 on 07-09 tenant interleave) FINALLY LANDED COLD -- given a SPA jwtDecode(access_token).name artifact, named BOTH distinct wrongs unprompted: (1) access token addressed to the API (aud=API identifier), 'no place to structurally exist in the app' = the opaque-to-client rule; (2) name is an id_token/profile claim, not an access-token claim. Sharpened: claims are an Auth0<->API contract, and without an audience param the token isn't even a JWT so jwtDecode THROWS. Gap: could NOT name /userinfo as the second identity source (id_token claims named fine) -- /userinfo recall still soft, probe lightly. ASSESSMENT 2.6/3=0.867 PASS. Q1 (one-liner unification of M2M-no-id_token + aud=client_id, 0.8 twice before): 0.85 -- got it into ONE sentence ('id_token = JWT verifying human user identity at login, living in the app hence client_id'). Two standing nits corrected AGAIN: id_token is the RECEIPT of authentication, not a verifier; aud=client_id names the intended RECIPIENT, not 'where it lives' (same phrasing corrected 06-22 -- sticky). Q2 (issuer-confusion cold probe, jwksUri from token's own payload.iss): 0.9 -- headline correct (verifier lets token pick its own key source; attacker mints own token + hosts own JWKS, passes trivially; fix = pin). Nit: said attacker 'forges the public key' -- attacker uses their OWN REAL keypair, signature genuinely valid, deception is entirely in iss. Issuer-confusion HELD at 3-week spacing (regression 06-16 fully durable now). Q3 INTERLEAVED auth0_tenant_basics BUNDLE path (missed same morning in walkthrough assessment): 0.85 -- 'User Management -> Roles -> Add Permissions from DEFINE' = correct destination + correct source framing (permissions drawn from the API's vocabulary). Reversed the same-day miss. Interleave PASSED -> tenant_basics next_review UNCHANGED (2026-07-13). mastery 0.75->0.95, interval 6.25->15.625, next_review 2026-07-26, reps 6->7. NEXT REVIEW focus: (1) opaque-to-client landed cold once -- verify it HOLDS at the long interval (the big win to protect); (2) /userinfo as second identity source -- soft, one light probe; (3) sticky phrasings: id_token=receipt-not-verifier, aud=recipient-not-residence (corrected 3x now); (4) attacker uses own real keypair in issuer-confusion, nothing is 'forged' cryptographically; (5) concept near ceiling -- do NOT over-drill, long spacing."
+        },
         {
           "date": "2026-06-13",
           "score": 0.817,
@@ -134,11 +296,18 @@
       "sources": [
         "sources/auth0_development/03_jwt_and_signing.md"
       ],
-      "mastery": 0.85,
-      "reps": 5,
-      "interval_days": 6.25,
-      "next_review": "2026-06-25",
+      "mastery": 1.0,
+      "reps": 6,
+      "interval_days": 15.625,
+      "next_review": "2026-07-19",
       "history": [
+        {
+          "date": "2026-07-03",
+          "score": 0.825,
+          "questions": 4,
+          "correct": 3.3,
+          "notes": "Overdue review (due 06-25, 8 days over; m=0.85 at ceiling). LEAN retrieval-first per 'do not over-drill'. Q1 (decoded RS256 access token + jwt.verify, validation order + verdict): 1.0 -- alg-pin -> kid -> cached JWKS (refetch-once-on-miss) -> verify sig -> iss/aud/exp; verdict PASS correct (iss=tenant, aud=API identifier NOT client_id so a genuine access token, exp 1751504800 > now 1751501200 so not expired); folded in bounded-refetch DoS guard unprompted. Q2 (RS256 signature step, what the public key does -- THE lone recurring soft nuance): 0.5 -- cold first answer REPEATED the flagged slip ('recompute a portion of the signature for comparison'), self-contradicting his own correct 'not minting'. Re-taught precise mechanism: signer SHA-256-hashes signing input b64(header).b64(payload) -> digest -> signs/encrypts digest with PRIVATE key = signature; verifier RECOMPUTES THE HASH of the same input, uses PUBLIC key to UNWRAP the signature back to the signer's digest, COMPARES the two digests; public key verifies, cannot mint. SAY-BACK CLEAN: 'recompute the token's hash/digest, use public key to unwrap the signature to the original digest, those are compared, signature never recomputed' -- correction LANDED. Same slip as 06-02/06-19; retrieved correctly on say-back but MISSED cold, so keep ONE light cold probe next interval. Q3 (which claim gates DELETE /orders/9; token carries BOTH scope + permissions): 0.8 -- verdict correct (delete:orders absent -> 403) but gated on SCOPE; sharpened: permissions array present (Add Permissions ON) so the canonical Auth0 gate is the permissions claim; also scope is a SPACE-DELIMITED STRING (split/substring) while permissions is an ARRAY. Q4 INTERLEAVED oauth2_vs_oidc (M2M client_credentials + scope 'openid profile read:orders' + audience -> which tokens + format): 1.0 COLD -- both switches clean: no id_token (client_credentials = no human, openid/profile not honored) + access token JWT (audience set). Interleave PASSED -> oauth2_vs_oidc next_review UNCHANGED (already overdue 06-28). SCORE 3.3/4=0.825 PASS. mastery 0.85->1.0 (ceiling), interval 6.25->15.625d, next_review 2026-07-19, reps 5->6. NEXT REVIEW focus: (1) ONLY soft nuance left = RS256 verify recomputes the HASH not the signature (missed cold, nailed on say-back) -- ONE light cold probe, do NOT over-drill; (2) when both scope + permissions present, gate on the permissions claim (array) not scope (space-string); (3) all other pieces at ceiling -- long interval now, verify at spacing; (4) keep decoded-token/JS artifacts (Part II)."
+        },
         {
           "date": "2026-06-13",
           "score": 0.633,
@@ -191,11 +360,18 @@
       "sources": [
         "sources/auth0_development/02_auth0_platform.md"
       ],
-      "mastery": 0.7,
-      "reps": 5,
-      "interval_days": 6.25,
-      "next_review": "2026-07-03",
+      "mastery": 0.75,
+      "reps": 6,
+      "interval_days": 2.5,
+      "next_review": "2026-07-13",
       "history": [
+        {
+          "date": "2026-07-10",
+          "score": 0.817,
+          "questions": 3,
+          "correct": 2.45,
+          "notes": "THE PROMISED HANDS-ON DASHBOARD WALKTHROUGH -- first-ever live-tenant session, in Mark's new free tenant dev-mark-end. Physically executed nearly the full build: (1) registered Orders API (Identifier https://orders-api/, RS256) under Applications -> APIs; (2) DEFINE: added read:orders/delete:orders/refund:orders on the API's Permissions tab; (3) BUNDLE: created role order-manager (User Management -> Roles), added read+delete (deliberately excluded refund for the RBAC-filter demo); (4) ASSIGN: added his own user to the role via the role's Users tab; (5) flipped both RBAC toggles, NAMING THEM EXACTLY off-screen ('Enable RBAC', 'Add Permissions in the Access Token') with correct evaluate-vs-inject one-liners; (6) M2M: created order-daemon, authorized Orders API with only read:orders, verified the grant from the API side, then used the API's Test tab -- predicted grant_type=client_credentials, access-token-only (no human), aud=identifier, scope=read:orders, ALL VERIFIED against the real response (two-switch model applied live). UI NOTE: the M2M-grants tab on an API is now labeled 'Application Access' in the current Dashboard (formerly 'Machine to Machine Applications') -- hold both names for exam vocab. WARM-UP WINS: many-apps-one-API rationale LANDED unprompted when the role's add-permissions dialog forced picking an API first ('SPA, native app, or daemon may all use the same API permissions' -- the 07-09 Q2 gap, closed via physical UI); M2M requested-INTERSECT-granted rule stated correctly cold TWICE (pre-click and in assessment). ASSESSMENT 2.45/3=0.817 PASS (Mark requested a quick consolidation assessment, short on time; SPA registration step NOT completed). Q1 (applied: predict scope + permissions for SPA login, requested openid profile read:orders refund:orders, role grants read+delete, both toggles ON): 0.95 -- scope='openid profile read:orders' with refund dropped attributed to Enable RBAC filtering, permissions=[read, delete] as full grant-set injection; only unsaid: delete never enters SCOPE (granted-not-requested), implied correctly. Q2 (exact Dashboard paths for DEFINE/BUNDLE/ASSIGN): 0.6 -- THE RECURRING CONFUSION IN NEW FORM: DEFINE path correct, but gave the ASSIGN path TWICE (role->Users->Add Users labeled as BUNDLE, plus user->Roles->Assign) and NO BUNDLE path (Roles -> [role] -> Permissions -> Add Permissions) -- previously folded ASSIGN into BUNDLE, now folded BUNDLE into ASSIGN. DISCLOSED he peeked at the live Dashboard to jog paths (honest; grade reflects open-book). Q3 INTERLEAVED application_types (can order-spa hold a client secret like order-daemon): 0.9 -- public client / secret-readable-in-browser / PKCE replacement all correct; sharpened PKCE = per-authorization code_verifier/code_challenge proving same-app-finishes-flow, not 'random secrets at login'. Interleave PASSED -> application_types next_review UNCHANGED (overdue 07-09, top candidate next session). mastery 0.55->0.75, interval 1->2.5, next_review 2026-07-13, reps 5->6. NEXT REVIEW focus: (1) BUNDLE path is the lone lifecycle gap -- drill 'Roles -> [role] -> Permissions -> Add Permissions' vs the two ASSIGN paths, cold, no peeking; (2) FINISH THE BUILD: register order-spa (SPA app) + do a real Universal Login as the test user and decode the actual access token (see scope-filter + permissions injection live); (3) Q4 stretch STILL OWED (4th deferral): Default Audience tenant setting (General tab) -> staging returns JWT without audience param; (4) 'Application Access' vs 'Machine to Machine Applications' tab naming -- verify he holds both; (5) opaque-to-client headline belongs to oauth2_vs_oidc, due 07-07 -- drill there FIRST next session."
+        },
         {
           "date": "2026-06-04",
           "score": 0.967,
@@ -236,7 +412,7 @@
           "score": 0.733,
           "questions": 3,
           "correct": 2.2,
-          "notes": "Overdue review (due 06-20, m=0.45, recovering from 0.93 on 06-17). OSCILLATION RECURS -> FAIL 0.733, but NOT from the two historically-flagged gaps (those HELD COLD). WARM-UPS both clean: (a) RBAC scope-filtering with a mixed OIDC scope + ungranted API perm -- Mark produced scope='openid profile read:orders write:orders' (delete:orders dropped, openid/profile pass through) AND permissions=['read:orders','write:orders'] (API-perms-only) UNPROMPTED, exact -- the twice-regressed evaluate-vs-inject is HOLDING at interval. (b) App-vs-API: gave the MECHANISM not the symptom (App has only client_id/name-tag, no Identifier; RBAC needs an address-like object=API; client_id-as-audience doesn't resolve to a Resource Server -> opaque token). Mark then SELF-SURFACED a deeper actor-model question (does the app check RBAC before requesting?) -> taught the THREE-ACTOR model (App requests blindly / Auth0-ISSUER reads API RBAC + filters + injects + signs at MINT time / API only verifies+reads); his quick-check answer ('Auth0 at mint-time after checking API settings vs Dana's role') was EXACT. FAIL DRIVERS = NEW areas, not old gaps: Q1 artifact-debug (RBAC ON, Add Permissions OFF, middleware reads token.permissions, server 500s) ~0.7: (b) CORRECT 500-not-403 because permissions claim absent (Add Perms OFF); (c) BOTH fixes correct (read off scope claim OR flip Add Permissions ON) -- minor: scope claim is a SPACE-DELIMITED STRING not array (scope.includes does substring match; split(' ') robust) + var typo (defined perms, checked scope); (a) TWO ERRORS -> scope claim: Mark ADDED read:shipment but the app only REQUESTED 'openid profile cancel:shipment'; read:shipment is granted to Raj's role but NOT requested, so ABSENT. NEW NUANCE: scope universe = the REQUESTED set; RBAC intersects requested∩granted and can only REMOVE, NEVER ADD an unrequested-but-granted perm. AND he listed a permissions array in (a) that CONTRADICTS his own correct (b) (Add Perms OFF => NO permissions claim) -- careless slip, knowledge is there. Q2 lifecycle-trace (define->enforce, name actor each step) 0.5: nailed the MIDDLE (App requests -> Auth0 evaluates RBAC + mints) but SKIPPED the first half asked for -- admin DEFINES cancel:shipment on the API object, admin BUNDLES into Dispatcher role + ASSIGNS to Raj (all taught THIS session via correction#1); actor slip 'Auth0 sends token to API' -> Auth0 returns token to the APP, the APP relays it as Bearer; enforcement underspecified (API verifies THEN reads claim + allow/deny = the if-includes line). Q3 INTERLEAVED oauth2_vs_oidc (no audience param + openid) 1.0: JWT id_token (openid switch) + opaque access token (no audience). Interleave PASSED -> oauth2_vs_oidc next_review UNCHANGED. Q4 stretch (M2M direct grants, no openid/profile): SKIPPED by learner -- excluded, no penalty; re-offer next time. NEXT REVIEW focus: (1) NEW: scope claim universe = REQUESTED set; RBAC only ever REMOVES, never ADDS an unrequested-but-granted perm (Mark added read:shipment) -- drill with a granted-but-unrequested perm present; (2) full permission LIFECYCLE incl the DEFINE-on-API + ASSIGN-via-role admin steps (Mark starts the trace at request-time, omits define -- 'starts mid-story' shape); (3) token relay actor: Auth0 returns token to APP, APP sends to API (he said Auth0->API); (4) the two OLD flagged gaps (RBAC evaluate-vs-inject, App-vs-API Identifier->aud) HELD COLD -- do NOT over-drill, verify at spacing; (5) Q4 M2M direct-grants stretch still owed. PROCESS: first/only block this sitting, no fatigue."
+          "notes": "Overdue review (due 06-20, m=0.45, recovering from 0.93 on 06-17). OSCILLATION RECURS -> FAIL 0.733, but NOT from the two historically-flagged gaps (those HELD COLD). WARM-UPS both clean: (a) RBAC scope-filtering with a mixed OIDC scope + ungranted API perm -- Mark produced scope='openid profile read:orders write:orders' (delete:orders dropped, openid/profile pass through) AND permissions=['read:orders','write:orders'] (API-perms-only) UNPROMPTED, exact -- the twice-regressed evaluate-vs-inject is HOLDING at interval. (b) App-vs-API: gave the MECHANISM not the symptom (App has only client_id/name-tag, no Identifier; RBAC needs an address-like object=API; client_id-as-audience doesn't resolve to a Resource Server -> opaque token). Mark then SELF-SURFACED a deeper actor-model question (does the app check RBAC before requesting?) -> taught the THREE-ACTOR model (App requests blindly / Auth0-ISSUER reads API RBAC + filters + injects + signs at MINT time / API only verifies+reads); his quick-check answer ('Auth0 at mint-time after checking API settings vs Dana's role') was EXACT. FAIL DRIVERS = NEW areas, not old gaps: Q1 artifact-debug (RBAC ON, Add Permissions OFF, middleware reads token.permissions, server 500s) ~0.7: (b) CORRECT 500-not-403 because permissions claim absent (Add Perms OFF); (c) BOTH fixes correct (read off scope claim OR flip Add Permissions ON) -- minor: scope claim is a SPACE-DELIMITED STRING not array (scope.includes does substring match; split(' ') robust) + var typo (defined perms, checked scope); (a) TWO ERRORS -> scope claim: Mark ADDED read:shipment but the app only REQUESTED 'openid profile cancel:shipment'; read:shipment is granted to Raj's role but NOT requested, so ABSENT. NEW NUANCE: scope universe = the REQUESTED set; RBAC intersects requested\u2229granted and can only REMOVE, NEVER ADD an unrequested-but-granted perm. AND he listed a permissions array in (a) that CONTRADICTS his own correct (b) (Add Perms OFF => NO permissions claim) -- careless slip, knowledge is there. Q2 lifecycle-trace (define->enforce, name actor each step) 0.5: nailed the MIDDLE (App requests -> Auth0 evaluates RBAC + mints) but SKIPPED the first half asked for -- admin DEFINES cancel:shipment on the API object, admin BUNDLES into Dispatcher role + ASSIGNS to Raj (all taught THIS session via correction#1); actor slip 'Auth0 sends token to API' -> Auth0 returns token to the APP, the APP relays it as Bearer; enforcement underspecified (API verifies THEN reads claim + allow/deny = the if-includes line). Q3 INTERLEAVED oauth2_vs_oidc (no audience param + openid) 1.0: JWT id_token (openid switch) + opaque access token (no audience). Interleave PASSED -> oauth2_vs_oidc next_review UNCHANGED. Q4 stretch (M2M direct grants, no openid/profile): SKIPPED by learner -- excluded, no penalty; re-offer next time. NEXT REVIEW focus: (1) NEW: scope claim universe = REQUESTED set; RBAC only ever REMOVES, never ADDS an unrequested-but-granted perm (Mark added read:shipment) -- drill with a granted-but-unrequested perm present; (2) full permission LIFECYCLE incl the DEFINE-on-API + ASSIGN-via-role admin steps (Mark starts the trace at request-time, omits define -- 'starts mid-story' shape); (3) token relay actor: Auth0 returns token to APP, APP sends to API (he said Auth0->API); (4) the two OLD flagged gaps (RBAC evaluate-vs-inject, App-vs-API Identifier->aud) HELD COLD -- do NOT over-drill, verify at spacing; (5) Q4 M2M direct-grants stretch still owed. PROCESS: first/only block this sitting, no fatigue."
         },
         {
           "date": "2026-06-23",
@@ -251,6 +427,13 @@
           "questions": 3,
           "correct": 2.65,
           "notes": "Overdue review (due 06-25, m=0.50, oscillator recovering from 0.80 on 06-23). One block this sitting (honored one-concept-per-sitting). RETRIEVAL-FIRST cold warm-ups on the THREE 06-23 retention items -- ALL THREE HELD COLD, strongest oscillation-up showing. (1) scope-vs-permissions DIVERGENCE (the 06-23 NEW fail driver): cold artifact (Orders API RBAC+AddPerms ON, Agent role grants read/write/refund, SPA requests openid profile read/write/export) -> Mark produced BOTH claims EXACTLY by reasoning: scope='openid profile read:orders write:orders' (export dropped=requested-not-granted; refund NOT added=granted-not-requested) AND permissions=[read,write,refund] (full effective role grants, request-independent, refund present despite not requested). REVERSES the 06-23 miss. The one-liner abstraction was FUZZY though -- asked 'scope filtered by ___, permissions filtered by ___', he said 'granted permissions / possible role permissions' which doesn't isolate the DISTINGUISHING filter. Corrected: scope's distinguishing filter is THE REQUEST (requested INTERSECT granted); permissions = effective role grants ONLY, NOT request-filtered -- the request is what bounds scope and is ABSENT from permissions (that's why refund shows in permissions but not scope). Re-probe (request shrunk to 'openid profile read:orders') -> CLEAN: scope='openid profile read:orders', permissions=[read,write,refund] unchanged. Divergence now retrieved cold + on a fresh surface. (2) token-relay actor (regressed AGAIN 06-23): cold hop-trace (SPA POST /orders/4471/refund) -> ALL correct: Auth0 returns token to SPA; SPA sends Authorization: Bearer header; Auth0 never talks to API directly, API's only out-of-band call is JWKS fetch. Reverses the 06-23 'Auth0 sends token to API' regression. Tiny syntax nit: wrote 'Authorization: Bearer: <token>' (extra colon) -- mechanism solid. (3) audience-LOCATION (06-23 misconception): cold -> ALL correct: audience sent to Auth0 at MINT time, baked in as aud claim; API checks aud==its own identifier; an extra ?audience= on the API call is IGNORED (info already in token). HELD. ASSESSMENT 2.65/3=0.883 PASS (clean, not borderline -- best in a while). Q1 (full lifecycle, name actor each step, start from 'permission does not exist'): 0.85 -- NAMED THE HUMAN ADMIN (the recurring 06-21/06-23 miss) and led with DEFINE+BUNDLE+toggles then SPA-request -> Auth0-mint -> API-verify with correct actor each hop; 'starts mid-story' gap CLOSED. Soft spots: folded ASSIGN into BUNDLE (fair since Dana pre-holds Agent, but keep DEFINE/BUNDLE/ASSIGN as 3 distinct admin steps); wording slip 'mints JWT with permissions baked in scope' re-muddles the two claims he'd just separated -> Auth0 EVALUATES request vs role grants and writes the scope claim (+ permissions if toggle on). Q2 (debug: API gates refund on scope claim, RBAC+AddPerms ON, app didn't request refund): 1.0 -- 403 because refund absent from scope (not requested); with AddPerms ON gate on the EFFECTIVE permissions claim not scope; fix permissions.includes('refund:orders'); correctly used permissions as an array (no split needed unlike space-delimited scope string). Divergence applied IN ENFORCEMENT, deeper than warm-up. Q3 INTERLEAVED jwt_anatomy (unknown-kid JWKS handling): 0.8 -- (a) one bounded refetch then reject CLEAN; (b) self-DoS via Auth0 rate-limiting CLEAN, but STOPPED one beat short of the final damage (once rate-limited the API can't fetch LEGIT rotated keys either -> VALID tokens start failing 401 = the real outage; attacker pays nothing) -- the SAME missing 'valid-tokens-then-fail' beat flagged on jwt_anatomy 06-19. Interleave PASSED (core correct) -> jwt_anatomy next_review UNCHANGED. Q4 STRETCH (M2M direct grants, owed since 06-21 -- finally ATTEMPTED): (a) right instinct openid/profile meaningless, no human/no id_token/no role-RBAC; (c) 'read:orders export:orders' correct; (b) the owed piece -- DID NOT KNOW source. Taught: M2M perms come from Dashboard->APIs->[API]->Machine to Machine Applications tab, scopes toggled DIRECTLY onto the app (direct grants), token authority = requested INTERSECT direct-grants, no user roles because no user. Excluded from score. NEXT REVIEW focus: (1) divergence + token-relay + audience-location ALL held cold at 2d -- interval now 6.25d, do NOT over-drill, verify at the longer spacing; (2) Q3 amplification: spell out valid-tokens-then-fail as the ACTUAL outage (recurring across jwt/oauth -- light, near-there); (3) lifecycle: keep DEFINE/BUNDLE/ASSIGN as 3 DISTINCT admin steps (folded ASSIGN); (4) M2M direct-grants (M2M Applications tab) finally taught -- re-probe COLD next time to confirm it landed; (5) push desirable-difficulty now that core is solid -- this concept passed cleanly, mastery 0.7; (6) keep JS/decoded-token artifacts coming (Part II)."
+        },
+        {
+          "date": "2026-07-09",
+          "score": 0.717,
+          "questions": 3,
+          "correct": 2.15,
+          "notes": "Overdue review (due 07-03, 6 days over; m=0.70). WARM-UP 1 -- M2M direct grants COLD re-probe (owed since 06-27 teach): MISSED. (1) located it 'somewhere in API config' but could not name the path; (2) stated the rule as 'just requested' -- contradicted by his own artifact (daemon requested export:orders and didn't get it). Re-taught: M2M token scopes = requested INTERSECT direct grants; path = Dashboard -> APIs -> [API] -> Machine to Machine Applications tab (scopes toggled directly onto the app; grants live on the API, answering 'which machines may call THIS API'). Lock-in re-probe CLEAN: scope='read:orders export:orders', delete:orders dropped = granted-not-requested. Asked a good clarifying q -> taught: the Dashboard is manage.auth0.com, the TENANT admin UI; the 'Orders API' there is Auth0's REGISTRATION of the API, enforcement happens inside Auth0 at MINT time, the real server never sees this config (no API deploy needed for grant changes). WARM-UP 2 -- lifecycle 3 admin steps: folded ASSIGN into BUNDLE for the THIRD time (06-21/06-23-ish pattern persists); DEFINE + BUNDLE correct. KEY DISCLOSURE: Mark has NEVER used a live Auth0 Dashboard -- cannot name tabs/screens from experience. Major Part II (hands-on, ~50% of exam) risk. He REQUESTED a step-by-step hands-on dashboard walkthrough -- promised as NEXT SESSION opener (create free dev tenant, register API + permissions, RBAC toggles, roles, assign to user, M2M grants, SPA app -- physically do DEFINE/BUNDLE/ASSIGN). ASSESSMENT 2.15/3 = 0.717 FAIL. Q1 (route gates on permissions array, token has refund:orders in scope but NO permissions claim -> 403): 0.9 -- both parts: perms defaults to [] so 403 for everyone always; fix = toggle in API settings. Didn't name the exact toggle ('Add Permissions in the Access Token', next to Enable RBAC) -- exam vocab, reinforce. Good unprompted framing that 403 = post-verification authZ denial (the only 403 case). Q2 (teach-back: why RBAC toggles/permissions/M2M grants live on the API object not the Application): 0.75 -- enforcement-side anchor correct (API is where tokens land and perms are checked) + gestured at Identifier-becomes-aud ('tokens would have no identifier to arrive at, just a client_id'). MISSED the many-apps-one-API argument: SPA + native + daemon all request read:orders against ONE API; per-app definitions would duplicate and drift; a permission is the API's VOCABULARY (describes operations on the resource), defined once on the API, apps merely request from it. Q3 INTERLEAVED oauth2_vs_oidc (SPA jwtDecode(access_token).name for page title): 0.5 SECOND consecutive cold miss of the opaque-to-client headline (0.2 on 07-06 in iam review). Destination correct (ID token claims / SDK user object) and gestured that profile claims ride the id_token via 'openid profile', but NEVER named wrong #1: access token is addressed to the API (aud=API identifier), client must treat it as OPAQUE, never decode/depend on claims (contract between Auth0 and API; no audience param -> not even a JWT -> jwtDecode throws). Also framed id_token as 'static and more reliable' -- wrong reason. Interleave MISS -> oauth2_vs_oidc next_review already 07-07 (overdue, <= today+1) so unchanged; drill opaque-to-client FIRST in that review. Q4 STRETCH (delete audience param -> opaque token + which tenant setting makes staging still return a JWT = Default Audience, General tab): SKIPPED, out of time -- still owed, third deferral of a stretch on this concept. mastery 0.70->0.55, interval 6.25->1, next_review 2026-07-10, reps stays 5. NEXT REVIEW focus: (1) LEAD with the promised hands-on Dashboard walkthrough (free dev tenant) -- it directly attacks the ASSIGN-folding and path-naming gaps; (2) M2M direct grants missed cold then repaired -- re-probe cold again (rule + path); (3) name the exact toggle 'Add Permissions in the Access Token'; (4) Q2 gap: many-apps-one-API / permission-as-API-vocabulary rationale; (5) Q4 stretch owed: Default Audience tenant setting; (6) opaque-to-client belongs to oauth2_vs_oidc -- drill there, due now."
         }
       ]
     },
@@ -265,11 +448,26 @@
         "sources/auth0_development/02_auth0_platform.md",
         "sources/auth0_development/04_uri_configuration.md"
       ],
-      "mastery": 0.0,
-      "reps": 0,
-      "interval_days": 1,
-      "next_review": null,
-      "history": []
+      "mastery": 0.4,
+      "reps": 2,
+      "interval_days": 6.25,
+      "next_review": "2026-07-09",
+      "history": [
+        {
+          "date": "2026-07-03",
+          "score": 0.917,
+          "questions": 3,
+          "correct": 2.75,
+          "notes": "Overdue review (due 07-01), SECOND block this sitting (learner opted to continue after jwt_anatomy) -- 2nd-block fatigue risk noted. Concept had PASSED its 06-29 first teach at 0.933; m=0.2 was only the SR floor. COLD WARM-UP EXPOSED REAL REGRESSION: classify 4 apps (React-in-browser / Rails-server-rendered / Electron / no-human cron). Mark INVERTED the core discriminator -- called React-in-browser RWA/confidential (backwards) AND said Rails is 'the same' as the React app, i.e. keyed on 'a human clicks a UI' (both have that) instead of WHERE THE CODE RUNS; also mislabeled Electron as SPA (public/PKCE right, TYPE wrong); D (M2M/confidential/secret) core correct. Answered every FLOW slot with garbled PKCE-internals prose ('compare prior state vs current'), never NAMED a flow. RE-TAUGHT: (1) discriminator = does code run where the USER controls it (browser tab OR installed binary on their device) vs a server YOU control -> that's why BOTH SPA + Native are public; React-SPA/public/PKCE and Rails-RWA/confidential/secret are OPPOSITES, not the same; UI/human presence is NOT the discriminator. (2) type->FLOW-NAME table: RWA=Authorization Code, SPA+Native=Authorization Code w/PKCE, M2M=Client Credentials. (3) PKCE model fix (was 'compare state'): random code_verifier per login -> send SHA256 hash (code_challenge) at /authorize -> send raw code_verifier at /oauth/token -> Auth0 hashes+matches; proves the app that started the flow finishes it, a stolen auth code is unusable; DYNAMIC per-login proof, NOT a stored/rotating secret. POST-RETEACH RETRIEVAL LANDED: discriminator restated right + A re-classified SPA/public/PKCE (inversion reversed); PKCE values correct (challenge->/authorize, verifier->/oauth/token); Native=AuthCode(+PKCE) M2M=ClientCreds (nudged to keep 'with PKCE' on Native, he'd said bare 'AuthZ'). ASSESSMENT 2.75/3=0.917 PASS. Q1 (iOS app registered as RWA w/ embedded client secret): 1.0 -- (a) secret extractable from binary, (b) Native, (c) PKCE. Q2 (SPA vs Native both public -- shared reason + distinguisher): 0.9 -- both public b/c code runs where user has full access (minor: cited 'share PKCE' as a reason -- it's a consequence); distinguisher CLEAN = Native = installed binary on the device, SPA = JS in the browser tab (reverses today's Electron-as-SPA slip). Q3 INTERLEAVED auth0_tenant_basics (RWA calls separate Orders API, same tenant): 0.85 -- (a) correctly another OBJECT/Resource Server in the SAME tenant, NOT another tenant (reverses the 06-29 'separate tenant' slip); minor phrasing 'the Rails tenant' -- tenant CONTAINS the Rails app + Orders API as siblings, neither owns it; (b) audience param on Rails' mint request -> becomes aud claim = CORRECT. Interleave PASSED -> auth0_tenant_basics next_review UNCHANGED (already due 07-03). SR: PASS -> mastery 0.2->0.4, interval 2.5->6.25d, next_review 2026-07-09, reps 1->2. CAUTION: pass is IMMEDIATE-POST-RETEACH recall after a HARD cold-retrieval FAILURE (discriminator inverted) -- concept is FRAGILE, 0.4 is optimistic. NEXT REVIEW focus: (1) COLD-classify tricky apps FIRST -- discriminator = user-controlled-location vs your-server (confirm the inversion stays fixed); Native vs SPA = installed-binary vs browser-JS; (2) FLOW NAMES not PKCE-prose (RWA=AuthCode / SPA+Native=AuthCode+PKCE / M2M=ClientCreds) -- recurring 'describes instead of names'; (3) PKCE = dynamic per-login proof (verifier/challenge), NOT a stored/rotating secret; (4) STILL UNTAUGHT (owed from 06-29): Private Key JWT / mTLS confidential auth methods, first-party vs third-party + consent screen, grant_types array, Client ID vs Client Secret -- TEACH before assessing; (5) PROCESS: weak cold retrieval again coincided with a 2nd-block-in-one-sitting -- reinforce one-concept-per-sitting."
+        },
+        {
+          "date": "2026-06-29",
+          "score": 0.933,
+          "questions": 3,
+          "correct": 2.8,
+          "notes": "FIRST TEACH (unlocked when auth0_tenant_basics crossed 0.7 on 06-27). PROCESS: opened with a 4-app classification PRE-QUESTION that asked for official type-names + reasoning before teaching -- Mark correctly PUSHED BACK ('you haven't taught me confidential-vs-public or the app types'). He was right; pivoted to teach-first micro-chunks (this is the same assess-what-wasn't-taught anti-pattern flagged on iam_fundamentals 05-29 -- watch the reflex on NEW concepts; generation-from-prior-knowledge is fine but don't demand un-taught vocabulary). TAUGHT (micro-chunks, each with a passing quick-check): (Idea 1) the single discriminator = 'can this app keep a secret?' decided by WHERE THE CODE RUNS -- server you control (hidden) vs browser/device the user controls (readable/decompilable). Mark DERIVED native=public himself (binary in user's possession can be decompiled to reveal embedded secret); minor term slip 'server's secret key' -> the app's own CLIENT SECRET (no server for a native app). (Idea 2) four types as the split applied twice: RWA + M2M = confidential (run on your backend); SPA + Native = public (run on user's device/browser). Mark classified Electron=Native/public, Rails=RWA/confidential correctly. (Idea 2.5) Mark asked TWO good clarifying Qs revealing a real misconception: (i) 'do RWAs have no UI since they live in the backend?' -- CORRECTED: RWA absolutely HAS a UI; difference is the HTML is rendered SERVER-SIDE and shipped to the browser, logic+secret stay on server; classic full-page-reload pattern. (ii) 'why are SPAs single-page / browser or script thing?' -- taught SPA = one HTML doc loaded once, JS in the browser re-renders views on navigation (no full reloads), fetches only JSON; that's WHY its code is readable => public. Quick-check (T/F 'RWA has no UI because confidential') -> Mark FALSE + correct fix. (Idea 3) consequence = how each proves identity at /oauth/token: confidential (RWA, M2M) present the CLIENT SECRET (or Private Key JWT / mTLS), public (SPA, Native) have NO secret so use PKCE (per-login code_verifier/code_challenge dynamic proof). Type->flow mapping taught: RWA=Auth Code, M2M=Client Credentials, SPA/Native=Auth Code + PKCE. Quick-check (junior dev wants the SPA's client secret) -> Mark correct (secret extractable, use PKCE); CORRECTED his framing 'PKCE = a unique client secret that changes each time' -> PKCE is NOT a rotating secret; a client secret is a STATIC pre-registered credential proving WHICH app, PKCE proves the app finishing the flow STARTED it, nothing pre-registered. ASSESSMENT 2.8/3=0.933 PASS. Q1 (debug: React SPA registered as RWA, client secret embedded in frontend): 1.0 -- (a) secret extractable by any user, (b) register as SPA, (c) use PKCE. Q2 (elaborate RWA vs M2M, both confidential -- fundamental diff + token consequence): 1.0 -- RWA has a HUMAN at the frontend => id_token + access_token; M2M no human => access_token ONLY, no id_token; clean transfer from oauth2_vs_oidc. Q3 INTERLEAVED auth0_tenant_basics (RWA calls Orders API): 0.8 -- (b) PERFECT: audience param -> baked in as aud claim; app forwards token to API (token-relay correct). (a) ERROR: called the Orders API 'a separate TENANT'; CORRECTED -> it is a separate API/Resource Server OBJECT inside the SAME tenant; tenant = whole isolated env, within it you register many Applications AND many APIs. App-vs-API object + audience CORE held (the reviewed material) -> NO decay signal to auth0_tenant_basics next_review; the slip was the tenant-vs-object LEVEL, not App-vs-API. NEXT REVIEW focus: (1) RECALL the four type-names cold + classify mixed/tricky apps (Next.js w/ server backend, CLI tool, Electron) into type + confidential/public + flow; (2) tenant-vs-object hierarchy: a tenant CONTAINS many Apps + APIs; an API is a Resource Server object, NOT a separate tenant (Q3 slip); (3) RWA HAS a server-rendered UI -- verify the 'confidential != no UI' correction held; (4) PKCE = dynamic per-login proof, NOT a rotating client secret (framing slip); (5) NOT YET TAUGHT -- Private Key JWT / mTLS as stronger confidential auth methods, first-party vs third-party apps + consent screen, per-app grant_types array, Client ID (public id) vs Client Secret; teach before assessing; (6) keep artifact/debug + JS framing coming (Part II)."
+        }
+      ]
     },
     {
       "id": "signing_algorithms_jwks",

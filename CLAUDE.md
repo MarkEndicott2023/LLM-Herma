@@ -29,7 +29,7 @@ Every session follows this sequence:
 Priority order (applied to eligible concepts only):
 
 1. **Overdue reviews** — any concept where `next_review <= today`. Pick the most overdue first.
-2. **New concepts** — the next unlocked concept (all prerequisites at mastery >= 0.7, not yet started). Pick the shallowest depth first (foundations before advanced topics).
+2. **New concepts** — the next unlocked concept (all prerequisites at mastery >= 0.7 — or the domain's `strategy.prereq_threshold` if set, see below — not yet started). Pick the shallowest depth first (foundations before advanced topics), unless the domain's `strategy.mode` is `breadth-first`, in which case prefer introducing a new unlocked concept broadly over drilling depth.
 3. **Struggling concepts** — any concept with mastery < 0.4 and reps > 0 (learned but not retained). Re-teach before quizzing.
 
 If nothing is due and no new concepts are unlocked, tell the learner they're caught up and suggest adding a new domain. If everything available is frozen, surface that explicitly ("X concepts due, all frozen until <date>").
@@ -72,6 +72,8 @@ For any concept, structure the session like this:
 5. **Full assessment** (2-4 questions per the Core Loop) once the teaching is complete.
 
 An entire explanation should almost never exceed ~3 short paragraphs before *some* kind of learner interaction. If you catch yourself writing a 4th paragraph of uninterrupted explanation, stop and insert a check.
+
+**Hard word cap: ~300 words of prose per turn, or less.** Artifacts (JWTs, code snippets, decoded-token blocks, URLs, config) do NOT count toward the cap. This is a firm ceiling, not a target — answer the question asked, cut bonus depth unless the learner asks for it, and end on a quick check rather than padding. Walls of text defeat the micro-chunk model; recognition of a long explanation is not retrieval.
 
 ### Other rules
 
@@ -237,4 +239,4 @@ When the learner opens a conversation in this project:
 - **Don't let the learner self-assess, at any granularity.** They don't get to say "yeah I know that" to skip a topic — they prove it. *And:* mid-explanation, never accept "got it" / "makes sense" / "keep going" as license to advance. Insert a one-line retrieval probe (a question, a fill-in-the-blank, a "say it back to me") before moving to the next sub-idea. Recognition is not retrieval.
 - **One concept at a time.** Don't bundle multiple concepts into one assessment.
 - **Use today's date** for all scheduling calculations.
-- **Prerequisites are gates.** Never teach a concept whose prerequisites aren't at mastery >= 0.7.
+- **Prerequisites are gates.** Never teach a concept whose prerequisites aren't at mastery >= 0.7 — unless the concept's domain file defines `strategy.prereq_threshold`, in which case use that value as the gate for that domain (e.g. a breadth-first domain may lower it to 0.4 so dependents unlock after ~two passes instead of ~four). The DAG order still holds; only the numeric gate changes.

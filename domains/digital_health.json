@@ -1,0 +1,411 @@
+{
+  "name": "Wearables & Movement Analytics",
+  "goal": "Job-ready for a Whoop/Fitbit/Oura-style data-science role by Dec 2026 graduation",
+  "created": "2026-07-13",
+  "strategy": {
+    "mode": "breadth-first",
+    "prereq_threshold": 0.4,
+    "notes": "Breadth-first: introduce new unlocked concepts broadly rather than drilling depth. Prereq gate lowered to 0.4 so downstream concepts unlock after ~two passes. Do NOT re-teach general ML, CNNs, prob/stat, or time-series basics; the learner has these from CMSE 381/404, STT 380, PHY/MTH coursework. Teach only the wearables-specific layer."
+  },
+  "concepts": [
+    {
+      "id": "sensor_modalities",
+      "name": "Wearable Sensor Modalities",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2013_har-using-wearable-sensors-survey-lara-labrador.pdf",
+        "sandbox/digital_health/data/2012_pamap2-physical-activity-monitoring-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "PAMAP2 hardware setup (from dataset readme)",
+          "value": "3 Colibri wireless IMUs @ 100 Hz (wrist/dominant arm, chest, dominant-side ankle); HR monitor BM-CS5SR @ ~9 Hz. IMU channels per unit: temperature, 3D accel (+/-16g and +/-6g), 3D gyro (rad/s), 3D magnetometer (uT), orientation.",
+          "note": "Real column layout: col1 timestamp(s), col2 activityID, col3 heart rate(bpm), col4-20 IMU hand, col21-37 IMU chest, col38-54 IMU ankle."
+        },
+        {
+          "kind": "config",
+          "label": "UCI HAR sensor setup",
+          "value": "Samsung Galaxy S II worn on the waist; embedded accelerometer + gyroscope; 3-axial linear acceleration and 3-axial angular velocity captured at 50 Hz."
+        }
+      ]
+    },
+    {
+      "id": "windowing_sampling",
+      "name": "Windowing & Sampling for Sensor Streams",
+      "depth": 0,
+      "prerequisites": ["sensor_modalities"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2013-11_uci-har-smartphones-activity-recognition-dataset",
+        "sandbox/digital_health/data/2012_pamap2-physical-activity-monitoring-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "UCI HAR windowing scheme",
+          "value": "Signals sampled in fixed-width sliding windows of 2.56 sec with 50% overlap = 128 readings/window at 50 Hz. Acceleration separated into body + gravity via Butterworth low-pass with 0.3 Hz cutoff."
+        },
+        {
+          "kind": "config",
+          "label": "PAMAP2 mixed sampling rates + missingness",
+          "value": "IMU data every 0.01s (100 Hz); HR monitor only ~9 Hz, so missing HR rows are filled with NaN. Real IMU frequencies were 99.63/99.89/99.65 Hz (hand/chest/ankle), not exactly 100."
+        }
+      ]
+    },
+    {
+      "id": "ppg_hr_estimation",
+      "name": "PPG & Heart-Rate Estimation",
+      "depth": 1,
+      "prerequisites": ["sensor_modalities"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2025-09-15_ecg-vs-ppg-hrv-comparison-study.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Devices compared in the ECG-vs-PPG study",
+          "value": "PPG-based sensor: Polar OH1 (optical, forearm). ECG reference: Polar H10 (chest strap). PPG estimates pulse from blood-volume changes; motion artifacts degrade it."
+        }
+      ]
+    },
+    {
+      "id": "hrv_fundamentals",
+      "name": "HRV Fundamentals",
+      "depth": 1,
+      "prerequisites": ["sensor_modalities"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/1996-03-01_hrv-standards-of-measurement-esc-naspe-task-force.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "HRV metrics from the 1996 ESC/NASPE Task Force standard",
+          "value": "Time-domain: SDNN (SD of NN intervals), RMSSD (root mean square of successive differences). Frequency-domain bands: ULF, VLF, LF (0.04-0.15 Hz), HF (0.15-0.4 Hz). LF/HF ratio used as an autonomic-balance proxy.",
+          "note": "The analysis operates on the RR/NN interval tachogram (intervals between consecutive heartbeats), not the raw HR value."
+        }
+      ]
+    },
+    {
+      "id": "ppg_vs_ecg_prv",
+      "name": "PPG-vs-ECG / PRV Surrogate Problem",
+      "depth": 1,
+      "prerequisites": ["ppg_hr_estimation", "hrv_fundamentals"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2025-09-15_ecg-vs-ppg-hrv-comparison-study.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "Reliability results (Polar OH1 PPG vs Polar H10 ECG, n=31 adults)",
+          "value": "Supine: RMSSD ICC=0.955, SDNN ICC=0.980 (excellent). Seated: RMSSD ICC=0.834, SDNN ICC=0.921 (good). Mean bias -2.1 ms to -8.1 ms. Agreement worse in older participants and females; posture change supine->seated dropped reliability.",
+          "note": "PPG yields pulse-rate variability (PRV), a surrogate for true ECG-derived HRV, not an identical measurement."
+        }
+      ]
+    },
+    {
+      "id": "sleep_staging",
+      "name": "Sleep Staging from Wearables",
+      "depth": 1,
+      "prerequisites": ["windowing_sampling", "ppg_hr_estimation"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2025-10-31_wearable-sleep-monitoring-narrative-review.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Wearable sleep staging landscape (from the 2025 review)",
+          "value": "Ground truth = polysomnography (PSG). Accelerometer-only (actigraphy) does sleep/wake well but struggles to separate stages; combining accelerometer + PPG enables out-of-lab multi-stage staging. Devices: wristbands, rings, headbands, camera-based."
+        }
+      ]
+    },
+    {
+      "id": "recovery_scores",
+      "name": "Recovery / Strain / Readiness Scores",
+      "depth": 1,
+      "prerequisites": ["hrv_fundamentals", "ppg_vs_ecg_prv", "sleep_staging"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/1996-03-01_hrv-standards-of-measurement-esc-naspe-task-force.pdf",
+        "sources/digital_health/2025-10-31_wearable-sleep-monitoring-narrative-review.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Composite-score inputs (generic; avoid claiming any vendor's exact proprietary formula)",
+          "value": "Recovery/readiness scores are composed from overnight HRV (often RMSSD-based), resting heart rate, respiratory rate, and sleep quantity/quality. Strain-type scores integrate heart-rate zones over the day. Exact weightings are proprietary and vendor-specific."
+        }
+      ]
+    },
+    {
+      "id": "har_taxonomy",
+      "name": "HAR Problem Framing & Taxonomy",
+      "depth": 1,
+      "prerequisites": ["sensor_modalities"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2013_har-using-wearable-sensors-survey-lara-labrador.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Lara & Labrador two-level HAR taxonomy",
+          "value": "Axis 1 (learning approach): supervised vs semi-supervised. Axis 2 (response time): offline vs online. Also: external sensing (sensors in the environment) vs wearable sensing (sensors on the body)."
+        }
+      ]
+    },
+    {
+      "id": "har_feature_engineering",
+      "name": "Feature Engineering for HAR",
+      "depth": 2,
+      "prerequisites": ["windowing_sampling", "har_taxonomy"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2013_har-using-wearable-sensors-survey-lara-labrador.pdf",
+        "sandbox/digital_health/data/2013-11_uci-har-smartphones-activity-recognition-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "UCI HAR 561-feature vector",
+          "value": "From each 2.56s window, a 561-feature vector of time-domain and frequency-domain variables (mean, std, energy, entropy, FFT coefficients, etc.). Features normalized and bounded within [-1, 1]. See features_info.txt for the full list."
+        }
+      ]
+    },
+    {
+      "id": "har_classical_models",
+      "name": "Classical HAR Models",
+      "depth": 2,
+      "prerequisites": ["har_feature_engineering"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2013-11_uci-har-smartphones-activity-recognition-dataset",
+        "sandbox/digital_health/data/2012-12_wisdm-ar-v1.1-activity-recognition-dataset.tar.gz"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "UCI HAR label set + models",
+          "value": "6 activity classes: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING. Strong classical baselines on the 561-feature vector: Random Forest, SVM, k-NN. WISDM alternative: 36 subjects, 20 Hz accel, classes Walking/Jogging/Sitting/Standing/Upstairs/Downstairs."
+        }
+      ]
+    },
+    {
+      "id": "har_deep_models",
+      "name": "Deep HAR (CNN/LSTM)",
+      "depth": 2,
+      "prerequisites": ["har_classical_models"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2012_pamap2-physical-activity-monitoring-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Deep HAR on raw windows (PAMAP2)",
+          "value": "Feed raw windowed sensor channels (no hand-crafted features) into 1D-CNN or LSTM. PAMAP2: 18 activities incl. lying, running, cycling, Nordic walking, rope jumping, vacuuming, ironing. Recommend the +/-16g accelerometer over +/-6g (the 6g one saturates during high-impact movement like running)."
+        }
+      ]
+    },
+    {
+      "id": "gait_movement_quality",
+      "name": "Gait & Movement-Quality Analysis",
+      "depth": 2,
+      "prerequisites": ["har_feature_engineering"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2013_har-using-wearable-sensors-survey-lara-labrador.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Movement-quality tasks beyond activity labels",
+          "value": "Cadence (steps/min), stride/step symmetry, gait variability, fall detection, and posture. Clinical hooks named in the HAR survey: monitoring diabetes/obesity exercise routines, detecting abnormal activity in dementia, Parkinson's assessment. This is the kinesiology-moat concept."
+        }
+      ]
+    },
+    {
+      "id": "validation_ground_truth",
+      "name": "Validation Against Ground Truth",
+      "depth": 2,
+      "prerequisites": ["ppg_vs_ecg_prv", "sleep_staging"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2025-09-15_ecg-vs-ppg-hrv-comparison-study.pdf",
+        "sources/digital_health/2025-10-31_wearable-sleep-monitoring-narrative-review.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Agreement methods for wearable validation",
+          "value": "Intraclass correlation coefficient (ICC) for reliability; Bland-Altman plots for mean bias + limits of agreement between a device and its reference. References: ECG (Polar H10) for HR/HRV, PSG for sleep. Accuracy is not one number: it varies by posture, age, and sex (see ECG-vs-PPG study)."
+        }
+      ]
+    },
+    {
+      "id": "subject_wise_cv",
+      "name": "Subject-wise CV & Leakage",
+      "depth": 2,
+      "prerequisites": ["har_classical_models"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2013-11_uci-har-smartphones-activity-recognition-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_bug",
+          "label": "Leakage from random window splitting",
+          "value": "train_test_split(windows, test_size=0.3, shuffle=True)  # windows from the SAME subject land in train AND test",
+          "bugs": ["overlapping windows from one person leak across the split", "inflated accuracy that collapses on new users", "fix: split BY subject (leave-one-subject-out / GroupKFold on subject id)"],
+          "note": "UCI HAR ships a correct 70/30 SUBJECT-wise split (21 train subjects / 9 test); WISDM has 36 subjects for LOSO."
+        }
+      ]
+    },
+    {
+      "id": "data_quality",
+      "name": "Real-World Data Quality",
+      "depth": 2,
+      "prerequisites": ["har_feature_engineering"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2012_pamap2-physical-activity-monitoring-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "PAMAP2 data-quality gotchas",
+          "value": "Missing values marked NaN (wireless dropout; HR sampled slower than IMU). activityID=0 = transient activity and must be discarded before analysis. ~10 hours collected, only ~8 hours labeled. Class imbalance across the 18 activities. Some subjects missing some activities."
+        }
+      ]
+    },
+    {
+      "id": "wearable_pipeline",
+      "name": "Wearable Data Pipeline",
+      "depth": 3,
+      "prerequisites": ["windowing_sampling"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Ingestion & inference placement",
+          "value": "Stream: device -> BLE/companion app -> cloud ingestion -> feature store -> model. Trade-off: on-device/edge inference (low latency, battery + privacy) vs cloud (heavier models, retrainable). Ties to the learner's harness-engineering domain."
+        }
+      ]
+    },
+    {
+      "id": "digital_health_context",
+      "name": "Digital-Health Context (Validation, FDA, Privacy)",
+      "depth": 3,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/digital_health/2019_deep-medicine-excerpt-topol.pdf",
+        "sources/digital_health/2022-01_ai-in-health-and-medicine-rajpurkar-topol.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Industry/regulatory framing (Rajpurkar & Topol, Nature Medicine 2022)",
+          "value": "FDA clearances for ML devices growing at an accelerating rate but mostly cleared on retrospective, single-institution, often-proprietary data. RCTs/prospective studies are what actually validate clinical impact. Reporting standards: STARD-AI, SPIRIT/CONSORT AI extensions. Consumer wearables mostly sit as wellness (non-diagnostic) unless specifically cleared."
+        }
+      ]
+    },
+    {
+      "id": "capstone_pipeline",
+      "name": "Capstone: End-to-End Pipeline",
+      "depth": 3,
+      "prerequisites": ["har_deep_models", "validation_ground_truth", "subject_wise_cv"],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sandbox/digital_health/data/2013-11_uci-har-smartphones-activity-recognition-dataset",
+        "sandbox/digital_health/data/2012_pamap2-physical-activity-monitoring-dataset"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Interview-ready capstone spec",
+          "value": "On WISDM or PAMAP2: raw signal -> windowing -> features (or raw for deep model) -> classifier -> SUBJECT-WISE validation -> honest metrics with a confusion matrix -> a written result. Deliverable lives in sandbox/digital_health/scripts. The differentiator is subject-wise evaluation + a data-quality writeup, not raw accuracy."
+        }
+      ]
+    }
+  ]
+}
