@@ -1,0 +1,1167 @@
+{
+  "name": "Practical Nutrition",
+  "goal": "Broad literacy across nutrition science — foundations, metabolism, dietary patterns, supplements, and public health policy — with the ability to read primary evidence and evaluate claims independently",
+  "created": "2026-07-29",
+  "strategy": {
+    "mode": "breadth-first",
+    "prereq_threshold": 0.4
+  },
+  "notes": "Evidence appraisal is deliberately the depth-0 root: nutrition's polarization is primarily a reading problem, so the graph teaches GRADE, effect sizes, risk of bias, and conflicts of interest before content. All artifacts are drawn from verified source material in sources/practical_nutrition/ — see MANIFEST.md. Two concepts are flagged source-thin: energy_availability and population_vs_individual.",
+  "concepts": [
+    {
+      "id": "evidence_hierarchy",
+      "name": "Study Designs and the Evidence Hierarchy",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "Eligibility criteria from CD013617 (HIIT) — what the design excludes",
+          "value": "We included randomised control trials (RCTs) that compared HIIT with a non-exercise control (comparison 1) or with MICT (comparison 2) over four weeks or longer in healthy adults (aged 18-64 years) who were sedentary at baseline. We excluded studies of athletes, as we were interested in the benefits of HIIT for public health, not for performance.",
+          "teaching_point": "Eligibility criteria define who the answer applies to. This review cannot tell you anything about athletes."
+        },
+        {
+          "kind": "log_entry",
+          "label": "Design mix in CD014794 (school feeding) — not RCT-only",
+          "value": "We included individually randomized, cluster-randomized, and cross-over trials, as well as longitudinal non-randomized studies of interventions (NRSIs).",
+          "teaching_point": "Including NRSIs broadens the evidence but weakens causal claims. Ask what designs a review admitted before trusting its conclusion."
+        }
+      ]
+    },
+    {
+      "id": "energy_balance",
+      "name": "Energy Balance and Its Components",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_body_composition_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN position statement on fat loss and lean mass accrual",
+          "value": "3) Diets primarily focused on fat loss are driven by a sustained caloric deficit. The higher the baseline body fat level, the more aggressively the caloric deficit may be imposed. Slower rates of weight loss can better preserve lean mass (LM) in leaner subjects.\n4) Diets focused primarily on accruing LM are driven by a sustained caloric surplus to facilitate anabolic processes and support increasing resistance-training demands.",
+          "teaching_point": "Deficit magnitude is conditional on starting body fat — not a fixed number."
+        },
+        {
+          "kind": "code_snippet",
+          "label": "ISSN on adaptive thermogenesis",
+          "value": "8) The long-term success of a diet depends upon compliance and suppression or circumvention of mitigating factors such as adaptive thermogenesis.",
+          "teaching_point": "Energy out is not a constant; it responds to intake."
+        }
+      ]
+    },
+    {
+      "id": "macronutrients_overview",
+      "name": "The Macronutrients and Energy Density",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FDA DRVs — Food Components, adults and children ≥ 4 years (2,000 kcal basis)",
+          "value": "Fat                 78 g\nSaturated fat       20 g\nCholesterol        300 mg\nTotal carbohydrate 275 g\nSodium           2,300 mg\nDietary Fiber       28 g\nProtein             50 g\nAdded sugars        50 g",
+          "source_note": "Federal Register 2016-11867 p. 905",
+          "teaching_point": "Check the arithmetic: 78 g fat x 9 + 275 g carb x 4 + 50 g protein x 4 = 2,002 kcal. The DRVs are internally consistent with the 2,000 kcal reference."
+        },
+        {
+          "kind": "config",
+          "label": "FDC nutrient IDs for the energy-yielding macros",
+          "value": "1003  Protein                          G\n1004  Total lipid (fat)                G\n1005  Carbohydrate, by difference      G\n1008  Energy                           KCAL\n2047  Energy (Atwater General Factors) KCAL\n2048  Energy (Atwater Specific Factors) KCAL",
+          "teaching_point": "'Carbohydrate, by difference' is computed as the remainder, not measured directly — and there are three different energy columns."
+        }
+      ]
+    },
+    {
+      "id": "food_composition_data",
+      "name": "Where Nutrient Numbers Come From",
+      "depth": 0,
+      "prerequisites": [],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/food_data_central_2026/"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FoodData Central Foundation Foods — table row counts",
+          "value": "food.csv                 87,991   master records\nfoundation_food.csv         395   the actual food list\nfood_nutrient.csv       170,469   nutrient amount per food\nnutrient.csv                477   nutrient definitions\nfood_portion.csv         10,951   household measure -> grams\nsub_sample_result.csv   134,267   individual lab assay results\nlab_method.csv              305   analytical methods\n\nfood.csv by data_type:\n  sub_sample_food          75,055\n  market_acquisition        7,577\n  sample_food               4,079\n  agricultural_acquisition    810\n  foundation_food             469",
+          "teaching_point": "Only ~400-470 rows are actual foods. The other 87,500 are the sampling and assay chain behind them. A nutrient value is the end of a long provenance trail."
+        },
+        {
+          "kind": "code_bug",
+          "label": "A trap in nutrient.csv",
+          "value": "1006  Fiber, crude (DO NOT USE - Archived)   G",
+          "bugs": [
+            "column name looks usable",
+            "archived method superseded by AOAC total dietary fiber",
+            "would silently return wrong values"
+          ],
+          "teaching_point": "Read the schema before trusting a column. The dataset is telling you not to use this one."
+        },
+        {
+          "kind": "config",
+          "label": "Five real Foundation Foods with their fdc_ids",
+          "value": "321358  Hummus, commercial\n321360  Tomatoes, grape, raw\n321611  Beans, snap, green, canned, regular pack, drained solids\n323121  Frankfurter, beef, unheated\n323294  Nuts, almonds, dry roasted, with salt added",
+          "teaching_point": "Note the specificity: 'canned, regular pack, drained solids' is a different row from raw green beans."
+        }
+      ]
+    },
+    {
+      "id": "grade_certainty",
+      "name": "GRADE and Certainty of Evidence",
+      "depth": 1,
+      "prerequisites": [
+        "evidence_hierarchy"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD013617 (HIIT) — two certainty levels for two outcomes in ONE review",
+          "value": "HIIT compared with a non-exercise control ... reduces waist circumference (MD -3.56 cm, 95% CI -6.14 to -0.98; 8 studies, 270 participants; high-certainty evidence).\n\nThe evidence for the effect of HIIT on systolic blood pressure is very uncertain (MD -5.22 mmHg, 95% CI -12.27 to 1.84; 7 studies, 215 participants; very low-certainty evidence).",
+          "teaching_point": "Certainty is assigned per outcome, not per study. The same review is simultaneously high and very-low certainty."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD015988 — what a collapsed evidence base looks like",
+          "value": "All 16 reported outcomes rated very low-certainty. Example: BMI (mean difference -1.52 kg/m2, 95% CI -2.74 to -0.29; I2 = 0%; 2 studies, 118 children; very low-certainty evidence).\n\nAuthors' conclusions: 'Serious methodological limitations, clinical heterogeneity, small-study effects, and imprecise results constrained this evidence base. Future high-quality and better-reported RCTs will likely change our findings.'",
+          "teaching_point": "A statistically significant result (CI excludes zero) can still be very low certainty. Significance and certainty are different questions."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD003177 (omega-3) — the strongest profile in this source set",
+          "value": "5 high-certainty outcomes, 7 moderate, 8 low. Authors' conclusions: 'This is the most extensive systematic assessment of effects of omega-3 fats on cardiovascular health to date. Moderate- and low-certainty evidence suggests that increasing LCn3 slightly reduces risk of coronary heart disease mortality and events, and reduces serum triglycerides.'",
+          "teaching_point": "Note 'slightly' paired with high certainty — confident knowledge of a small effect."
+        }
+      ]
+    },
+    {
+      "id": "effect_size_precision",
+      "name": "Effect Sizes, Confidence Intervals, and Heterogeneity",
+      "depth": 1,
+      "prerequisites": [
+        "evidence_hierarchy"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD015092 (semaglutide) — MD and RR side by side",
+          "value": "Semaglutide reduces percentage body weight (mean difference (MD) -10.73, 95% CI -12.24 to -9.21; 15 studies, 8651 participants; high-certainty evidence) and increases the proportion of people achieving 5% weight loss (risk ratio (RR) 2.68, 95% CI 2.30 to 3.12; 12 studies, 7458 participants; high-certainty evidence).",
+          "teaching_point": "MD is on the outcome's own scale; RR is a ratio of probabilities. They answer different questions about the same drug."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD015092 — severe heterogeneity in the long-term result",
+          "value": "At long-term follow-up, semaglutide likely reduces percentage body weight (MD -11.11, 95% CI -16.47 to -5.75; I2 = 94%; 2 studies, 15,124 participants; moderate-certainty evidence).",
+          "teaching_point": "I2 = 94% means the two studies disagree badly. A pooled estimate from wildly heterogeneous studies is a weak summary even with 15,124 participants."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD015988 — a CI that crosses no-effect",
+          "value": "body weight (MD -0.86 kg, 95% CI -3.17 to 1.46; I2 = 0%; 2 studies, 118 children; very low-certainty evidence)\nserious adverse events (RR 1.08, 95% CI 0.10 to 11.76; 1 study, 222 children; very low-certainty evidence)",
+          "teaching_point": "The RR interval spans 0.10 to 11.76 — a hundredfold range. That is not evidence of no harm; it is no usable evidence either way."
+        }
+      ]
+    },
+    {
+      "id": "reference_intake_framework",
+      "name": "EAR, RDA, AI, UL, AMDR, and CDRR",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "DRI EARs, males 19-30 y (Appendix J, DRI Sodium & Potassium 2019)",
+          "value": "Calcium      800 mg/d\nCarbohydrate 100 g/d\nProtein     0.66 g/kg/d\nVitamin A    625 ug/d\nVitamin C     75 mg/d\nVitamin D     10 ug/d\nVitamin E     12 mg/d\nThiamin      1.0 mg/d\nRiboflavin   1.1 mg/d\nNiacin        12 mg/d",
+          "teaching_point": "An EAR meets the needs of only half the population. It is a population planning tool, not a personal target."
+        },
+        {
+          "kind": "log_entry",
+          "label": "The EAR footnote — which nutrients have no EAR",
+          "value": "NOTES: An Estimated Average Requirement (EAR) is the average daily nutrient intake level estimated to meet the requirements of half of the healthy individuals in a group. EARs have not been established for vitamin K, pantothenic acid, biotin, choline, chromium, fluoride, manganese, potassium, sodium, chloride, or other nutrients not yet evaluated via the DRI process.",
+          "teaching_point": "When there is no EAR there is no RDA either — those nutrients get an AI instead, which is a weaker construct."
+        },
+        {
+          "kind": "config",
+          "label": "The six DRI constructs present in Appendix J",
+          "value": "EAR   Estimated Average Requirement   meets 50% of a group\nRDA   Recommended Dietary Allowance   meets 97-98% of a group\nAI    Adequate Intake                 used when evidence is too thin for an EAR\nUL    Tolerable Upper Intake Level     above this, risk rises\nAMDR  Acceptable Macronutrient Distribution Range\nCDRR  Chronic Disease Risk Reduction Intake  (new in 2019)",
+          "teaching_point": "CDRR is the 2019 innovation — an intake target based on chronic disease risk rather than deficiency."
+        }
+      ]
+    },
+    {
+      "id": "nutrition_labels",
+      "name": "Nutrition Facts Labels and %DV",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/fda_dv_micro_2016.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FDA RDIs — Nutrients, adults and children ≥ 4 years",
+          "value": "Vitamin A   900 ug RAE   Vitamin B6      1.7 mg\nVitamin C    90 mg       Folate        400 ug DFE\nCalcium   1,300 mg       Vitamin B12     2.4 ug\nIron         18 mg       Biotin           30 ug\nVitamin D    20 ug       Pantothenic acid  5 mg\nVitamin E    15 mg       Phosphorus    1,250 mg\nVitamin K   120 ug       Iodine          150 ug\nThiamin     1.2 mg       Magnesium       420 mg\nRiboflavin  1.3 mg       Zinc             11 mg\nNiacin       16 mg NE    Selenium         55 ug\nCopper      0.9 mg       Manganese       2.3 mg\nChromium     35 ug       Molybdenum       45 ug\nChloride  2,300 mg       Potassium     4,700 mg\nCholine     550 mg",
+          "source_note": "Federal Register 2016-11867 pp. 903-904",
+          "teaching_point": "One column for everyone over 4. No age or sex stratification — that is the defining difference from a DRI."
+        },
+        {
+          "kind": "config",
+          "label": "Same nutrient, two reference systems",
+          "value": "Calcium\n  FDA RDI (label):        1,300 mg   one value, ages 4+\n  DRI EAR (male 19-30):     800 mg   meets 50% of that group\n\nVitamin D\n  FDA RDI (label):           20 ug\n  DRI EAR (male 19-30):      10 ug",
+          "teaching_point": "A label %DV and a personal requirement are different quantities computed for different purposes. Neither is wrong; they answer different questions."
+        }
+      ]
+    },
+    {
+      "id": "protein_fundamentals",
+      "name": "Protein, Amino Acids, and Protein Quality",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_protein_exercise_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FDC protein and nitrogen columns",
+          "value": "1002  Nitrogen   G\n1003  Protein    G",
+          "teaching_point": "Protein is usually derived from measured nitrogen via a conversion factor — see food_protein_conversion_factor.csv (366 rows). The factor differs by food."
+        }
+      ]
+    },
+    {
+      "id": "carbohydrate_types",
+      "name": "Sugars, Starch, and Fibre",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/who_carbohydrate_intake_2023.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FDC carbohydrate fraction columns",
+          "value": "1005  Carbohydrate, by difference   G\n1009  Starch                        G\n1010  Sucrose                       G\n1006  Fiber, crude (DO NOT USE - Archived)  G",
+          "teaching_point": "'By difference' means total mass minus water, protein, fat and ash. Errors in any of those propagate into the carbohydrate figure."
+        }
+      ]
+    },
+    {
+      "id": "dietary_fats",
+      "name": "Fatty Acid Classes",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/who_sfa_tfa_2023.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "WHO on where saturated fat is found",
+          "value": "Saturated fatty acids can be found in fatty meat, dairy foods, and hard fats and oils such as butter, ghee, lard, palm oil and coconut oil.",
+          "teaching_point": "Palm and coconut oil are plant fats that are predominantly saturated. 'Plant-based' does not imply unsaturated."
+        }
+      ]
+    },
+    {
+      "id": "micronutrient_framework",
+      "name": "Vitamins and Minerals: Classes and Units",
+      "depth": 1,
+      "prerequisites": [
+        "macronutrients_overview"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/fda_dv_micro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Equivalence units — the footnotes that change the number",
+          "value": "Niacin:     1 mg NE = 60 mg tryptophan\nFolate:     1 DFE = 1 ug food folate = 0.6 ug folic acid from fortified food\n                  = 0.5 ug of a supplement taken alone\nVitamin A:  1 RAE = 1 ug retinol = 12 ug beta-carotene = 24 ug alpha-carotene\nVitamin E:  counts only RRR- and the 2R-stereoisomeric forms of alpha-tocopherol,\n            not the 2S- forms found in fortified foods and supplements",
+          "source_note": "Footnotes, FDA RDI table (2016-11867) and DRI Appendix J",
+          "teaching_point": "Folic acid from a supplement is ~2x as bioavailable as food folate. The unit encodes the bioavailability difference."
+        }
+      ]
+    },
+    {
+      "id": "body_composition_assessment",
+      "name": "Measuring Body Composition",
+      "depth": 1,
+      "prerequisites": [
+        "energy_balance"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_body_composition_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN position statement, point 2",
+          "value": "2) All body composition assessment methods have strengths and limitations.",
+          "teaching_point": "Deliberately terse in the source. The teaching work is unpacking which limitation matters for which decision."
+        },
+        {
+          "kind": "log_entry",
+          "label": "Outcome measures used across the Cochrane obesity reviews",
+          "value": "BMI (kg/m2) | BMI z-score | body weight (kg) | body fat percentage |\nwaist circumference (cm) | waist-to-hip ratio | adiposity and fat distribution",
+          "teaching_point": "CD013617 found high-certainty benefit on waist circumference but no clear effect on waist-to-hip ratio. Which proxy you pick changes the answer."
+        }
+      ]
+    },
+    {
+      "id": "nutrient_density",
+      "name": "Nutrient Density per Calorie",
+      "depth": 1,
+      "prerequisites": [
+        "food_composition_data"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/food_data_central_2026/"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "cli_command",
+          "label": "Join pattern for nutrient-per-100-kcal in FDC",
+          "value": "food.csv          (fdc_id, description, data_type)\n  |- food_nutrient.csv  (fdc_id, nutrient_id, amount)\n       |- nutrient.csv    (id, name, unit_name)\n\nFilter: data_type == 'foundation_food'\nEnergy: nutrient_id 1008 (kcal per 100 g)\nThen:   amount_per_100kcal = amount * 100 / energy_kcal",
+          "teaching_point": "FDC amounts are per 100 g of edible portion. Converting to per-calorie requires the energy row for the same fdc_id."
+        }
+      ]
+    },
+    {
+      "id": "portion_estimation",
+      "name": "Portions and Gram Weights",
+      "depth": 1,
+      "prerequisites": [
+        "food_composition_data"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/food_data_central_2026/"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "FDC portion tables",
+          "value": "food_portion.csv   10,951 rows   maps a household measure to gram weight per fdc_id\nmeasure_unit.csv      123 rows   unit vocabulary (cup, tbsp, piece, ...)",
+          "teaching_point": "Gram weight per 'cup' is food-specific and lives in food_portion.csv, not in a generic conversion table."
+        }
+      ]
+    },
+    {
+      "id": "risk_of_bias",
+      "name": "Risk of Bias: RoB 1 and RoB 2",
+      "depth": 2,
+      "prerequisites": [
+        "grade_certainty"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "Two different tools across two reviews",
+          "value": "CD015988: 'Pairs of review authors independently assessed the risk of bias in included studies using the original version of the Cochrane tool (RoB 1).'\n\nCD013617: 'We used the Cochrane risk of bias tool (RoB 2) to assess the risk of bias in the RCTs.'",
+          "teaching_point": "RoB 1 is domain-judgement per study; RoB 2 is per-result and more structured. Reviews from the same year can use either."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD013617 — the specific reasons certainty was downgraded",
+          "value": "The certainty of the evidence was downgraded for inconsistency, imprecision, and risk of bias (mainly due to lack of detail on randomisation and no available protocol or trial registration).",
+          "teaching_point": "'No available protocol or trial registration' is a bias signal you can check yourself on any paper."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD013617 — an absence that is not a reassurance",
+          "value": "No studies reported all-cause mortality or adverse events. ... There were no reports of adverse events, and we are unsure if the studies actively monitored for them.",
+          "teaching_point": "Unreported is not the same as did-not-occur. The review authors flag their own uncertainty about whether anyone looked."
+        }
+      ]
+    },
+    {
+      "id": "conflicts_of_interest",
+      "name": "Funding Sources and Conflicts of Interest",
+      "depth": 2,
+      "prerequisites": [
+        "grade_certainty"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD015092 (semaglutide) — industry involvement stated in the abstract",
+          "value": "We included 18 RCTs (27,949 participants) ... Seventeen RCTs reported that the drug manufacturer had a major role in their design, conduct, analysis, or writing.\n\nAuthors' conclusions: 'Most studies were funded by the drug's manufacturer, raising important concerns about conflicts of interest.'",
+          "teaching_point": "This coexists with high-certainty evidence of weight loss. A conflict of interest is a reason for scrutiny, not automatic dismissal."
+        },
+        {
+          "kind": "log_entry",
+          "label": "The same pattern across all three GLP-1 reviews",
+          "value": "CD015092 semaglutide:  17 of 18 RCTs, manufacturer had a major role\nCD016018 tirzepatide:  'All the included studies were funded by the drug manufacturer'\nCD016017 liraglutide:  'The drug manufacturer funded 22 studies'",
+          "teaching_point": "Independent evidence on this entire drug class is nearly absent. That is a structural feature of the field, not a quirk of one review."
+        },
+        {
+          "kind": "log_entry",
+          "label": "Non-industry funding, for contrast",
+          "value": "CD015988: 'The Department of Nutrition and Food Safety at the World Health Organization (WHO) commissioned and provided financial support for this work.'\nCD015092: 'This Cochrane review was funded by the World Health Organization (WHO).'\nCD013617: 'funded (in part) by the National Institute of Health Research (NIHR) and the Foreign, Commonwealth and Development Office (FCDO).'",
+          "teaching_point": "Distinguish who funded the review from who funded the underlying trials. CD015092 is a WHO-funded review of industry-funded trials."
+        }
+      ]
+    },
+    {
+      "id": "interpreting_null_results",
+      "name": "Null Results vs. Absence of Evidence",
+      "depth": 2,
+      "prerequisites": [
+        "effect_size_precision",
+        "grade_certainty"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD015610 (intermittent fasting) — a genuine null",
+          "value": "Compared to regular dietary advice, intermittent fasting may result in little to no difference in weight loss or quality of life. ... These approaches did not differ in achieving weight loss, producing no clinically meaningful changes in most of the outcomes considered in this review.",
+          "teaching_point": "Trials were done, outcomes were measured, and the answer was 'no meaningful difference'. That is a finding."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD013501 (vegan) — absence of evidence, not a null",
+          "value": "Studies were generally small with few participants contributing to each comparison group. None of the included studies report on CVD clinical events. There is currently insufficient information to draw conclusions about the effects of vegan dietary interventions on CVD risk factors.",
+          "teaching_point": "Nobody measured the outcome. This says nothing about whether vegan diets work — contrast sharply with the IF null above."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD013729 (DASH) — a third category: inconclusive on hard outcomes only",
+          "value": "The effect of the DASH diet on major cardiovascular outcomes - including myocardial infarction, stroke, cardiovascular mortality, and all-cause mortality - remains inconclusive due to a lack of robust long-term evidence. ... While the DASH diet may reduce blood pressure, total cholesterol, and triglyceride levels while increasing HDL cholesterol ... it appears to have little to no effect on LDL cholesterol.",
+          "teaching_point": "Three distinct states in three reviews: measured-and-null, never-measured, and measured-for-surrogates-but-not-endpoints."
+        }
+      ]
+    },
+    {
+      "id": "protein_requirements",
+      "name": "How Much Protein",
+      "depth": 2,
+      "prerequisites": [
+        "protein_fundamentals",
+        "reference_intake_framework"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_protein_exercise_2017.pdf",
+        "sources/practical_nutrition/issn_body_composition_2017.pdf",
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Four protein numbers from three authorities",
+          "value": "DRI EAR, adult:              0.66 g/kg/d   (meets 50% of the group)\nFDA DRV, food label:           50 g/d      (2,000 kcal reference, ages 4+)\nISSN, lean-mass retention\n  in a deficit:              2.3-3.1 g/kg FFM\nISSN, 'very high' intake:       >3 g/kg",
+          "teaching_point": "A ~5x spread. Each number is correct for its own question: population adequacy, label reference, or athletic lean-mass retention."
+        },
+        {
+          "kind": "code_snippet",
+          "label": "ISSN body composition stand, point 6",
+          "value": "6) Increasing dietary protein to levels significantly beyond current recommendations may result in improved body composition. Higher protein intakes (2.3-3.1 g/kg FFM) may be required to maximize muscle retention in lean, resistance-trained subjects under hypocaloric conditions. Emerging research on very high protein intakes (>3 g/kg) has demonstrated that the known thermic, satiating, and LM-preserving effects of dietary protein might be amplified in resistance-training subjects.",
+          "teaching_point": "Note the units: g/kg FFM, not g/kg bodyweight. Applying it to total bodyweight gives the wrong target."
+        }
+      ]
+    },
+    {
+      "id": "protein_distribution",
+      "name": "Protein Timing and Distribution",
+      "depth": 3,
+      "prerequisites": [
+        "protein_requirements"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_nutrient_timing_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN nutrient timing, points 6-7",
+          "value": "6. Meeting the total daily intake of protein, preferably with evenly spaced protein feedings (approximately every 3 h during the day), should be viewed as a primary area of emphasis for exercising individuals.\n7. Ingestion of essential amino acids (EAA; approximately 10 g) either in free form or as part of a protein bolus of approximately 20-40 g has been shown to maximally stimulate muscle protein synthesis (MPS).",
+          "teaching_point": "Total daily intake comes first; distribution is the refinement. The order in the source matters."
+        }
+      ]
+    },
+    {
+      "id": "fibre_whole_grains",
+      "name": "Fibre and Whole Grains",
+      "depth": 2,
+      "prerequisites": [
+        "carbohydrate_types"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/who_carbohydrate_intake_2023.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "WHO carbohydrate guideline, headline recommendations",
+          "value": "Carbohydrate intake should come primarily from whole grains, vegetables,\n  fruits and pulses (everyone aged 2+)\nAdults: at least 400 g/d of vegetables and fruits\nAdults: at least 25 g/d of naturally occurring dietary fibre\n\nFDA DRV for Dietary Fiber (label reference): 28 g",
+          "teaching_point": "WHO says 'naturally occurring' fibre — which excludes isolated fibres added to processed foods. The label DRV makes no such distinction."
+        }
+      ]
+    },
+    {
+      "id": "free_sugars",
+      "name": "Free and Added Sugars",
+      "depth": 2,
+      "prerequisites": [
+        "carbohydrate_types"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/who_sugars_2015.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Two different sugar constructs",
+          "value": "WHO 'free sugars'   — added sugars plus sugars naturally present in\n                       honey, syrups, and fruit juices\nFDA 'added sugars'  — DRV 50 g/d on a 2,000 kcal basis\n\nNeither counts sugars intrinsic to whole fruit and vegetables or milk.",
+          "teaching_point": "Fruit juice counts as free sugar for WHO. The two definitions do not overlap exactly, so the same food can score differently."
+        },
+        {
+          "kind": "log_entry",
+          "label": "WHO on non-sugar sweeteners",
+          "value": "WHO's existing guidance limits free sugars intake, and reducing consumption of free sugars should be accomplished without the use of non-sugar sweeteners.",
+          "teaching_point": "The recommendation is to reduce sweetness intake, not to substitute the sweetener."
+        }
+      ]
+    },
+    {
+      "id": "saturated_trans_fat",
+      "name": "Saturated and Trans Fat",
+      "depth": 2,
+      "prerequisites": [
+        "dietary_fats"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/who_sfa_tfa_2023.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf",
+        "sources/practical_nutrition/usda_dga_2025_2030.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Label reference vs. guideline target",
+          "value": "FDA DRV, saturated fat:  20 g/d  (2,000 kcal basis = 9% of energy)\nFDA DRV, total fat:      78 g/d\nWHO guideline:           the SFA and TFA guideline is GRADE-based and must be\n                         read alongside WHO guidance on total fat, PUFA,\n                         sugars, sodium, potassium and carbohydrate",
+          "teaching_point": "Compute it: 20 g x 9 kcal / 2,000 = 9% of energy. The label DRV already encodes a percent-of-energy target."
+        },
+        {
+          "kind": "log_entry",
+          "label": "DGA 2025-2030 is contested on exactly this nutrient",
+          "value": "Independent critiques of the 2025-2030 DGA (CSPI; Harvard Nutrition Source, Jan 2026) identify saturated fat contradictions among their objections.",
+          "teaching_point": "A live example of guideline-vs-evidence divergence. Read the guideline and its critiques together."
+        }
+      ]
+    },
+    {
+      "id": "omega3_fatty_acids",
+      "name": "Omega-3s: LCn3 and ALA",
+      "depth": 2,
+      "prerequisites": [
+        "dietary_fats",
+        "grade_certainty"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD003177.PUB5 — inclusion criteria and conclusions",
+          "value": "We included randomised controlled trials (RCTs) that lasted at least 12 months and compared supplementation or advice to increase LCn3 or ALA intake, or both, versus usual care.\n\nAuthors' conclusions: 'This is the most extensive systematic assessment of effects of omega-3 fats on cardiovascular health to date. Moderate- and low-certainty evidence suggests that increasing LCn3 slightly reduces risk of coronary heart disease mortality and events, and reduces serum triglycerides (evidence mainly from supplement trials). Increasing ALA slightly reduces risk of cardiovascular events and arrhythmia.'\n\nCertainty profile: 5 high, 7 moderate, 8 low, 0 very low.",
+          "teaching_point": "LCn3 (marine EPA/DHA) and ALA (plant) are assessed separately and behave differently. 'Omega-3' as a single category obscures this."
+        }
+      ]
+    },
+    {
+      "id": "sodium_potassium",
+      "name": "Sodium and Potassium",
+      "depth": 2,
+      "prerequisites": [
+        "reference_intake_framework"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/fda_dv_macro_2016.pdf",
+        "sources/practical_nutrition/fda_dv_micro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Sodium and potassium across the reference systems",
+          "value": "Sodium\n  FDA DRV (label):     2,300 mg/d\n  FDA RDI chloride:    2,300 mg/d\n  DRI:                 no EAR established; has a CDRR (new in 2019)\n\nPotassium\n  FDA RDI (label):     4,700 mg/d\n  DRI:                 no EAR established; AI only",
+          "teaching_point": "Neither has an EAR. Their targets come from chronic-disease risk (CDRR) rather than from a measured requirement."
+        }
+      ]
+    },
+    {
+      "id": "micronutrient_adequacy",
+      "name": "Meeting Requirements from Food",
+      "depth": 2,
+      "prerequisites": [
+        "micronutrient_framework",
+        "nutrient_density"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/food_data_central_2026/"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "cli_command",
+          "label": "Adequacy check workflow against real data",
+          "value": "1. Target:   DRI RDA (or AI) for the nutrient, life-stage group\n2. Food:     food.csv -> fdc_id for a Foundation food\n3. Content:  food_nutrient.csv where fdc_id matches, nutrient_id = target\n4. Portion:  food_portion.csv -> gram weight for a realistic serving\n5. Scale:    amount is per 100 g; multiply by portion_g / 100\n6. Compare:  scaled amount vs RDA",
+          "teaching_point": "Step 5 is where most errors happen. FDC amounts are per 100 g of edible portion, not per serving."
+        }
+      ]
+    },
+    {
+      "id": "micronutrient_toxicity",
+      "name": "Upper Limits and Supplement Risk",
+      "depth": 2,
+      "prerequisites": [
+        "micronutrient_framework"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "Appendix J includes two UL tables",
+          "value": "Tolerable Upper Intake Levels, Vitamins\nTolerable Upper Intake Levels, Elements",
+          "teaching_point": "Not every nutrient has a UL. Absence of a UL means insufficient data to set one — not that unlimited intake is safe."
+        },
+        {
+          "kind": "config",
+          "label": "Where the UL gap bites — nutrients with no EAR",
+          "value": "No EAR established for: vitamin K, pantothenic acid, biotin, choline,\nchromium, fluoride, manganese, potassium, sodium, chloride",
+          "teaching_point": "These are exactly the nutrients where supplement dosing has the weakest scientific floor and ceiling."
+        }
+      ]
+    },
+    {
+      "id": "energy_availability",
+      "name": "Energy Availability and Low Energy Availability",
+      "depth": 2,
+      "prerequisites": [
+        "energy_balance"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_body_composition_2017.pdf"
+      ],
+      "source_status": "THIN — no primary source on energy availability or RED-S. The AND/DC/ACSM 2016 joint position stand (Nutrition and Athletic Performance) is the needed reference and is paywalled. Teach only what issn_body_composition_2017 supports; flag the boundary to the learner rather than extrapolating.",
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN body composition stand, point 9 — the acknowledged gap",
+          "value": "9) There is a paucity of research on women and older populations, as well as a wide range of untapped permutations of feeding frequency and macronutrient distribution at various energetic balances combined with training.",
+          "teaching_point": "The source names its own limits. Energy availability in female athletes sits inside this gap."
+        }
+      ]
+    },
+    {
+      "id": "weight_loss_diets",
+      "name": "Deficit Magnitude and Lean Mass Preservation",
+      "depth": 3,
+      "prerequisites": [
+        "energy_balance",
+        "protein_requirements",
+        "body_composition_assessment"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_body_composition_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN points 3 and 8 — rate, baseline, and compliance",
+          "value": "3) Diets primarily focused on fat loss are driven by a sustained caloric deficit. The higher the baseline body fat level, the more aggressively the caloric deficit may be imposed. Slower rates of weight loss can better preserve lean mass (LM) in leaner subjects.\n\n8) The long-term success of a diet depends upon compliance and suppression or circumvention of mitigating factors such as adaptive thermogenesis.",
+          "teaching_point": "Two competing objectives: speed of fat loss vs. retention of lean mass. Leanness shifts the optimum toward slower."
+        }
+      ]
+    },
+    {
+      "id": "diet_archetypes",
+      "name": "Low-Carb, Ketogenic, High-Protein, and Intermittent Fasting",
+      "depth": 4,
+      "prerequisites": [
+        "weight_loss_diets",
+        "interpreting_null_results"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_body_composition_2017.pdf",
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN points 1, 5 and 7 — the equivalence claim",
+          "value": "1) There is a multitude of diet types and eating styles, whereby numerous subtypes fall under each major dietary archetype.\n\n5) A wide range of dietary approaches (low-fat to low-carbohydrate/ketogenic, and all points between) can be similarly effective for improving body composition.\n\n7) The collective body of intermittent caloric restriction research demonstrates no significant advantage over daily caloric restriction for improving body composition.\n\nArchetypes assessed: very-low- and low-energy diets (VLED, LED), low-fat diets (LFD), low-carbohydrate diets (LCD), ketogenic diets (KD), high-protein diets (HPD), and intermittent fasting (IF).",
+          "teaching_point": "Two independent sources reach the same verdict on IF — ISSN 2017 and Cochrane CD015610 (2026). Convergence across method and decade."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD015610 — the Cochrane version of the same finding",
+          "value": "We included randomised controlled trials (RCTs) and cluster-RCTs that compared intermittent fasting (including time-restricted feeding, periodic fasting, alternate-day fasting) ...\n\nCompared to regular dietary advice, intermittent fasting may result in little to no difference in weight loss or quality of life.",
+          "teaching_point": "Note the subtypes bundled under 'intermittent fasting'. A null on the bundle is not a null on each subtype."
+        }
+      ]
+    },
+    {
+      "id": "dietary_patterns_comparison",
+      "name": "Mediterranean vs. DASH vs. Vegan",
+      "depth": 3,
+      "prerequisites": [
+        "grade_certainty",
+        "dietary_fats",
+        "fibre_whole_grains"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "Four reviews, one outcome framework — side by side",
+          "value": "CD009825.PUB3  Mediterranean  2019  30 RCTs (22 primary, 8 secondary)\n  Moderate-quality evidence for stroke reduction in primary prevention;\n  low-quality for total and CVD mortality in secondary prevention.\n  'There is still some uncertainty regarding the effects ... on clinical endpoints.'\n\nCD013729.PUB2  DASH           2025\n  Hard CV outcomes inconclusive; no trials on heart failure or revascularisation.\n  Reduces BP, total cholesterol, triglycerides; raises HDL; little/no effect on LDL.\n\nCD013501.PUB2  Vegan          2021\n  'None of the included studies report on CVD clinical events.'\n  Insufficient information to draw conclusions. 8 ongoing studies.\n\nCD003177.PUB5  Omega-3        2020  5 high-certainty outcomes\n  LCn3 slightly reduces CHD mortality and events; ALA slightly reduces CV events.",
+          "teaching_point": "Same question, same method, four different epistemic states. The most-recommended patterns are not the best-evidenced ones."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD009825 — pre-standardisation GRADE wording",
+          "value": "The quality of evidence for the modest benefits on CVD risk factors in primary prevention is low or moderate, with a small number of studies reporting minimal harms. There is a paucity of evidence for secondary prevention.",
+          "teaching_point": "This 2019 review says 'quality of evidence'; the 2025-2026 reviews say 'certainty of evidence'. Same GRADE construct, renamed."
+        }
+      ]
+    },
+    {
+      "id": "carb_for_performance",
+      "name": "Fuelling Training and Competition",
+      "depth": 4,
+      "prerequisites": [
+        "carbohydrate_types",
+        "protein_distribution"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/issn_nutrient_timing_2017.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "code_snippet",
+          "label": "ISSN nutrient timing, points 2-5 — the numbers",
+          "value": "2. Endogenous glycogen stores are maximized by following a high-carbohydrate diet (8-12 g of carbohydrate/kg/day); moreover, these stores are depleted most by high volume exercise.\n\n3. If rapid restoration of glycogen is required (< 4 h of recovery time) then the following strategies should be considered:\n   a) aggressive carbohydrate refeeding (1.2 g/kg/h) with a preference towards carbohydrate sources that have a high (> 70) glycemic index\n   b) the addition of caffeine (3-8 mg/kg)\n   c) combining carbohydrates (0.8 g/kg/h) with protein (0.2-0.4 g/kg/h)\n\n4. Extended (> 60 min) bouts of high intensity (> 70% VO2max) exercise challenge fuel supply and fluid regulation, thus carbohydrate should be consumed at a rate of ~30-60 g of carbohydrate/h in a 6-8% carbohydrate-electrolyte solution (6-12 fluid ounces) every 10-15 min throughout the entire exercise bout, particularly in those exercise bouts that span beyond 70 min.\n\n5. Carbohydrate ingestion throughout resistance exercise (e.g., 3-6 sets of 8-12 repetition maximum [RM] using multiple exercises targeting all major muscle groups) has been shown to promote euglycemia and higher glycogen stores.",
+          "teaching_point": "Every recommendation is gated on a threshold: >60 min, >70% VO2max, <4 h recovery. Below those thresholds the guidance does not apply."
+        }
+      ]
+    },
+    {
+      "id": "supplements_evidence",
+      "name": "Grading Supplement Claims",
+      "depth": 3,
+      "prerequisites": [
+        "omega3_fatty_acids",
+        "micronutrient_toxicity",
+        "conflicts_of_interest"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv",
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/fda_dv_micro_2016.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD003177 — what a well-evidenced supplement claim looks like",
+          "value": "Moderate- and low-certainty evidence suggests that increasing LCn3 slightly reduces risk of coronary heart disease mortality and events, and reduces serum triglycerides (evidence mainly from supplement trials).",
+          "teaching_point": "'Slightly' is doing real work. A well-evidenced small effect is often marketed as a large one."
+        },
+        {
+          "kind": "config",
+          "label": "The three-number check on any supplement label",
+          "value": "1. Dose on the label\n2. FDA RDI for that nutrient (the %DV denominator)\n3. DRI Tolerable Upper Intake Level\n\nIf (1) greatly exceeds (2), ask why. If (1) approaches or exceeds (3), that is a\nsafety question, not a potency feature.",
+          "teaching_point": "A %DV over 100% is not automatically a problem, but it is automatically a question."
+        }
+      ]
+    },
+    {
+      "id": "obesity_pharmacotherapy",
+      "name": "GLP-1 Receptor Agonists",
+      "depth": 4,
+      "prerequisites": [
+        "conflicts_of_interest",
+        "weight_loss_diets"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD015092 (semaglutide) — the full outcome picture",
+          "value": "Medium term (6-17 months), vs placebo:\n  percentage body weight   MD -10.73 (95% CI -12.24 to -9.21); 15 studies, 8651 pts; HIGH\n  >=5% weight loss         RR 2.68 (95% CI 2.30 to 3.12); 12 studies, 7458 pts; HIGH\n  non-serious AEs          RR 1.11 (95% CI 1.01 to 1.22); 13 studies, 8443 pts; LOW\n  AEs leading to withdrawal RR 1.84 (95% CI 1.53 to 2.21); 15 studies, 9054 pts; MODERATE\n  serious AEs              RR 1.01 (95% CI 0.78 to 1.29); 15 studies, 9054 pts; VERY LOW\n  quality of life (SF-36 PF) MD 2.12 (95% CI 0.95 to 3.28); 9 studies, 6083 pts; MODERATE\n  MACE                     RR 0.63 (95% CI 0.44 to 0.90); 9 studies, 7647 pts; LOW\n  mortality                RR 0.69 (95% CI 0.48 to 0.98); 14 studies, 8953 pts; LOW\n\n17 of 18 RCTs: manufacturer had a major role in design, conduct, analysis or writing.",
+          "teaching_point": "Weight loss is high-certainty. Everything patients actually care about downstream — mortality, MACE, quality of life, serious harms — is low or very low."
+        },
+        {
+          "kind": "log_entry",
+          "label": "The three drugs compared on certainty, not just efficacy",
+          "value": "CD015092 semaglutide  2 high / 9 moderate / 3 low / 2 very low   17 of 18 industry\nCD016018 tirzepatide  0 high / 8 moderate / 6 low / 2 very low   all industry\nCD016017 liraglutide  0 high / 5 moderate / 5 low / 8 very low   22 industry-funded",
+          "teaching_point": "Liraglutide has eight very-low-certainty outcomes. Ranking these drugs by headline weight loss ignores how differently well they are studied."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD007654 — the older drug class, for contrast",
+          "value": "Our critical outcomes of death and cardiovascular complications were not the focus of the trials included in this review but were sometimes presented as part of an 'adverse events' outcome, with the resultant data providing only very low certainty evidence. Overall, the evidence for people with hypertension remains insufficient to draw conclusions.\n\n'Several pharmaceutical products have been removed from the market due to safety concerns, whilst new drugs have been introduced.'",
+          "teaching_point": "Drugs in this class have been withdrawn before. Absence of long-term safety data is the historically relevant risk."
+        }
+      ]
+    },
+    {
+      "id": "exercise_diet_interaction",
+      "name": "Exercise Alongside Diet",
+      "depth": 3,
+      "prerequisites": [
+        "energy_balance",
+        "grade_certainty"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD013617 — HIIT vs nothing, and HIIT vs moderate training",
+          "value": "58 RCTs, 2075 participants (14 to 90 per study), 4 to 16 weeks.\n\nvs non-exercise control:\n  VO2max              MD +5.98 mL/min/kg (95% CI 4.66 to 7.30); 16 studies, 517 pts; MODERATE\n  waist circumference MD -3.56 cm (95% CI -6.14 to -0.98); 8 studies, 270 pts; HIGH\n  waist-to-hip ratio  MD -0.01 (95% CI -0.03 to 0.01); 6 studies, 224 pts; MODERATE\n  triglycerides       SMD -0.22 (95% CI -0.62 to 0.17); 9 studies, 262 pts; LOW\n  systolic BP         MD -5.22 mmHg (95% CI -12.27 to 1.84); 7 studies, 215 pts; VERY LOW\n\nvs moderate-intensity continuous training (MICT):\n  VO2max              MD +1.39 mL/min/kg (95% CI 0.44 to 2.34); 37 studies, 1115 pts; LOW\n  waist circumference MD +0.06 cm (95% CI -1.49 to 1.62); 15 studies, 407 pts; MODERATE\n  systolic BP         MD -0.56 mmHg (95% CI -3.02 to 1.90); 18 studies, 515 pts; LOW\n\nNo studies reported all-cause mortality or adverse events.",
+          "teaching_point": "Compare the two comparisons. Against nothing, HIIT looks strong; against moderate training, the advantage nearly vanishes. The comparator determines the story."
+        },
+        {
+          "kind": "log_entry",
+          "label": "CD004366 — when new evidence does not move the estimate",
+          "value": "Exercise may be moderately more effective than a control intervention for reducing symptoms of depression. Exercise appears to be no more or less effective than psychological or pharmacological treatments, though this conclusion is based on a few small trials. Long-term follow-up was rare. The addition of 35 RCTs (at least 2526 participants) to this update has had very little effect on the estimate of the benefit of exercise on symptoms of depression.",
+          "teaching_point": "35 new RCTs, 2500+ participants, and the estimate barely moved. Stability under new data is itself evidence."
+        }
+      ]
+    },
+    {
+      "id": "dga_and_guidelines",
+      "name": "Reading Public Guidelines",
+      "depth": 3,
+      "prerequisites": [
+        "grade_certainty",
+        "conflicts_of_interest"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/usda_dga_2025_2030.pdf",
+        "sources/practical_nutrition/who_healthy_diet_2026.pdf",
+        "sources/practical_nutrition/who_carbohydrate_intake_2023.pdf",
+        "sources/practical_nutrition/who_sfa_tfa_2023.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "WHO Healthy diet fact sheet (2026-01-26) — the four core principles",
+          "value": "Healthy diets come in many forms, but the four core principles of adequacy, balance, moderation and diversity should be the foundation of any healthy diet.\n\nA variety of minimally processed and unprocessed foods low in unhealthy fats, free sugars and sodium are the foundation of any healthy diet.\n\nA diet must also be safe to be healthy, i.e. free from microbial and chemical contaminants.",
+          "teaching_point": "'Healthy diets come in many forms' is a claim about the evidence — it matches CD009825/CD013729/CD013501 showing no single pattern with decisive superiority."
+        },
+        {
+          "kind": "log_entry",
+          "label": "DGA 2025-2030 — a guideline and its critics",
+          "value": "Released 2026-01-07 by USDA and HHS; published at realfood.gov. Key message: 'Eat Real Food.'\n\nIndependent critiques published within days:\n  CSPI, 'The Uncompromised Dietary Guidelines for Americans, 2025-2030' (2026-01-07)\n  Harvard Nutrition Source, 'Progress on added sugar, protein hype, saturated fat\n    contradictions' (2026-01-09)",
+          "teaching_point": "Guidelines are policy documents shaped by process and constituency, not evidence syntheses. Read them as such, and read the critiques alongside."
+        },
+        {
+          "kind": "config",
+          "label": "Which authority governs which question",
+          "value": "What a US food label legally means    -> FDA (regulation, not evidence)\nWhat a person requires               -> NASEM DRI (and EFSA, WHO)\nWhat the evidence supports           -> Cochrane, GRADE-rated syntheses\nWhat policy recommends               -> DGA, WHO guidelines\n\nThese can disagree without any of them being wrong.",
+          "teaching_point": "Most nutrition arguments are two people citing different authorities for different question types."
+        }
+      ]
+    },
+    {
+      "id": "claim_evaluation",
+      "name": "Evaluating a Nutrition Claim End to End",
+      "depth": 5,
+      "prerequisites": [
+        "dga_and_guidelines",
+        "supplements_evidence",
+        "dietary_patterns_comparison",
+        "risk_of_bias",
+        "interpreting_null_results"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv",
+        "sources/practical_nutrition/nasem_dri_summary_tables_2019.pdf",
+        "sources/practical_nutrition/food_data_central_2026/",
+        "sources/practical_nutrition/usda_dga_2025_2030.pdf"
+      ],
+      "practical_artifacts": [
+        {
+          "kind": "config",
+          "label": "The appraisal checklist, assembled from this graph",
+          "value": "1. What kind of claim is it — requirement, label, evidence, or policy?\n2. Which authority actually governs that question?\n3. Is there a systematic review? What is the per-outcome certainty?\n4. Effect size and CI — does the interval cross no-effect? What is I2?\n5. Which outcomes were measured, and which were never reported?\n6. Who funded the trials, as distinct from who funded the review?\n7. What was the comparator? (vs nothing, vs usual care, vs an active alternative)\n8. Does the claim's population match the review's eligibility criteria?",
+          "teaching_point": "Steps 5 and 7 catch the most real-world claims. Most overstatement lives in an unreported outcome or a weak comparator."
+        },
+        {
+          "kind": "log_entry",
+          "label": "Worked example — 'HIIT is better than steady cardio for heart health'",
+          "value": "Claim type: evidence claim -> Cochrane governs.\nReview: CD013617.PUB2 (2026), 58 RCTs, 2075 participants.\nComparator matters: vs non-exercise, waist circumference -3.56 cm (HIGH certainty).\n  vs MICT, waist circumference +0.06 cm, CI -1.49 to 1.62 (MODERATE) — no difference.\nVO2max vs MICT: +1.39 mL/min/kg, LOW certainty.\nHard outcomes: no studies reported all-cause mortality. Adverse events unreported,\n  and authors are 'unsure if the studies actively monitored for them'.\nPopulation: sedentary adults 18-64. Athletes explicitly excluded.\n\nVerdict: 'better than nothing' is well supported. 'Better than steady cardio' is a\nslight VO2max edge at low certainty and no difference elsewhere. 'For heart health'\noverreaches — nobody measured cardiac events.",
+          "teaching_point": "The claim is not false so much as three different claims, each with a different evidential standing."
+        }
+      ]
+    },
+    {
+      "id": "population_vs_individual",
+      "name": "Public Health Policy vs. Personal Decisions",
+      "depth": 5,
+      "prerequisites": [
+        "dga_and_guidelines",
+        "sodium_potassium"
+      ],
+      "mastery": 0.0,
+      "reps": 0,
+      "interval_days": 1,
+      "next_review": null,
+      "history": [],
+      "sources": [
+        "sources/practical_nutrition/cochrane_citation_export_2026.csv",
+        "sources/practical_nutrition/usda_dga_2025_2030.pdf",
+        "sources/practical_nutrition/who_healthy_diet_2026.pdf"
+      ],
+      "source_status": "THIN — CD014794 (school feeding) is the only population-level intervention review in the export. CD027633834/CD-equivalent sodium-policy review was considered and dropped. Teach the distinction conceptually; do not overclaim on policy effectiveness.",
+      "practical_artifacts": [
+        {
+          "kind": "log_entry",
+          "label": "CD014794 — a population intervention judged on population outcomes",
+          "value": "In LMICs, school feeding programs lead to a slight improvement in math achievement, but may have little to no effect on reading achievement. School feeding programs lead to a slight increase in enrollment, but may have little to no impact on attendance. They likely lead to slight gains in HAZ and WAZ. There may be little to no association between school feeding and overweight/obesity, but the evidence is very uncertain.\n\nCertainty profile: 2 high, 2 moderate, 2 low.",
+          "teaching_point": "The outcomes are enrollment and math scores — not nutrients. Population nutrition interventions get judged on population endpoints."
+        },
+        {
+          "kind": "config",
+          "label": "Same nutrient, two decision levels",
+          "value": "Sodium\n  Individual:  DRI CDRR; FDA label DRV 2,300 mg/d; your own intake\n  Population:  reformulation mandates, salt substitution, procurement standards\n\nA 1 mmHg mean population BP reduction is a major public health win and\nclinically irrelevant to any single person.",
+          "teaching_point": "Effect sizes that are trivial individually can be decisive at population scale. This is the most common source of cross-talk in nutrition debates."
+        }
+      ]
+    }
+  ]
+}
